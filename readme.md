@@ -35,9 +35,10 @@ $ npm start
 - A aplicação encontra-se a responder no url [http://localhost:3008/](https://localhost:3008)
 
 
-<p align="center">Miguel R. Solans</p>
-<p align="center">PG41841</p>
-<p align="center">2019/2020</p>
+<p align="center"><span style="color: #5D5D5D">PG41841</span> Miguel R. Solans</p>
+<p align="center"><span style="color: #5D5D5D">NUMERO</span> Diogo Nogueira</p>
+<p align="center"><span style="color: #5D5D5D">NUMERO</span> Mateus Silva</p>
+
 
 
 
