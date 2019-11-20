@@ -19,7 +19,8 @@ O trabalho prático da Unidade Curricular de Desenvolvimento de Aplicações Web
 - Notificações de alteração de recursos (gostos, comentários...)  
 - Seguir Hashtags  
 - Mensagens de grupo
-- Perfil: apresentar número de contributos em recursos (estilo Github)
+- Perfil: apresentar número de contributos em recursos (estilo Github)  
+- Notificações Push [link](https://developers.google.com/web/fundamentals/codelabs/push-notifications)
 
 ## Bibliotecas Interessantes
 - [Tagify](https://yaireo.github.io/tagify/)
