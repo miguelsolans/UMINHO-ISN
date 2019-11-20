@@ -19,6 +19,7 @@ O trabalho prático da Unidade Curricular de Desenvolvimento de Aplicações Web
 - Notificações de alteração de recursos (gostos, comentários...)  
 - Seguir Hashtags  
 - Mensagens de grupo
+- Perfil: apresentar número de contributos em recursos (estilo Github)
 
 ## Bibliotecas Interessantes
 - [Tagify](https://yaireo.github.io/tagify/)
@@ -27,6 +28,7 @@ O trabalho prático da Unidade Curricular de Desenvolvimento de Aplicações Web
 - [AngularJS](https://angularjs.org/)
 - [FancyTable](https://github.com/myspace-nu/jquery.fancyTable)
 - [Dynatree](https://www.submission-faccejpi.com/c_media/modules/dynatree/doc/dynatree-doc.html)
+- [Highcharts](https://www.highcharts.com/)
 
 ## Aspectos Importantes
 - A aplicação pode ser testada recorrendo a dois comandos de script, sendo que o comando de `test` executará a aplicação com nodemon e, contrariamente, `start` executará em ambiente *normal* recorrendo ao `node`
