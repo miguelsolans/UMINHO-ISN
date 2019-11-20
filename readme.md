@@ -16,7 +16,17 @@ O trabalho prático da Unidade Curricular de Desenvolvimento de Aplicações Web
 
 ## Outras Ideias
 - Suporte de vários idiomas (pelo menos Inglês e Portugês): AngularJS  
-- 
+- Notificações de alteração de recursos (gostos, comentários...)  
+- Seguir Hashtags  
+- Mensagens de grupo
+
+## Bibliotecas Interessantes
+- [Tagify](https://yaireo.github.io/tagify/)
+- [Socket.io](https://socket.io/)
+- [jQuery Confirm](https://craftpip.github.io/jquery-confirm/)
+- [AngularJS](https://angularjs.org/)
+- [FancyTable](https://github.com/myspace-nu/jquery.fancyTable)
+- [Dynatree](https://www.submission-faccejpi.com/c_media/modules/dynatree/doc/dynatree-doc.html)
 
 ## Aspectos Importantes
 - A aplicação pode ser testada recorrendo a dois comandos de script, sendo que o comando de `test` executará a aplicação com nodemon e, contrariamente, `start` executará em ambiente *normal* recorrendo ao `node`
