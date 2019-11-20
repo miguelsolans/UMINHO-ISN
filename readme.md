@@ -16,7 +16,19 @@ O trabalho prático da Unidade Curricular de Desenvolvimento de Aplicações Web
 
 ## Outras Ideias
 - Suporte de vários idiomas (pelo menos Inglês e Portugês): AngularJS  
-- 
+- Notificações de alteração de recursos (gostos, comentários...)  
+- Seguir Hashtags  
+- Mensagens de grupo
+- Perfil: apresentar número de contributos em recursos (estilo Github)
+
+## Bibliotecas Interessantes
+- [Tagify](https://yaireo.github.io/tagify/)
+- [Socket.io](https://socket.io/)
+- [jQuery Confirm](https://craftpip.github.io/jquery-confirm/)
+- [AngularJS](https://angularjs.org/)
+- [FancyTable](https://github.com/myspace-nu/jquery.fancyTable)
+- [Dynatree](https://www.submission-faccejpi.com/c_media/modules/dynatree/doc/dynatree-doc.html)
+- [Highcharts](https://www.highcharts.com/)
 
 ## Aspectos Importantes
 - A aplicação pode ser testada recorrendo a dois comandos de script, sendo que o comando de `test` executará a aplicação com nodemon e, contrariamente, `start` executará em ambiente *normal* recorrendo ao `node`
@@ -35,9 +47,10 @@ $ npm start
 - A aplicação encontra-se a responder no url [http://localhost:3008/](https://localhost:3008)
 
 
-<p align="center">Miguel R. Solans</p>
-<p align="center">PG41841</p>
-<p align="center">2019/2020</p>
+<p align="center"><span style="color: #5D5D5D">PG41841</span> Miguel R. Solans</p>
+<p align="center"><span style="color: #5D5D5D">NUMERO</span> Diogo Nogueira</p>
+<p align="center"><span style="color: #5D5D5D">NUMERO</span> Mateus Silva</p>
+
 
 
 
