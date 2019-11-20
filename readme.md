@@ -29,6 +29,8 @@ O trabalho prático da Unidade Curricular de Desenvolvimento de Aplicações Web
 - [FancyTable](https://github.com/myspace-nu/jquery.fancyTable)
 - [Dynatree](https://www.submission-faccejpi.com/c_media/modules/dynatree/doc/dynatree-doc.html)
 - [Highcharts](https://www.highcharts.com/)
+- [Bootstrap](https://getbootstrap.com/)
+- [AwesomeFont v4](https://fontawesome.com/v4.7.0/)
 
 ## Aspectos Importantes
 - A aplicação pode ser testada recorrendo a dois comandos de script, sendo que o comando de `test` executará a aplicação com nodemon e, contrariamente, `start` executará em ambiente *normal* recorrendo ao `node`
