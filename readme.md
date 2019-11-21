@@ -31,7 +31,8 @@ O trabalho prático da Unidade Curricular de Desenvolvimento de Aplicações WEB
 - Comentar/Discutir Ficheiros (podem ser erros em resoluções, resoluções de fichas...)
 - Ficheiros como mensagens nos chats
 - Introdução do _Dark Mode_ (dado que agora é algo que a maioria das _apps_ tem)
-- Possibilidade de divulgar eventos
+- Possibilidade de divulgar eventos  
+- Inspirational Quotes: visto que valoriza usar APIs externas, adicionar um sítio algures com frases inspiradoras [desta API](https://theysaidso.com/api/) ou outra que encontrem
 
 ## Bibliotecas Interessantes
 
