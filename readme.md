@@ -17,10 +17,17 @@ O trabalho prático da Unidade Curricular de Desenvolvimento de Aplicações Web
 ## Outras Ideias
 - Suporte de vários idiomas (pelo menos Inglês e Portugês): AngularJS  
 - Notificações de alteração de recursos (gostos, comentários...)  
-- Seguir Hashtags  
+- Seguir Hashtags (tinha pensado em seguir cadeiras e receber notoficações dessas cadeiras)
 - Mensagens de grupo
 - Perfil: apresentar número de contributos em recursos (estilo Github)  
 - Notificações Push [link](https://developers.google.com/web/fundamentals/codelabs/push-notifications)
+- Responder a mensagem específica
+- Chat, avisos e material para cada cadeira do curso (para melhor organização)
+- Filtros de pesquisa de ficheiros (por ano, por tipo, por cadeira...)
+- Comentar/discutir ficheiros (podem ser erros em resoluções, resoluções de fichas...)
+- Ficheiros como mensagens nos chats
+- Mais sobre front-end: Modo noturno (é só uma ideia caso o tempo sobre, visto que está na moda)
+
 
 ## Bibliotecas Interessantes
 - [Tagify](https://yaireo.github.io/tagify/)
@@ -52,7 +59,7 @@ $ npm start
 
 <p align="center"><span>PG41841</span> Miguel R. Solans</p>
 <p align="center"><span>NUMERO</span> Diogo Nogueira</p>
-<p align="center"><span>NUMERO</span> Mateus Silva</p>
+<p align="center"><span>A81952</span> Mateus Silva</p>
 
 
 
