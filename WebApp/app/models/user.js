@@ -1,4 +1,4 @@
-/* models/person
+/* models/user
  * Author: Miguel Solans, Mateus SIlva, Diogo Nogueira
  * Notes: User Model
  */
