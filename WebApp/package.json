@@ -10,6 +10,8 @@
   "author": "Miguel Solans",
   "license": "ISC",
   "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^8.2.0",
     "ejs": "^2.7.1",
     "express": "^4.17.1",
     "http-errors": "^1.7.3",

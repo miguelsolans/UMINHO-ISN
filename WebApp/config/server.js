@@ -1,22 +1,30 @@
 // Loading modules
-const createError   = require('http-errors');
+const createError = require('http-errors');
 // Express server
-const express       = require('express');
-const app           = express();
+const express = require('express');
+const app = express();
 // Body Parser
-const bodyParser    = require('body-parser');
+const bodyParser = require('body-parser');
+// Colors
+const colors = require('colors');
 // Morgan For Request Status
-const logger        = require('morgan');
+const logger = require('morgan');
 // MongoDB
-const mongoose      = require('mongoose');
+const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://127.0.0.1:27017/HelloWorldDB', {
-    useNewUrlParser: true, useUnifiedTopology: true })
+// Connection to database
+mongoose
+    .connect('mongodb://127.0.0.1:27017/HelloWorldDB', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
     .then(() => {
-        console.log("Connection to MongoDB successfully established")
+        console.log(
+            'Connection to MongoDB successfully established'.cyan.underline.bold
+        );
     })
     .catch(() => {
-        console.log("Couldn't connect to MongoDB");
+        console.log("Couldn't connect to MongoDB".red);
     });
 
 // Display Request Status
@@ -30,9 +38,11 @@ app.set('view engine', 'ejs');
 app.set('views', './app/views');
 
 // urlencoded tells body-parser to extract data from <from>
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+app.use(
+    bodyParser.urlencoded({
+        extended: true
+    })
+);
 
 // To read it in JSON
 app.use(bodyParser.json());

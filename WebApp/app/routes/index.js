@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 // Controllers
-const Persons = require('../controllers/persons');
+const Persons = require('../controllers/users');
 
 router.get('/', (req, res) => {
     Persons.list()
