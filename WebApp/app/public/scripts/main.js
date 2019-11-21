@@ -5,7 +5,7 @@ require.config({
         "bootstrap": "external/bootstrap",
 
         // Modules
-        "User": "modules/User",
+        "User": "modules/Person",
         "uiTest": "modules/ui-test"
     },
     "bootstrap": {
