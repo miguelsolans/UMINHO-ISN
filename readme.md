@@ -30,12 +30,8 @@ O trabalho prático da Unidade Curricular de Desenvolvimento de Aplicações WEB
 - Filtros de Pesquisa de Ficheiros (p.ex. por ano, por tipo, por cadeira...)
 - Comentar/Discutir Ficheiros (podem ser erros em resoluções, resoluções de fichas...)
 - Ficheiros como mensagens nos chats
-<<<<<<< HEAD
 - Introdução do _Dark Mode_ (dado que agora é algo que a maioria das _apps_ tem)
 - Possibilidade de divulgar eventos
-=======
-- Introdução do *Dark Mode* (dado que agora é algo que a maioria das *apps* tem)
->>>>>>> 765c1fd8a01b49702045aa69576562abd199c243
 
 ## Bibliotecas Interessantes
 
