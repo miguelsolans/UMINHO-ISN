@@ -16,8 +16,8 @@ O trabalho prático da Unidade Curricular de Desenvolvimento de Aplicações Web
 
 ## Outras Ideias
 - Suporte de vários idiomas (pelo menos Inglês e Portugês): AngularJS  
-- Notificações de alteração de recursos (gostos, comentários...)  
-- Seguir Hashtags (tinha pensado em seguir cadeiras e receber notoficações dessas cadeiras)
+- Notificações de alteração de recursos
+- Seguir Hashtags
 - Mensagens de grupo
 - Perfil: apresentar número de contributos em recursos (estilo Github)  
 - Notificações Push [link](https://developers.google.com/web/fundamentals/codelabs/push-notifications)
