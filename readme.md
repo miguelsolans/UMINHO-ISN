@@ -31,7 +31,8 @@ O trabalho prático da Unidade Curricular de Desenvolvimento de Aplicações Web
 
 ## Bibliotecas Interessantes
 - [Tagify](https://yaireo.github.io/tagify/)
-- [Socket.io](https://socket.io/)
+- [Socket.io](https://socket.io/)  
+   - [Servidor de Chat](https://medium.com/@noufel.gouirhate/build-a-simple-chat-app-with-node-js-and-socket-io-ea716c093088)
 - [jQuery Confirm](https://craftpip.github.io/jquery-confirm/)
 - [AngularJS](https://angularjs.org/)
 - [FancyTable](https://github.com/myspace-nu/jquery.fancyTable)
