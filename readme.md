@@ -2,13 +2,9 @@
    <img width="180" height="172" src="https://upload.wikimedia.org/wikipedia/commons/9/93/EEUMLOGO.png">
 </p>
 
-
-
 # *Informatics Social Networks*
 
 O trabalho prático da Unidade Curricular de Desenvolvimento de Aplicações WEB, consiste em desenvolver uma rede social a ser usada entre alunos. O Projeto tem como nome UMinho ISN, em que a sigla significa *Informatics Social Networks*
-
-
 
 ## Requisitos Mínimos
 
