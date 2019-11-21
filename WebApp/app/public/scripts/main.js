@@ -5,7 +5,7 @@ require.config({
         "bootstrap": "external/bootstrap",
 
         // Modules
-        "Person": "modules/Person",
+        "User": "modules/User",
         "uiTest": "modules/ui-test"
     },
     "bootstrap": {
@@ -23,6 +23,6 @@ require.config({
 // });
 
 require([
-    'Person',
+    'User',
     'uiTest'
 ], () => console.log("RequireJS Modules Loaded"));

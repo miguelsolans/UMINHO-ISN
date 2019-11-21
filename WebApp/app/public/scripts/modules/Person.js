@@ -3,15 +3,15 @@ define([
 ], function () {
     "use strict";
 
-    function Person(name, city) {
+    function User(name, city) {
         this.name = name;
         this.city = city;
 
-        this.overridePerson = () => {
+        this.overrideUser = () => {
             return `HelloWorld! I'm ${this.name} from ${this.city}`;
         }
     }
 
-    return Person;
+    return User;
 
 });
