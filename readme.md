@@ -2,19 +2,19 @@
    <img width="180" height="172" src="https://upload.wikimedia.org/wikipedia/commons/9/93/EEUMLOGO.png">
 </p>
 
-# *Informatics Social Networks*
+# _Informatics Social Networks_
 
-O trabalho prático da Unidade Curricular de Desenvolvimento de Aplicações WEB, consiste em desenvolver uma rede social a ser usada entre alunos. O Projeto tem como nome UMinho ISN, em que a sigla significa *Informatics Social Networks*
+O trabalho prático da Unidade Curricular de Desenvolvimento de Aplicações WEB, consiste em desenvolver uma rede social a ser usada entre alunos. O Projeto tem como nome UMinho ISN, em que a sigla significa _Informatics Social Networks_
 
 ## Requisitos Mínimos
 
 - Utilizadores com Autenticação
 - Discussões, Partilha de Ficheiros ou outros recursos
 - Mensagens entre Utilizadores
-- Hashtags e Pesquisa de Recursos através dessas Hashtags  
+- Hashtags e Pesquisa de Recursos através dessas Hashtags
 - Publicações e Introdução de Grupos
   - Publicação para um determinado número de pessoas
-  - Publicação para todos os Utilizadores da *app*
+  - Publicação para todos os Utilizadores da _app_
   - Publicação apenas para o Utilizador em causa
 
 ## Outras Ideias
@@ -30,13 +30,18 @@ O trabalho prático da Unidade Curricular de Desenvolvimento de Aplicações WEB
 - Filtros de Pesquisa de Ficheiros (p.ex. por ano, por tipo, por cadeira...)
 - Comentar/Discutir Ficheiros (podem ser erros em resoluções, resoluções de fichas...)
 - Ficheiros como mensagens nos chats
+<<<<<<< HEAD
+- Introdução do _Dark Mode_ (dado que agora é algo que a maioria das _apps_ tem)
+- Possibilidade de divulgar eventos
+=======
 - Introdução do *Dark Mode* (dado que agora é algo que a maioria das *apps* tem)
+>>>>>>> 765c1fd8a01b49702045aa69576562abd199c243
 
 ## Bibliotecas Interessantes
 
 - [Tagify](https://yaireo.github.io/tagify/)
-- [Socket.io](https://socket.io/)  
-   - [Servidor de Chat](https://medium.com/@noufel.gouirhate/build-a-simple-chat-app-with-node-js-and-socket-io-ea716c093088)
+- [Socket.io](https://socket.io/)
+  - [Servidor de Chat](https://medium.com/@noufel.gouirhate/build-a-simple-chat-app-with-node-js-and-socket-io-ea716c093088)
 - [jQuery Confirm](https://craftpip.github.io/jquery-confirm/)
 - [AngularJS](https://angularjs.org/)
 - [FancyTable](https://github.com/myspace-nu/jquery.fancyTable)
@@ -47,19 +52,27 @@ O trabalho prático da Unidade Curricular de Desenvolvimento de Aplicações WEB
 
 ## Aspectos Importantes
 
+<<<<<<< HEAD
+- A aplicação pode ser testada recorrendo a dois comandos de script, sendo que o comando de `test` executará a aplicação com nodemon e, contrariamente, `start` executará em ambiente _normal_ recorrendo ao `node`.
+=======
 - A aplicação pode ser testada recorrendo a dois comandos de script, sendo que o comando de `test` executará a aplicação com nodemon e, contrariamente, `start` executará em ambiente *normal* recorrendo ao `node`.
+>>>>>>> 765c1fd8a01b49702045aa69576562abd199c243
 
 ```
 $ npm test
 ```
 
-ou então 
+ou então
 
 ```
 $ npm start
 ```
 
+<<<<<<< HEAD
+- A aplicação encontra-se a responder no url [http://localhost:3030/](https://localhost:3030).
+=======
 - A aplicação encontra-se a responder no url [http://localhost:3030/](https://localhost:3008).
+>>>>>>> 765c1fd8a01b49702045aa69576562abd199c243
 
 ## Autores
 
