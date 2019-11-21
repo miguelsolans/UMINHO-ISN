@@ -17,8 +17,6 @@ O trabalho prático da Unidade Curricular de Desenvolvimento de Aplicações WEB
   - Publicação para todos os Utilizadores da *app*
   - Publicação apenas para o Utilizador em causa
 
-
-
 ## Outras Ideias
 
 - Suporte de vários idiomas (pelo menos Português e Inglês): Biblioteca [AngularJS](https://angularjs.org/)
@@ -34,8 +32,6 @@ O trabalho prático da Unidade Curricular de Desenvolvimento de Aplicações WEB
 - Ficheiros como mensagens nos chats
 - Introdução do *Dark Mode* (dado que agora é algo que a maioria das *apps* tem)
 
-
-
 ## Bibliotecas Interessantes
 
 - [Tagify](https://yaireo.github.io/tagify/)
@@ -49,12 +45,9 @@ O trabalho prático da Unidade Curricular de Desenvolvimento de Aplicações WEB
 - [Bootstrap](https://getbootstrap.com/)
 - [AwesomeFont v4](https://fontawesome.com/v4.7.0/)
 
-
-
 ## Aspectos Importantes
 
 - A aplicação pode ser testada recorrendo a dois comandos de script, sendo que o comando de `test` executará a aplicação com nodemon e, contrariamente, `start` executará em ambiente *normal* recorrendo ao `node`.
-
 
 ```
 $ npm test
@@ -68,10 +61,7 @@ $ npm start
 
 - A aplicação encontra-se a responder no url [http://localhost:3030/](https://localhost:3008).
 
-
-
 ## Autores
-
 
 - Diogo S. Nogueira - A78957 - [diogoesnog](https://github.com/diogoesnog)
 - Mateus Silva - A81952 - [mateussilva98](https://github.com/mateussilva98)

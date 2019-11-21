@@ -1,6 +1,7 @@
 // Server Routes
 const express = require('express');
 const router = express.Router();
+
 // Controllers
 const Persons = require('../controllers/persons');
 
@@ -15,5 +16,6 @@ router.post('/', (req, res) => {
         .then(data => res.json(data))
         .catch(err => res.status(500).jsonp(err));
 });
+
 // Export Routes for Index
 module.exports = router;
