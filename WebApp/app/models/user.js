@@ -1,5 +1,4 @@
 /* models/user
- * Author: Miguel Solans, Mateus SIlva, Diogo Nogueira
  * Notes: User Model
  */
 
@@ -66,4 +65,4 @@ const userSchema = mongoose.Schema({
 
 const Person = mongoose.model('user', userSchema, 'user');
 
-module.exports = Person;
+module.exports = User;

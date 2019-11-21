@@ -1,5 +1,5 @@
 /* Entry Point
- * Author: Miguel Solans
+ * Author: Miguel Solans, Mateus Silva, Diogo Nogueira
  */
 const app = require('./config/server');
 const PORT = process.env.PORT || 3030;
