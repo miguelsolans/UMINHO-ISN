@@ -52,11 +52,7 @@ O trabalho prático da Unidade Curricular de Desenvolvimento de Aplicações WEB
 
 ## Aspectos Importantes
 
-<<<<<<< HEAD
-- A aplicação pode ser testada recorrendo a dois comandos de script, sendo que o comando de `test` executará a aplicação com nodemon e, contrariamente, `start` executará em ambiente _normal_ recorrendo ao `node`.
-=======
 - A aplicação pode ser testada recorrendo a dois comandos de script, sendo que o comando de `test` executará a aplicação com nodemon e, contrariamente, `start` executará em ambiente *normal* recorrendo ao `node`.
->>>>>>> 765c1fd8a01b49702045aa69576562abd199c243
 
 ```
 $ npm test
@@ -68,11 +64,7 @@ ou então
 $ npm start
 ```
 
-<<<<<<< HEAD
 - A aplicação encontra-se a responder no url [http://localhost:3030/](https://localhost:3030).
-=======
-- A aplicação encontra-se a responder no url [http://localhost:3030/](https://localhost:3008).
->>>>>>> 765c1fd8a01b49702045aa69576562abd199c243
 
 ## Autores
 
