@@ -30,8 +30,12 @@ O trabalho prático da Unidade Curricular de Desenvolvimento de Aplicações WEB
 - Filtros de Pesquisa de Ficheiros (p.ex. por ano, por tipo, por cadeira...)
 - Comentar/Discutir Ficheiros (podem ser erros em resoluções, resoluções de fichas...)
 - Ficheiros como mensagens nos chats
+<<<<<<< HEAD
 - Introdução do _Dark Mode_ (dado que agora é algo que a maioria das _apps_ tem)
 - Possibilidade de divulgar eventos
+=======
+- Introdução do *Dark Mode* (dado que agora é algo que a maioria das *apps* tem)
+>>>>>>> 765c1fd8a01b49702045aa69576562abd199c243
 
 ## Bibliotecas Interessantes
 
@@ -48,7 +52,11 @@ O trabalho prático da Unidade Curricular de Desenvolvimento de Aplicações WEB
 
 ## Aspectos Importantes
 
+<<<<<<< HEAD
 - A aplicação pode ser testada recorrendo a dois comandos de script, sendo que o comando de `test` executará a aplicação com nodemon e, contrariamente, `start` executará em ambiente _normal_ recorrendo ao `node`.
+=======
+- A aplicação pode ser testada recorrendo a dois comandos de script, sendo que o comando de `test` executará a aplicação com nodemon e, contrariamente, `start` executará em ambiente *normal* recorrendo ao `node`.
+>>>>>>> 765c1fd8a01b49702045aa69576562abd199c243
 
 ```
 $ npm test
@@ -60,7 +68,11 @@ ou então
 $ npm start
 ```
 
+<<<<<<< HEAD
 - A aplicação encontra-se a responder no url [http://localhost:3030/](https://localhost:3030).
+=======
+- A aplicação encontra-se a responder no url [http://localhost:3030/](https://localhost:3008).
+>>>>>>> 765c1fd8a01b49702045aa69576562abd199c243
 
 ## Autores
 

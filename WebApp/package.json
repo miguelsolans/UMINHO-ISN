@@ -7,7 +7,20 @@
     "test": "nodemon app",
     "start": "node app"
   },
-  "author": "Miguel Solans",
+  "contributors": [
+    {
+      "name": "Diogo S. Nogueira",
+      "url": "https://github.com/diogoesnog"
+    },
+    {
+      "name": "Mateus Silva",
+      "url": "https://github.com/mateussilva98"
+    },
+    {
+      "name": "Miguel R. Solans",
+      "url": "https://github.com/miguelsolans"
+    }
+  ],
   "license": "ISC",
   "dependencies": {
     "colors": "^1.4.0",

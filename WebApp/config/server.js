@@ -1,18 +1,23 @@
-// Loading modules
-const createError = require('http-errors');
-// Express server
-const express = require('express');
-const app = express();
+// Loading Modules
+const createError   = require('http-errors');
+
+// Express Server
+const express       = require('express');
+const app           = express();
+
 // Body Parser
-const bodyParser = require('body-parser');
-// Colors
-const colors = require('colors');
+const bodyParser    = require('body-parser');
+
 // Morgan For Request Status
-const logger = require('morgan');
+const logger        = require('morgan');
+
+// Colors
+const colors        = require('colors');
+
 // MongoDB
 const mongoose = require('mongoose');
 
-// Connection to database
+// Connection to Database
 mongoose
     .connect('mongodb://127.0.0.1:27017/HelloWorldDB', {
         useNewUrlParser: true,
@@ -20,7 +25,7 @@ mongoose
     })
     .then(() => {
         console.log(
-            'Connection to MongoDB successfully established'.cyan.underline.bold
+            "Connection to MongoDB successfully established.".cyan.underline.bold
         );
     })
     .catch(() => {
@@ -30,7 +35,7 @@ mongoose
 // Display Request Status
 app.use(logger('dev'));
 
-// Tell node where public files are located
+// Tell node where Public Files are located
 app.use(express.static('./app/public'));
 
 // Setup EJS View Engine
@@ -53,17 +58,19 @@ const RootRoutes = require('../app/routes/index');
 // Webapp Root Routes
 app.use('/', RootRoutes);
 
-// catch 404 and forward to error handler
+// Catch 404 and forward to Error Handler
 app.use((req, res, next) => {
     next(createError(404));
 });
-// error handler
+
+// Error Handler
 app.use((err, req, res, next) => {
-    // set locals, only providing error in development
+
+    // Set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-    // render the error page
+    // Render the error page
     res.status(err.status || 500);
     res.render('error');
 });
