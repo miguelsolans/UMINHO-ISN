@@ -11,49 +11,43 @@ const userSchema = mongoose.Schema({
         required: true,
         auto: true
     },
-    /* ! not sure about this data type */
+    /* Not sure about this Data Type. */
     img: {
         data: Buffer,
         contentType: String
     },
     first_name: {
         type: String,
-        required: [true, 'Please add a first name'],
+        required: true,
         trim: true,
-        maxlength: [20, 'First name can not be more than 20 characters']
+        maxlength: 20
     },
     last_name: {
         type: String,
-        required: [true, 'Please add a last name'],
+        required: true,
         trim: true,
-        maxlength: [20, 'Last name can not be more than 20 characters']
+        maxlength: 20
     },
     username: {
         type: String,
-        required: [true, 'Please add a username'],
+        required: true,
         trim: true,
-        maxlength: [20, 'Username can not be more than 20 characters']
+        maxlength: 20
     },
     birth_date: {
         type: Date
     },
     bio: {
         type: String,
-        maxlength: [200, 'Bio can not be more than 200 characters']
+        maxlength: 200
     },
     git_link: {
         type: String,
-        match: [
-            /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
-            'Please use a valid URL with HTTP or HTTPS'
-        ]
+        match: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
     },
     email: {
         type: String,
-        match: [
-            /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-            'Please add a valid email'
-        ]
+        match: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     },
     actual_year: {
         type: Number,
@@ -64,6 +58,6 @@ const userSchema = mongoose.Schema({
     }
 });
 
-const Person = mongoose.model('user', userSchema, 'user');
+const User = mongoose.model('user', userSchema, 'user');
 
 module.exports = User;
