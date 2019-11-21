@@ -1,6 +1,6 @@
-/* models/user
- * Author: Miguel Solans, Mateus SIlva, Diogo Nogueira
- * Notes: User Model
+/*
+ * User Schema
+ * Contributors: Diogo Nogueira, Mateus Silva, Miguel R. Solans
  */
 
 const mongoose = require('mongoose');

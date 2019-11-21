@@ -1,3 +1,8 @@
+/*
+ * Person Schema
+ * Contributors: Diogo Nogueira, Mateus Silva, Miguel R. Solans
+ */
+
 const mongoose = require('mongoose');
 
 // Person Schema 

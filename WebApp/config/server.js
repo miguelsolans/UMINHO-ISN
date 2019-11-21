@@ -25,7 +25,7 @@ mongoose
     })
     .then(() => {
         console.log(
-            "Connection to MongoDB successfully established.".cyan.underline.bold
+            "Connection to MongoDB successfully established.".cyan.bold
         );
     })
     .catch(() => {
