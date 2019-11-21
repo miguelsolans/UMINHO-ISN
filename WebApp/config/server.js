@@ -11,17 +11,25 @@ const bodyParser    = require('body-parser');
 // Morgan For Request Status
 const logger        = require('morgan');
 
-// MongoDB
-const mongoose      = require('mongoose');
+// Colors
+const colors        = require('colors');
 
-// Connect to Database
-mongoose.connect('mongodb://127.0.0.1:27017/HelloWorldDB', {
-    useNewUrlParser: true, useUnifiedTopology: true })
+// MongoDB
+const mongoose = require('mongoose');
+
+// Connection to Database
+mongoose
+    .connect('mongodb://127.0.0.1:27017/HelloWorldDB', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
     .then(() => {
-        console.log("Connection to MongoDB successfully established.")
+        console.log(
+            "Connection to MongoDB successfully established.".cyan.underline.bold
+        );
     })
     .catch(() => {
-        console.log("Couldn't connect to MongoDB.");
+        console.log("Couldn't connect to MongoDB".red);
     });
 
 // Display Request Status
@@ -35,9 +43,11 @@ app.set('view engine', 'ejs');
 app.set('views', './app/views');
 
 // urlencoded tells body-parser to extract data from <from>
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+app.use(
+    bodyParser.urlencoded({
+        extended: true
+    })
+);
 
 // To read it in JSON
 app.use(bodyParser.json());
