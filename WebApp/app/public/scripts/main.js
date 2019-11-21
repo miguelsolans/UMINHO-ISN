@@ -15,13 +15,6 @@ require.config({
     }
 });
 
-//Main module
-// require([
-//
-// ], function () {
-//     console.log("RequireJS Modules Loaded");
-// });
-
 require([
     'User',
     'uiTest'
