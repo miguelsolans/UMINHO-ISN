@@ -1,18 +1,18 @@
 // Loading Modules
-const createError   = require('http-errors');
+const createError = require('http-errors');
 
 // Express Server
-const express       = require('express');
-const app           = express();
+const express = require('express');
+const app = express();
 
 // Body Parser
-const bodyParser    = require('body-parser');
+const bodyParser = require('body-parser');
 
 // Morgan For Request Status
-const logger        = require('morgan');
+const logger = require('morgan');
 
 // Colors
-const colors        = require('colors');
+const colors = require('colors');
 
 // MongoDB
 const mongoose = require('mongoose');
@@ -49,7 +49,7 @@ app.use(
     })
 );
 
-// To read it in JSON
+// To Read it in JSON
 app.use(bodyParser.json());
 
 // Define Routes
