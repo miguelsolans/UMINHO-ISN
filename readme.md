@@ -1,5 +1,5 @@
 <p align="center">
-   <img width="600" height="227" src="https://i.imgur.com/wOncYdV.png">
+   <img width="500" height="181" src="https://i.imgur.com/wOncYdV.png">
 </p>
 
 # _Informatics Social Networks_
