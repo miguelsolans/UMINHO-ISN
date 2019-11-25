@@ -19,7 +19,7 @@ O trabalho prático da Unidade Curricular de Desenvolvimento de Aplicações WEB
 
 ## Outras Ideias
 
-- Suporte de vários idiomas (pelo menos Português e Inglês): Biblioteca [AngularJS](https://angularjs.org/)
+- Suporte de vários idiomas (pelo menos Português e Inglês): Biblioteca [i18n](https://www.npmjs.com/package/i18n)
 - Notificações de alteração de recursos
 - Seguir Hashtags
 - Mensagens de Grupo
