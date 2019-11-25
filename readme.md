@@ -40,7 +40,6 @@ O trabalho prático da Unidade Curricular de Desenvolvimento de Aplicações WEB
 - [Socket.io](https://socket.io/)
   - [Servidor de Chat](https://medium.com/@noufel.gouirhate/build-a-simple-chat-app-with-node-js-and-socket-io-ea716c093088)
 - [jQuery Confirm](https://craftpip.github.io/jquery-confirm/)
-- [AngularJS](https://angularjs.org/)
 - [FancyTable](https://github.com/myspace-nu/jquery.fancyTable)
 - [Dynatree](https://www.submission-faccejpi.com/c_media/modules/dynatree/doc/dynatree-doc.html)
 - [Highcharts](https://www.highcharts.com/)
