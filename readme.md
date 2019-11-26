@@ -24,6 +24,6 @@ $ npm start
 
 ## Autores
 
-- Diogo S. Nogueira - A78957 - [diogoesnog](https://github.com/diogoesnog)
-- Mateus Silva - A81952 - [mateussilva98](https://github.com/mateussilva98)
-- Miguel R. Solans - PG41941 - [miguelsolans](https://github.com/miguelsolans)
+* [Diogo S. Nogueira](https://github.com/diogoesnog) - A78957
+* [Mateus Silva](https://github.com/diogoesnog) - A81952
+* [Miguel R. Solans](https://github.com/diogoesnog) - A81952
