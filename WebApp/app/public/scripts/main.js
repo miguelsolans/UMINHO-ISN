@@ -5,8 +5,7 @@ require.config({
         "bootstrap": "external/bootstrap",
 
         // Modules
-        "User": "modules/Person",
-        "uiTest": "modules/ui-test"
+        "loginPage": "modules/loginPage"
     },
     "bootstrap": {
         "deps": [
@@ -16,6 +15,5 @@ require.config({
 });
 
 require([
-    'User',
-    'uiTest'
+    'loginPage',
 ], () => console.log("RequireJS Modules Loaded"));

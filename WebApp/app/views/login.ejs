@@ -10,6 +10,12 @@
 
     <!-- RequireJS Modules -->
     <script data-main="scripts/main" src="scripts/external/require.js"></script>
+
+    <style>
+        body {
+            background-color: #ac0017;
+        }
+    </style>
 </head>
 <body>
 
@@ -20,23 +26,57 @@
                 <img class="img-fluid" src="images/logo.png" alt="App Logo">
             </div>
             <div class="card-body">
-                <h1 class="text-center">Login</h1>
-                <form class="form-signin">
-                    <div class="form-label-group">
-                        <label for="usernameInput">Username</label>
-                        <input type="email" id="usernameInput" class="form-control" placeholder="{{'USERNAME-OR-EMAIL_STRING' | translate}}" required autofocus>
-                    </div>
+                <div id="login-form-container">
+                    <h1 class="text-center">Login</h1>
+                    <form class="form-signin">
+                        <div class="form-label-group">
+                            <label for="usernameInput">Username</label>
+                            <input type="email" id="usernameInput" class="form-control" placeholder="{{'USERNAME-OR-EMAIL_STRING' | translate}}" required autofocus>
+                        </div>
 
-                    <div class="form-label-group">
-                        <label for="passwordInput">Password</label>
-                        <input type="password" id="passwordInput" class="form-control" placeholder="{{'PASSWORD_STRING' | translate}}" required>
-                    </div>
+                        <div class="form-label-group">
+                            <label for="passwordInput">Password</label>
+                            <input type="password" id="passwordInput" class="form-control" placeholder="{{'PASSWORD_STRING' | translate}}" required>
+                        </div>
 
-                    <br>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-                    <br>
-                    <p>You don't hold an account? <a href="./register">Register</a></p>
-                </form>
+                        <br>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                        <br>
+                        <p>You don't hold an account? <a id="call-register" href="#">Register</a></p>
+                    </form>
+                </div>
+
+
+                <div id="register-form-container" style="display:none">
+                    <h1 class="text-center">Register</h1>
+                    <form class="form-register">
+                        <div class="form-label-group">
+                            <label for="nameInput">Nome</label>
+                            <input type="name" id="nameInput" class="form-control" placeholder="{{'FULLNAME_STRING' | translate}}" required autofocus>
+                        </div>
+
+                        <div class="form-label-group">
+                            <label for="emailInput">E-mail</label>
+                            <input type="email" id="emailInput" class="form-control" placeholder="{{'EMAIL_STRING' | translate}}" required>
+                        </div>
+
+                        <div class="form-label-group">
+                            <label for="usernameInput">Username</label>
+                            <input type="email" id="usernameInput" class="form-control" placeholder="{{'USERNAME_STRING' | translate}}" required>
+                        </div>
+
+                        <div class="form-label-group">
+                            <label for="passwordInput">Password</label>
+                            <input type="password" id="passwordInput" class="form-control" placeholder="{{'USERNAME_STRING' | translate}}" required>
+                        </div>
+
+                        <br>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+                        <button id="call-login" class="btn btn-lg btn-primary btn-block">Cancelar</button>
+
+                    </form>
+                </div>
+
             </div>
         </div>
     </div>
