@@ -10,5 +10,9 @@ router.get('/', (req, res) => {
 router.get('/feed', (req, res) => {
     res.render('feed');
 });
+
+router.get('/messenger', (req, res) => {
+    res.render('messenger');
+});
 // Export Routes for Index
 module.exports = router;
