@@ -6,6 +6,10 @@ module.exports.list = (query) => {
     return User.find(query).exec();
 };
 
+module.exports.searchUser = (user) => {
+    return User.findOne({username: user}).exec();
+};
+
 // Add new User to Database
 module.exports.addNew = (data) => {
     let newData = new User(data);

@@ -9,7 +9,7 @@ const app = express();
 const bodyParser = require('body-parser');
 
 // Morgan For Request Status
-const logger = require('morgan');
+// const logger = require('morgan');
 
 // Colors
 const colors = require('colors');
@@ -33,7 +33,7 @@ mongoose
     });
 
 // Display Request Status
-app.use(logger('dev'));
+// app.use(logger('dev'));
 
 // Tell node where Public Files are located
 app.use(express.static('./app/public'));
@@ -50,6 +50,9 @@ app.use(
 );
 
 // To Read it in JSON
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(bodyParser.json());
 
 // Define Routes
