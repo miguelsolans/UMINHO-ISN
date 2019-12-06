@@ -1,6 +1,8 @@
 // Loading Modules
 const createError = require('http-errors');
 
+const dotenv = require('dotenv').config();
+
 // Express Server
 const express = require('express');
 const app = express();
@@ -19,7 +21,7 @@ const mongoose = require('mongoose');
 
 // Connection to Database
 mongoose
-    .connect('mongodb://127.0.0.1:27017/HelloWorldDB', {
+    .connect(`${process.env.MONGO_CONNECTION}`, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
