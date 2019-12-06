@@ -1,6 +1,7 @@
 // Server Routes
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcryptjs');
 
 const user = require('../controllers/users');
 
@@ -23,17 +24,24 @@ router.post('/login', (req, res) => {
 });
 
 router.post('/register', (req, res) => {
-    console.log(req.body);
     user.searchUser(req.body.username)
         .then(data => {
             if(data === null) {
-                user.addNew(req.body)
-                    .then(data => {
-                        console.log("Success");
-                        console.log(data);
-                    }).catch(err => console.log(err));
+                bcrypt.hash(req.body.password, 10, (err, hash) => {
+                    if(err) console.log(err);
+                    const newUser = {
+                        username: req.body.username,
+                        fullName: req.body.name,
+                        password: hash
+                    };
+
+                    console.log(newUser);
+
+                    user.addNew(newUser)
+                        .then(result => console.log(result))
+                        .catch(err => console.log(err));
+                });
             }
-            console.log(data);
         })
         .catch(err => {
             console.log(err);

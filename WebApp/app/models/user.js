@@ -19,6 +19,7 @@ const userPostSchema = new mongoose.Schema({
 const userSchema = new mongoose.Schema({
     _id: { type: mongoose.Types.ObjectId, auto: true },
     username: String,
+    fullName: String,
     password: String,
     email: String,
     bio: String,
