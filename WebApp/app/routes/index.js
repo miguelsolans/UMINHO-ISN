@@ -1,13 +1,15 @@
 // Server Routes
-const express = require('express');
-const router = express.Router();
-const bcrypt = require('bcryptjs');
+const express   = require('express');
+const router    = express.Router();
 
-const user = require('../controllers/users');
+const bcrypt    = require('bcryptjs');
+const jwt       = require('jsonwebtoken');
+
+const user      = require('../controllers/users');
 
 
 router.get('/', (req, res) => {
-    console.log(req.params);
+
     res.render('login');
 });
 
@@ -16,11 +18,30 @@ router.post('/login', (req, res) => {
 
     user.searchUser(req.body.username)
         .then(data => {
-            if(data !== null )
-                res.render('feed');
+            if(data !== null ) {
+                bcrypt.compare(req.body.password, data.password)
+                    .then(result => {
+
+                        if(!result) res.redirect('/');
+
+                        const token = jwt.sign({
+                                username: data.username
+                            },
+                            process.env.JWT_KEY, { expiresIn: "24h" }, { algorithm: 'RS256'}
+                        );
+
+                        const cookieOptions = { httpOnly: true };
+
+                        res.cookie("userToken", token, cookieOptions);
+
+                        res.redirect('/feed');
+                    })
+                    .catch(err => console.log(err));
+            }
             else
-                res.render('login');
+                res.redirect('/');
         })
+        .catch(err => console.log(err));
 });
 
 router.post('/register', (req, res) => {
@@ -47,7 +68,6 @@ router.post('/register', (req, res) => {
             console.log(err);
         });
 });
-
 
 // Export Routes for Index
 module.exports = router;

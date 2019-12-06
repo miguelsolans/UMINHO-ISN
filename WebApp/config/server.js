@@ -59,9 +59,11 @@ app.use(bodyParser.json());
 
 // Define Routes
 const RootRoutes = require('../app/routes/index');
+const FeedRoutes = require('../app/routes/feed');
 
 // Webapp Root Routes
 app.use('/', RootRoutes);
+app.use('/feed', FeedRoutes);
 
 // Catch 404 and forward to Error Handler
 app.use((req, res, next) => {

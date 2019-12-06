@@ -10,13 +10,11 @@
         </div>
         <div class="col-sm-10">
             <h2>Feed</h2>
-
-            <% for(let i = 0 ; i < 5 ; i++) {%>
-            <div class="">
-                <%- include('partials/post') %>
-
-            </div>
-            <%}%>
+            <% data.forEach(post => {%>
+                <div class="">
+                    <%- include('partials/post', {post: post}) %>
+                </div>
+            <% }) %>
         </div>
     </div>
 
