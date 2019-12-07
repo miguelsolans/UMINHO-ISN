@@ -1,5 +1,5 @@
 {
-  "name": "filmes",
+  "name": "ISN",
   "version": "1.0.0",
   "description": "",
   "main": "app",
@@ -23,7 +23,7 @@
   ],
   "license": "ISC",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
+    "bcrypt": "^3.0.7",
     "colors": "^1.4.0",
     "dotenv": "^8.2.0",
     "ejs": "^2.7.1",

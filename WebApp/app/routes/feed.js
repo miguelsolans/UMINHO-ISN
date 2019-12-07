@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const checkAuth = require('../middleware/check-auth');
-
 const feed = require('../controllers/feed');
 
-router.get('/', checkAuth, (req, res) => {
+router.get('/', checkAuth, (req, res, next) => {
+    console.log("Feed!");
     feed.getFeed()
         .then(data => res.render('feed', {data: data}))
         .catch(err => console.log(err));
