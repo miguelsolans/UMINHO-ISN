@@ -9,6 +9,7 @@ const app = express();
 
 // Body Parser
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 // Morgan For Request Status
 // const logger = require('morgan');
@@ -44,18 +45,13 @@ app.use(express.static('./app/public'));
 app.set('view engine', 'ejs');
 app.set('views', './app/views');
 
-// urlencoded tells body-parser to extract data from <from>
-app.use(
-    bodyParser.urlencoded({
-        extended: true
-    })
-);
-
 // To Read it in JSON
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
+
+app.use(cookieParser());
 
 // Define Routes
 const RootRoutes = require('../app/routes/index');
