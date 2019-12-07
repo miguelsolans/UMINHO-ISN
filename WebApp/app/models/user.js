@@ -12,8 +12,8 @@ const postContentSchema = new mongoose.Schema({
 });
 const userPostSchema = new mongoose.Schema({
     _id: { type: mongoose.Types.ObjectId, auto: true },
-    date: { type: Date, auto: true },
-    content: [postContentSchema],
+    date: Date,
+    content: postContentSchema,
     likes: Number
 });
 const userSchema = new mongoose.Schema({
