@@ -36,5 +36,9 @@
     "morgan": "^1.9.1",
     "nodemon": "^1.19.4",
     "passport": "^0.4.0"
+  },
+  "nodemonConfig": {
+    "verbose": true,
+    "ignore": [ "app/public/*" ]
   }
 }
