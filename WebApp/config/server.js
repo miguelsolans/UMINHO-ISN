@@ -56,10 +56,12 @@ app.use(cookieParser());
 // Define Routes
 const RootRoutes = require('../app/routes/index');
 const FeedRoutes = require('../app/routes/feed');
+const ProfileRoutes = require('../app/routes/profile');
 
 // Webapp Root Routes
 app.use('/', RootRoutes);
 app.use('/feed', FeedRoutes);
+app.use('/profile', ProfileRoutes);
 
 // Catch 404 and forward to Error Handler
 app.use((req, res, next) => {

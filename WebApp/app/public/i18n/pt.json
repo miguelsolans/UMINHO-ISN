@@ -38,5 +38,7 @@
     "REGISTER-BUTTON_STRING": "Registar",
     "LOGIN-BUTTON_STRING": "Iniciar Sessão",
     "CANCEL-BUTTON_STRING": "Cancelar",
-    "SAVE-BUTTON_STRING": "Guardar"
+    "SAVE-BUTTON_STRING": "Guardar",
+
+    "USER-PICTURE_STRING": "Foto de Perfil do Utilizador"
 }

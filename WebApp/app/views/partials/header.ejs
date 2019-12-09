@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ lang }}" ng-app="ISN">
     <head>
         <meta charset="utf-8">
         <title>ISN</title>
@@ -20,7 +20,7 @@
 
         <link href="/stylesheets/general-styel.css">
     </head>
-<body>
+<body ng-controller="multiLang">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">ISN</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,13 +31,13 @@
         <ul class="navbar-nav mr-auto">
 <!--            Feed, Perfil, Mensagens-->
             <li class="nav-item">
-                <a class="nav-link" href="#">Feed <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="Home">Feed</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Perfil</a>
+                <a class="nav-link" href="Profile">Perfil</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Mensagens</a>
+                <a class="nav-link" href="Messages">Mensagens</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">

@@ -38,5 +38,7 @@
     "REGISTER-BUTTON_STRING": "Enregistrer",
     "LOGIN-BUTTON_STRING": "Se Connecter",
     "CANCEL-BUTTON_STRING": "Annuler",
-    "SAVE-BUTTON_STRING": "Sauvegarder"
+    "SAVE-BUTTON_STRING": "Sauvegarder",
+
+    "USER-PICTURE_STRING": "Photo de Profil d'Utilisateur"
 }

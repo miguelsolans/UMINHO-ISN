@@ -38,5 +38,7 @@
     "REGISTER-BUTTON_STRING": "Register",
     "LOGIN-BUTTON_STRING": "Login",
     "CANCEL-BUTTON_STRING": "Cancel",
-    "SAVE-BUTTON_STRING": "Save"
+    "SAVE-BUTTON_STRING": "Save",
+
+    "USER-PICTURE_STRING": "User Profile Picture"
 }

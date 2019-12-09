@@ -1,0 +1,19 @@
+<%- include('partials/header') %>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2">
+            <img alt="User Picture" class="img-fluid" src="https://scontent.flis7-1.fna.fbcdn.net/v/t1.0-9/60161578_341238193245158_7231717348611194880_n.jpg?_nc_cat=105&_nc_ohc=pA8zdqb1XxwAQmU5z5kgwXtU-1CRujve8ChLUFFD1DVoi0lXpLLNO0lTw&_nc_ht=scontent.flis7-1.fna&oh=3f62056f20dd89c63f0a4a71cbc8f500&oe=5E7FDC5F">
+
+            <div style="text-align: center;"><h3>Widgets</h3></div>
+
+        </div>
+        <div class="col-10">
+            <h1><%= data.fullName %></h1>
+            <h2>Sobre</h2>
+            <p><%= data.bio %></p>
+
+            <hr>
+        </div>
+    </div>
+</div>
+<%- include('partials/footer') %>
