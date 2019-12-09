@@ -16,6 +16,13 @@ const userPostSchema = new mongoose.Schema({
     content: postContentSchema,
     likes: Number
 });
+
+const widgetSchema = new mongoose.Schema({
+    text: String,
+    content: String,
+    display: Boolean
+});
+
 const userSchema = new mongoose.Schema({
     _id: { type: mongoose.Types.ObjectId, auto: true },
     username: String,
@@ -23,6 +30,7 @@ const userSchema = new mongoose.Schema({
     password: String,
     email: String,
     bio: String,
+    widgets: [widgetSchema],
     courses: { type: Array },
     posts: [userPostSchema],
     groups: Array,
