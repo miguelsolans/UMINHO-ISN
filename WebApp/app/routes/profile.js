@@ -13,5 +13,12 @@ router.get('/', checkAuth, (req, res) => {
         .catch(err => console.log(err));
 });
 
+router.get('/:id', checkAuth, (req, res) => {
+
+    User.searchUser(req.params.id)
+        .then(data => res.render('profile', {data: data}))
+        .catch(err => console.log(err));
+});
+
 module.exports = router;
 
