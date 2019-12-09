@@ -3,21 +3,46 @@
 <div class="container-fluid">
     <h1>Settings</h1>
 
-    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+
+    <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link active" id="pills-account-tab" data-toggle="pill" href="#pills-account" role="tab" aria-controls="pills-account" aria-selected="true">Conta</a>
+            <a href="#account" class="nav-link active" data-toggle="tab">Account</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="pills-platform-tab" data-toggle="pill" href="#pills-platform" role="tab" aria-controls="pills-platform" aria-selected="false">Plataforma</a>
+            <a href="#profile" class="nav-link" data-toggle="tab">Platform</a>
         </li>
     </ul>
+    <div class="tab-content">
+        <% console.log(data.bio) %>
+        <div class="tab-pane fade show active" id="account">
+            <h4 class="mt-2">Account</h4>
+            <form action="/update">
+                <div class="form-label-group">
+                    <label for="about">About</label>
+                    <textarea name="about" id="about" class="form-control" placeholder="About" autofocus><%= data.bio %></textarea>
+                </div>
 
-    <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="pills-platform" role="tabpanel" aria-labelledby="pills-platform-tab">
-            <h2>Plataforma</h2>
+                <div class="form-label-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" name="email" id="email"  class="form-control" placeholder="E-mail" value="<%= data.email %>" autofocus required>
+                </div>
+
+                <div>
+                    <label for="course">Course</label>
+                    <input type="text" name="course" id="course" value="<%= data.courses %>" placeholder="Courses" autofocus>
+                </div>
+
+                <div class="form-label-group">
+                    <label for="email">New Password</label>
+                    <input type="password" name="password" id="password" class="form-control" autofocus>
+                </div>
+                <input name="userId" type="text" hidden value="<%= data._id %>" >
+                <button class="btn btn-lg btn-primary" type="submit">Save</button>
+                <button class="btn btn-lg btn-primary">Cancel</button>
+            </form>
         </div>
-        <div class="tab-pane fade" id="pills-account" role="tabpanel" aria-labelledby="pills-account-tab">
-            <h2>Conta</h2>
+        <div class="tab-pane fade" id="profile">
+            <h4 class="mt-2">Platform</h4>
         </div>
     </div>
 
