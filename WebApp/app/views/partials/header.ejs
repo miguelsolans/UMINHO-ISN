@@ -1,89 +1,30 @@
 <!DOCTYPE html>
-<html lang="{{ lang }}" ng-app="ISN">
+<html>
     <head>
         <meta charset="utf-8">
         <title>ISN</title>
-<<<<<<< Updated upstream
 
+        <!-- jQuery -->
+        <script src="/scripts/external/jquery.js"></script>
         <!-- Bootstrap -->
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-        <!-- RequireJS Modules -->
-        <script data-main="scripts/main" src="scripts/external/require.js"></script>
-=======
-        <!-- jQuery -->
         <script src="/scripts/external/jquery.js"></script>
 
+        <script src="/scripts/external/bootstrap.js"></script>
 
-        <!-- Bootstrap -->
-        <link rel="stylesheet" href="/stylesheets/external/bootstrap/bootstrap.css">
-        <script src="/scripts/external/bootstrap/bootstrap.js"></script>
-
-        <!-- Settings -->
         <script src="/scripts/external/tagify.js"></script>
         <link rel="stylesheet" href="/stylesheets/external/tagify.css">
-        <script type="module" src="/scripts/modules/settings.js"></script>
->>>>>>> Stashed changes
+        <script src="/scripts/modules/set-tagify.js"></script>
 
-        <!-- QuillJS -->
         <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
         <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
         <!-- FontAwesome 4 -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
 
-<<<<<<< Updated upstream
-        <link href="/stylesheets/general-styel.css">
-=======
-        <!-- DropzoneJS -->
-        <script src="/scripts/external/dropzone.js"></script>
-        <link rel="stylesheet" href="/stylesheets/external/dropzone.min.css">
-
-
-        <!-- RichText -->
-        <script src="/scripts/external/jquery.richtext.min.js"></script>
-        <link rel="stylesheet" href="/stylesheets/external/richtext.min.css">
-
-
-        <script src="/scripts/modules/composer.js"></script>
         <link href="/stylesheets/general-style.css">
-
-        <!-- Misc -->
-        <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
->>>>>>> Stashed changes
     </head>
-<body ng-controller="multiLang">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">ISN</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+<body>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-<!--            Feed, Perfil, Mensagens-->
-            <li class="nav-item">
-                <a class="nav-link" href="Home">Feed</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="Profile">Perfil</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="Messages">Mensagens</a>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-cogs"></i></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i></a>
-            </li>
-        </ul>
-    </div>
-</nav>
+<%- include('nav') %>

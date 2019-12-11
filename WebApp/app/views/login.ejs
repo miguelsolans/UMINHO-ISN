@@ -1,31 +1,21 @@
 <!DOCTYPE html>
-<html lang="{{ lang }}" ng-app="ISN">
+<html>
 <head>
     <meta charset="utf-8">
     <title>Login</title>
-
-    <script src="/scripts/external/angular/1.7.8/angular.min.js"></script>
-    <script src="/scripts/external/angular/1.7.8/angular-translate.min.js"></script>
-    <script src="/scripts/external/angular/1.7.8/angular-translate-loader-static-files.min.js"></script>
-    <script src="/scripts/app-translations.js"></script>
-
 
     <!-- Bootstrap -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-<<<<<<< Updated upstream
-=======
-    <script type="module" src="/scripts/modules/login.js"></script>
-<!--    <script src="/scripts/external/jquery.js"></script>-->
-<!--    <script src="/scripts/external/bootstrap.js"></script>-->
+    <script src="/scripts/external/jquery.js"></script>
+    <script src="/scripts/external/bootstrap.js"></script>
 
-<!--    <script src="/scripts/modules/loginpage.js"></script>-->
+    <script src="/scripts/modules/loginpage.js"></script>
 
 
->>>>>>> Stashed changes
     <!-- RequireJS Modules -->
-    <script data-main="scripts/main" src="scripts/external/require.js"></script>
+<!--    <script data-main="scripts/main" src="scripts/external/require.js"></script>-->
 
     <style>
         body {
@@ -33,7 +23,7 @@
         }
     </style>
 </head>
-<body ng-controller="multiLang">
+<body>
 
     <div class="row">
     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -43,17 +33,17 @@
             </div>
             <div class="card-body">
                 <div id="login-form-container">
-                    <h1 class="text-center">{{ 'LOGIN_STRING' | translate }}</h1>
+                    <h1 class="text-center">Login</h1>
 
                     <form class="form-signin" method="post" action="/login">
                         <div class="form-label-group">
-                            <label for="usernameInput">{{ 'USERNAME_STRING' | translate }}</label>
-                            <input type="text" name="username" id="usernameInput" class="form-control" placeholder="{{'USERNAME_STRING' | translate}}" required autofocus>
+                            <label for="usernameInput">Username</label>
+                            <input type="text" name="username" id="usernameInput" class="form-control" placeholder="Username" required autofocus>
                         </div>
 
                         <div class="form-label-group">
                             <label for="passwordInput">Password</label>
-                            <input type="password" name="password" id="passwordInput" class="form-control" placeholder="{{'PASSWORD_STRING' | translate}}" required>
+                            <input type="password" name="password" id="passwordInput" class="form-control" placeholder="Password" required>
                         </div>
 
                         <br>
@@ -69,22 +59,22 @@
                     <form class="form-register" method="post" action="/register">
                         <div class="form-label-group">
                             <label for="nameInput">Nome</label>
-                            <input type="text" name="name" id="nameInput" class="form-control" placeholder="{{'FULLNAME_STRING' | translate}}" required autofocus>
+                            <input type="text" name="name" id="nameInput" class="form-control" placeholder="Full Name" required autofocus>
                         </div>
 
                         <div class="form-label-group">
                             <label for="emailInput">E-mail</label>
-                            <input type="email" name="email" id="emailInput" class="form-control" placeholder="{{'EMAIL_STRING' | translate}}" required>
+                            <input type="email" name="email" id="emailInput" class="form-control" placeholder="E-mail" required>
                         </div>
 
                         <div class="form-label-group">
                             <label for="usernameInput">Username</label>
-                            <input type="text" name="username" id="usernameInput" class="form-control" placeholder="{{'USERNAME_STRING' | translate}}" required>
+                            <input type="text" name="username" id="usernameInput" class="form-control" placeholder="Username" required>
                         </div>
 
                         <div class="form-label-group">
                             <label for="passwordInput">Password</label>
-                            <input type="password" name="password" id="passwordInput" class="form-control" placeholder="{{'USERNAME_STRING' | translate}}" required>
+                            <input type="password" name="password" id="passwordInput" class="form-control" placeholder="Password" required>
                         </div>
 
                         <br>

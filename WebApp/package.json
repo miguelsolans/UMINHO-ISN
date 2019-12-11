@@ -23,7 +23,7 @@
   ],
   "license": "ISC",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
+    "bcrypt": "^3.0.7",
     "colors": "^1.4.0",
     "cookie-parser": "^1.4.4",
     "dotenv": "^8.2.0",
@@ -34,18 +34,11 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.7",
     "morgan": "^1.9.1",
-    "multer": "^1.4.2",
     "nodemon": "^1.19.4",
     "passport": "^0.4.0"
-<<<<<<< Updated upstream
-=======
   },
   "nodemonConfig": {
     "verbose": true,
-    "ignore": [
-      "app/public/*",
-      "app/views/*"
-    ]
->>>>>>> Stashed changes
+    "ignore": [ "app/public/*" ]
   }
 }
