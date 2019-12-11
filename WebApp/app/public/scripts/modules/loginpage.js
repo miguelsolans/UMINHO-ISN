@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 define([
     'jquery'
 ], ($) => {
@@ -15,5 +16,10 @@ define([
         })
    });
 
+=======
+$(document).ready(() => {
+
+
+>>>>>>> Stashed changes
 
 });

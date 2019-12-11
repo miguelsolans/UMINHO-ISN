@@ -1,6 +1,65 @@
 <%- include('partials/header') %>
 
+<div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="title" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="title">Editing Profile Picture</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/settings/picture-update" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="file">File</label>
+                        <input id="file" name="file" type="file">
+                        <button type="submit">Save</button>
+                    </div>
+                </form>
+<!--                <form action="/settings/picture-update" class="dropzone" enctype="multipart/form-data">-->
+<!--                    <div class="fallback">-->
+<!--                        <input name="file" type="file" multiple />-->
+<!--                    </div>-->
+<!--                </form>-->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="changePasswordForm" tabindex="-1" role="dialog" aria-labelledby="title" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="title">Change Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/settings/change-password" method="post">
+                    <div class="form-label-group">
+                        <label for="password">New Password</label>
+                        <input type="password" name="password" id="password" class="form-control" autofocus>
+                    </div>
+                    <button class="btn btn-lg btn-primary" id="changePasswordButton">Save</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container-fluid">
+<<<<<<< Updated upstream
     <h1>Settings</h1>
 
     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -18,10 +77,72 @@
         </div>
         <div class="tab-pane fade" id="pills-account" role="tabpanel" aria-labelledby="pills-account-tab">
             <h2>Conta</h2>
+=======
+    <div class="row">
+        <div class="col-sm-3 d-none d-lg-block">
+            <img alt="Change Picture" id="edit-profile" class="img-fluid" src="/uploads/<%= data.username %>/profile.jpg">
+            <hr>
+            <div style="text-align: center;"><h2>Widgets</h2></div>
+            <% data.widgets.forEach(widget => { %>
+                <%- include('partials/widget', { widget }) %>
+            <% }) %>
+        </div>
+        <div class="col-sm9">
+            <h1>Settings</h1>
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a href="#account" class="nav-link active" data-toggle="tab">Account</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#platform" class="nav-link" data-toggle="tab">Platform</a>
+                </li>
+                <li class="nav-item d-lg-none d-xl-block">
+                    <a href="#profile" class="nav-link" data-toggle="tab">Profile</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="account">
+                    <h4 class="mt-2">Account</h4>
+                    <form action="/settings/update" method="post">
+                        <div class="form-label-group">
+                            <label for="fullName">Full Name</label>
+                            <input id="fullName" id="fullName" class="form-control" placeholder="Full Name" value="<%= data.fullName %>" autofocus required>
+                        </div>
+                        <div class="form-label-group">
+                            <label for="bio">About</label>
+                            <textarea name="bio" id="bio" class="form-control" placeholder="About" autofocus><%= data.bio %></textarea>
+                        </div>
+
+                        <div class="form-label-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" name="email" id="email"  class="form-control" placeholder="E-mail" value="<%= data.email %>" autofocus required>
+                        </div>
+
+                        <div>
+                            <label for="course">Course</label>
+                            <input type="text" name="course" id="course" value="<%= data.courses %>" placeholder="Courses" autofocus>
+                        </div>
+                        <div class="">
+                            <div id="change-password" class="btn btn-link">Change Password</div>
+                        </div>
+
+                        <input name="userId" type="text" hidden value="<%= data._id %>" >
+                        <button class="btn btn-lg btn-primary" type="submit">Save</button>
+                        <button class="btn btn-lg btn-primary">Cancel</button>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="platform">
+                    <h4 class="mt-2">Platform</h4>
+                </div>
+
+                <div class="tab-pane fade" id="profile">
+                    <h4 class="mt-2">Profile</h4>
+                </div>
+
+            </div>
+>>>>>>> Stashed changes
         </div>
     </div>
-
-
 </div>
 
 <%- include('partials/footer') %>

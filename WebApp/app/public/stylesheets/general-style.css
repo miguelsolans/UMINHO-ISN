@@ -1,5 +1,14 @@
+/**
+ * Author: Miguel Solans
+ * Created on: 09/12/2019
+ */
 .post-container {
     border-width:2px;
     border-style:solid;
     border-color:black;
+}
+.side-widget{
+    border: 1px solid #ebebeb;
+    margin-bottom: 50px;
+    padding: 20px;
 }

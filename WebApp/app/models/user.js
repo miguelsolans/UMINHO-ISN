@@ -18,7 +18,7 @@ const userPostSchema = new mongoose.Schema({
 });
 
 const widgetSchema = new mongoose.Schema({
-    text: String,
+    title: String,
     content: String,
     display: Boolean
 });

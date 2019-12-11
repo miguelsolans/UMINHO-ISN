@@ -16,3 +16,11 @@ module.exports.addNew = (data) => {
 
     return newData.save();
 };
+
+module.exports.updateInfo = (user, info) => {
+    return User.findOneAndUpdate({username: user}, info);
+};
+
+module.exports.updatePassword = (user, password) => {
+    return User.findOneAndUpdate({username: user}, {password: password});
+};
