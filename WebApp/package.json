@@ -23,7 +23,7 @@
   ],
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^3.0.7",
+    "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "cookie-parser": "^1.4.4",
     "dotenv": "^8.2.0",
@@ -39,6 +39,8 @@
   },
   "nodemonConfig": {
     "verbose": true,
-    "ignore": [ "app/public/*" ]
+    "ignore": [
+      "app/public/*"
+    ]
   }
 }
