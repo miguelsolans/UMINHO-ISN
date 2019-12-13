@@ -21,6 +21,8 @@ $ npm start
 ```
 
 - A aplicação encontra-se a responder no url [http://localhost:3030/](https://localhost:3030).
+- Para além de funcionar localmente, esta aplicação foi publicada nos serviços da Heroku, e pode ser testada no url [http://isn-uminho.herokuapp.com](http://isn-uminho.herokuapp.com)
+
 
 ## Autores
 
