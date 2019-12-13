@@ -4,14 +4,14 @@
     <meta charset="utf-8">
     <title>Login</title>
 
-    <!-- Bootstrap -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <!-- jQuery -->
     <script src="/scripts/external/jquery.js"></script>
-    <script src="/scripts/external/bootstrap.js"></script>
 
-    <script src="/scripts/modules/loginpage.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/stylesheets/external/bootstrap/bootstrap.css">
+    <script src="/scripts/external/bootstrap/bootstrap.js"></script>
+
+    <script type="module" src="/scripts/modules/login.js"></script>
 
 
     <!-- RequireJS Modules -->
@@ -29,7 +29,7 @@
     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <div class="card card-signin my-5">
             <div class="card-head">
-                <img class="img-fluid" src="images/logo.png" alt="App Logo">
+                <img class="img-fluid" src="/images/logo.png" alt="App Logo">
             </div>
             <div class="card-body">
                 <div id="login-form-container">

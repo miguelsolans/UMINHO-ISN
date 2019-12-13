@@ -22,7 +22,7 @@ const mongoose = require('mongoose');
 
 // Connection to Database
 mongoose
-    .connect(`${process.env.MONGO_ATLAS}`, {
+    .connect(`${process.env.MONGO_LOCAL}`, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
@@ -58,12 +58,16 @@ const RootRoutes = require('../app/routes/index');
 const FeedRoutes = require('../app/routes/feed');
 const ProfileRoutes = require('../app/routes/profile');
 const SettingsRoutes = require('../app/routes/settings');
+const MessengerRoutes = require('../app/routes/messenger');
+const GroupRoutes = require('../app/routes/group');
 
 // Webapp Root Routes
 app.use('/', RootRoutes);
 app.use('/feed', FeedRoutes);
 app.use('/profile', ProfileRoutes);
 app.use('/settings', SettingsRoutes);
+app.use('/messenger', MessengerRoutes);
+app.use('/group', GroupRoutes);
 
 // Catch 404 and forward to Error Handler
 app.use((req, res, next) => {

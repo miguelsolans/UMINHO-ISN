@@ -18,7 +18,7 @@ const userPostSchema = new mongoose.Schema({
 });
 
 const widgetSchema = new mongoose.Schema({
-    text: String,
+    title: String,
     content: String,
     display: Boolean
 });
@@ -33,8 +33,8 @@ const userSchema = new mongoose.Schema({
     widgets: [widgetSchema],
     courses: { type: Array },
     posts: [userPostSchema],
-    groups: Array,
-    likes: Array,
+    groups: [String],
+    likes: [String],
 });
 
 const User = mongoose.model('users', userSchema, 'users');
