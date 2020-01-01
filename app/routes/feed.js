@@ -1,13 +1,17 @@
 const express = require('express');
+const axios = require('axios');
+const dotenv = require('dotenv').config();
 const router = express.Router();
 const checkAuth = require('../middleware/check-auth');
 const feed = require('../controllers/feed');
 
+
 router.get('/', checkAuth, (req, res) => {
-    console.log(`From Middleware: ${req.decodedUser}`);
-    feed.getFeed()
-        .then(data => res.render('feed', {data: data}))
-        .catch(err => console.log(err));
+
+    console.log(`${process.env.APP_URL}`);
+    axios.get(`${process.env.APP_URL}/api/feed`)
+        .then(result => res.render('feed', { data: result.data }))
+        .catch(error => res.render('error', {data: error.data }));
 });
 
 // Publicar no feed

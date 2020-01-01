@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const user      = require('../controllers/users');
+const feed      = require('../controllers/feed');
 
 router.get('/', (req, res) => {
     res.render('login');
@@ -13,6 +14,7 @@ router.get('/', (req, res) => {
 router.post('/login', (req, res) => {
     console.log(req.body);
     console.log("login requested");
+
     user.searchUser(req.body.username)
         .then(data => {
             if(data !== null ) {

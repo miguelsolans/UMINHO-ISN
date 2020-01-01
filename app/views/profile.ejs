@@ -1,9 +1,9 @@
 <%- include('partials/header') %>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-2">
+        <div class="col-sm-3 d-none d-lg-block">
             <img alt="User Picture" class="img-fluid" src="/uploads/<%= data.username %>/profile.jpg">
-
+            <hr>
             <div style="text-align: center;"><h3>Widgets</h3></div>
             <% data.widgets.forEach(widget => {
                 if(widget.display) { %>
@@ -14,7 +14,7 @@
             <% }) %>
 
         </div>
-        <div class="col-10">
+        <div class="col-lg-9">
             <h1><%= data.fullName %></h1>
 
             <h2>About</h2>
