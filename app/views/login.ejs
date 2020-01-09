@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>Login</title>
@@ -16,7 +17,7 @@
 
 
     <!-- RequireJS Modules -->
-<!--    <script data-main="scripts/main" src="scripts/external/require.js"></script>-->
+    <!--    <script data-main="scripts/main" src="scripts/external/require.js"></script>-->
 
     <style>
         body {
@@ -24,70 +25,78 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="row">
-    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-        <div class="card card-signin my-5">
-            <div class="card-head">
-                <img class="img-fluid" src="/images/logo.png" alt="App Logo">
-            </div>
-            <div class="card-body">
-                <div id="login-form-container">
-                    <h1 class="text-center">Login</h1>
-
-                    <form class="form-signin" method="post" action="/login">
-                        <div class="form-label-group">
-                            <label for="usernameInput">Username</label>
-                            <input type="text" name="username" id="usernameInput" class="form-control" placeholder="Username" required autofocus>
-                        </div>
-
-                        <div class="form-label-group">
-                            <label for="passwordInput">Password</label>
-                            <input type="password" name="password" id="passwordInput" class="form-control" placeholder="Password" required>
-                        </div>
-
-                        <br>
-                        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-                        <br>
-                        <p>You don't hold an account? <a id="call-register" href="#">Register</a></p>
-                    </form>
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-signin my-5">
+                <div class="card-head">
+                    <img class="img-fluid" src="/images/logo.png" alt="App Logo">
                 </div>
+                <div class="card-body">
+                    <div id="login-form-container">
+                        <h1 class="text-center">Login</h1>
+
+                        <form class="form-signin" method="post" action="/login">
+                            <div class="form-label-group">
+                                <label for="usernameInput">Username</label>
+                                <input type="text" name="username" id="usernameInput" class="form-control"
+                                    placeholder="Username" required autofocus>
+                            </div>
+
+                            <div class="form-label-group">
+                                <label for="passwordInput">Password</label>
+                                <input type="password" name="password" id="passwordInput" class="form-control"
+                                    placeholder="Password" required>
+                            </div>
+
+                            <br>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                            <br>
+                            <p>You don't hold an account? <a id="call-register" href="#">Register</a></p>
+                        </form>
+                    </div>
 
 
-                <div id="register-form-container" style="display:none">
-                    <h1 class="text-center">Register</h1>
-                    <form class="form-register" method="post" action="/register">
-                        <div class="form-label-group">
-                            <label for="nameInput">Nome</label>
-                            <input type="text" name="name" id="nameInput" class="form-control" placeholder="Full Name" required autofocus>
-                        </div>
+                    <div id="register-form-container" style="display:none">
+                        <h1 class="text-center">Register</h1>
+                        <form class="form-register" method="post" action="/register">
+                            <div class="form-label-group">
+                                <label for="nameInput">Nome</label>
+                                <input type="text" name="name" id="nameInput" class="form-control"
+                                    placeholder="Full Name" required autofocus>
+                            </div>
 
-                        <div class="form-label-group">
-                            <label for="emailInput">E-mail</label>
-                            <input type="email" name="email" id="emailInput" class="form-control" placeholder="E-mail" required>
-                        </div>
+                            <div class="form-label-group">
+                                <label for="emailInput">E-mail</label>
+                                <input type="email" name="email" id="emailInput" class="form-control"
+                                    placeholder="E-mail" required>
+                            </div>
 
-                        <div class="form-label-group">
-                            <label for="usernameInput">Username</label>
-                            <input type="text" name="username" id="usernameInput" class="form-control" placeholder="Username" required>
-                        </div>
+                            <div class="form-label-group">
+                                <label for="usernameInput">Username</label>
+                                <input type="text" name="username" id="usernameInput" class="form-control"
+                                    placeholder="Username" required>
+                            </div>
 
-                        <div class="form-label-group">
-                            <label for="passwordInput">Password</label>
-                            <input type="password" name="password" id="passwordInput" class="form-control" placeholder="Password" required>
-                        </div>
+                            <div class="form-label-group">
+                                <label for="passwordInput">Password</label>
+                                <input type="password" name="password" id="passwordInput" class="form-control"
+                                    placeholder="Password" required>
+                            </div>
 
-                        <br>
-                        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-                        <button id="call-login" class="btn btn-lg btn-primary btn-block">Cancelar</button>
-                    </form>
+                            <br>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+                            <button id="call-login" class="btn btn-lg btn-primary btn-block">Cancelar</button>
+                        </form>
+                    </div>
+
                 </div>
-
             </div>
         </div>
     </div>
-</div>
 
 </body>
+
 </html>

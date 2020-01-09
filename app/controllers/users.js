@@ -7,7 +7,9 @@ module.exports.list = (query) => {
 };
 
 module.exports.searchUser = (user) => {
-    return User.findOne({username: user}).exec();
+    return User.findOne({
+        username: user
+    }).select('+password').exec();
 };
 
 // Add new User to Database
@@ -18,9 +20,15 @@ module.exports.addNew = (data) => {
 };
 
 module.exports.updateInfo = (user, info) => {
-    return User.findOneAndUpdate({username: user}, info);
+    return User.findOneAndUpdate({
+        username: user
+    }, info);
 };
 
 module.exports.updatePassword = (user, password) => {
-    return User.findOneAndUpdate({username: user}, {password: password});
+    return User.findOneAndUpdate({
+        username: user
+    }, {
+        password: password
+    });
 };

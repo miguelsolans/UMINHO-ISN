@@ -73,7 +73,11 @@ app.use('/test', TestRoutes);
 
 // API Routes
 const FeedAPI = require('../app/routes/api/feed');
+const UserAuth = require('../app/routes/api/user-auth');
+
+app.use('/api/userauth', UserAuth);
 app.use('/api/feed', FeedAPI);
+
 
 
 // Catch 404 and forward to Error Handler

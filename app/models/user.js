@@ -4,6 +4,26 @@
  */
 
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+
+const commentSchema = new mongoose.Schema({
+    _id: {
+        type: mongoose.Types.ObjectId,
+        auto: true
+    },
+    text: {
+        type: String,
+        required: true
+    },
+    createdBy: {
+        type: String,
+        required: true
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
+});
 
 const postContentSchema = new mongoose.Schema({
     image: String,
@@ -11,10 +31,25 @@ const postContentSchema = new mongoose.Schema({
     url: String,
 });
 const userPostSchema = new mongoose.Schema({
-    _id: { type: mongoose.Types.ObjectId, auto: true },
-    date: Date,
+    _id: {
+        type: mongoose.Types.ObjectId,
+        auto: true
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
     content: postContentSchema,
-    likes: Number
+    likes: {
+        type: [String]
+    },
+    comments: {
+        type: [commentSchema]
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 const widgetSchema = new mongoose.Schema({
@@ -24,18 +59,64 @@ const widgetSchema = new mongoose.Schema({
 });
 
 const userSchema = new mongoose.Schema({
-    _id: { type: mongoose.Types.ObjectId, auto: true },
-    username: String,
-    fullName: String,
-    password: String,
-    email: String,
-    bio: String,
-    widgets: [widgetSchema],
-    courses: { type: Array },
-    posts: [userPostSchema],
-    groups: [String],
-    likes: [String],
+    _id: {
+        type: mongoose.Types.ObjectId,
+        auto: true
+    },
+    username: {
+        type: String,
+        required: true
+    },
+    fullName: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true,
+        minlength: 8,
+        select: false
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        match: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    },
+    bio: {
+        type: String
+    },
+    widgets: {
+        type: [widgetSchema]
+    },
+    courses: {
+        type: Array
+    },
+    posts: {
+        type: [userPostSchema]
+    },
+    groups: {
+        type: [String]
+    },
+    likes: {
+        type: [String]
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    photo: {
+        type: String,
+        default: 'default.jpg'
+    }
 });
+
+// coloquei aqui pq antes a password ficava logo hashed e nao passava pelo teste da password ter no minimo de 8 caratetes
+// Encrypt password using bccrypt
+userSchema.pre('save', async function (next) {
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+})
 
 const User = mongoose.model('users', userSchema, 'users');
 
