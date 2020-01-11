@@ -34,9 +34,9 @@ const userPostSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         auto: true
     },
-    createdAt: {
-        type: Date,
-        default: Date.now
+    createdBy: {
+        type: String,
+        required: true
     },
     content: postContentSchema,
     likes: {
