@@ -29,39 +29,6 @@ router.post('/picture-update', checkAuth, (req, res) => {
 
     console.log(req.body.file);
 
-    /*
-      let user = req.decodedUser;
-
-      console.log('Profile Picture Update');
-      console.log(user);
-      console.log(req.file)
-
-
-      if (!req.files) {
-          console.log('Não foi dado upload de nenhum ficheiro');
-      }
-
-      const file = req.files.file;
-
-      if (!file.mimetype.startsWith('image')) {
-          console.log('O ficheiro não é uma imagem');
-      }
-
-      if (file.size > process.env.MAX_FILE_SIZE) {
-          console.log('Ficheiro demasiado grande');
-      }
-
-      file.name = `photo_${bootcamp._id}${path.parse(file.name).ext}`;
-
-      file.mv(`${process.env.FILE_UPLOAD_PATH}/${file.name}`, async err => {
-          if (err) {
-              console.error(err);
-          }
-
-          await User.updateInfo(user, {
-              photo: file.name
-          });
-      });*/
 });
 
 // Mudar para PUT
