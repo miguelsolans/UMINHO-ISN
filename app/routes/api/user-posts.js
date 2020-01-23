@@ -40,8 +40,8 @@ router.get('/search', checkAuth, (req, res) => {
 })
 
 
-router.get('/feed', checkAuth, pagination(UserPost), (req, res) => {
-    UserPosts.postsDate().then(result => res.jsonp(res.advancedResults)).catch(err => res.jsonp(err))
+router.get('/feed' /*, checkAuth , pagination(UserPost)*/ , (req, res) => {
+    UserPosts.postsDate().then(result => res.jsonp(result)).catch(err => res.jsonp(err)) // pra usar pafinação, fazer res.AdvencedResults
 })
 
 // logged in user posts 

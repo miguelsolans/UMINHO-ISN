@@ -8,8 +8,8 @@ module.exports.list = query => {
 
 module.exports.searchUser = user => {
   return User.findOne({
-    username: user
-  })
+      username: user
+    })
     .select('+password')
     .exec();
 };
@@ -32,8 +32,7 @@ module.exports.addNew = data => {
 };
 
 module.exports.updateInfo = (user, info) => {
-  return User.findOneAndUpdate(
-    {
+  return User.findOneAndUpdate({
       username: user
     },
     info
@@ -41,12 +40,46 @@ module.exports.updateInfo = (user, info) => {
 };
 
 module.exports.updatePassword = (user, password) => {
-  return User.findOneAndUpdate(
-    {
-      username: user
-    },
-    {
-      password: password
-    }
-  );
+  return User.findOneAndUpdate({
+    username: user
+  }, {
+    password: password
+  });
 };
+
+module.exports.getGroups = (username) => {
+  return User.find({
+    username: username
+  }, {
+    id: 0,
+    groups: 1
+  }).exec()
+};
+
+module.exports.addGroup = (userId, groupInfo) => {
+  return User.findOneAndUpdate({
+    _id: userId
+  }, {
+    $push: {
+      groups: groupInfo
+    }
+  }, {
+    new: true,
+    runValidators: true
+  });
+}
+
+module.exports.removeGroup = (userId, groupId) => {
+  return User.update({
+    _id: userId
+  }, {
+    "$pull": {
+      "groups": {
+        groupId: groupId
+      }
+    }
+  }, {
+    safe: true,
+    multi: true
+  })
+}
