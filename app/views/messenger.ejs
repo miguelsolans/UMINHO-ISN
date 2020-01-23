@@ -22,41 +22,43 @@
 <!--<body>-->
 <%- include('partials/header') %>
 
-<div class="container-fluid">
-    <div class="row h-100">
+<div class="container-fluid d-flex h-100 flex-column">
+    <div class="row full-height">
         <div class="col-3 border-right">
             <h4>Chats</h4>
             <div class="chat-sidebar-container">
-                <% data.forEach(message => { %>
-                    <div class="chat-conversation-container" id="<%= message._id %>">
-                        <img style="height: 50%; width: 50%" src="images/envelope.png">
-                        <p class="text-center"><%= message.name %></p>
-                        <p>Last By: <%= message.by %></p>
-                    </div>
-                <% }); %>
+                <ul class="list-group">
+                    <% data.forEach(message => { %>
+                        <li class="list-group-item open-conversation" id="<%= message._id %>">
+                            <%= message.name%>
+                        </li>
+                    <% }); %>
+                </ul>
             </div>
 
         </div>
         <div class="col-9">
             <div id="chat-box-container">
-                <h2 class="text-center">Mensagens</h2>
-                <br>
-                <br>
-                <p class="text-center">Para visualizar uma mensagem, selecione um Chat da barra lateral esquerda</p>
-            </div>
-        </div>
-<!--        <div class="col-8">-->
-<!--            <div class="row">NOME CHAT</div>-->
-<!--            <div id="message1"></div>-->
-<!--            <div id="editor"></div>-->
-<!--            <button id="send-message">Send</button>-->
-<!--        </div>-->
-<!--        <div class="col-2">-->
-<!--            <div class="row">-->
-<!--                <p>Assets</p>-->
-<!--            </div>-->
-<!--        </div>-->
-    </div>
+                <div id="no-chat-selected">
+                    <h2 class="text-center">Mensagens</h2>
+                    <br>
+                    <br>
+                    <p class="text-center">Para visualizar uma mensagem, selecione um Chat da barra lateral esquerda</p>
+                </div>
 
+                <div id="chat-selected">
+                    <h2 class="text-center" id="chatName"></h2>
+                    <ul class="list-group" id="messages-wrapper"></ul>
+
+                    <form>
+                        <input type="text" name="text" id="message-body-form">
+                        <input type="hidden" name="chatId" value="">
+                        <input type="button" id="send-message-button" value="Send">
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
 <%- include('partials/footer') %>

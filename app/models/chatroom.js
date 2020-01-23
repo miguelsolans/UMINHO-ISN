@@ -13,6 +13,6 @@ const chatSchema = new mongoose.Schema({
     messages: [messageSchema]
 });
 
-const User = mongoose.model('chatrooms', chatSchema, 'chatrooms');
+const Chatroom = mongoose.model('chatrooms', chatSchema, 'chatrooms');
 
-module.exports = User;
+module.exports = Chatroom;

@@ -14,3 +14,7 @@ html, body {
 .border {
     border-right: 1px solid black;
 }
+
+.full-height {
+    min-height: 100%;
+}

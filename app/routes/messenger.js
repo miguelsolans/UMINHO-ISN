@@ -17,8 +17,9 @@ router.get('/', checkAuth, (req, res ) => {
         .catch(err => console.log(err));
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', checkAuth, (req, res) => {
     let id = req.params.id;
+
     messenger.getMessages(id)
         .then(data => res.jsonp(data))
         .catch(err => res.jsonp(err));
@@ -26,10 +27,22 @@ router.get('/:id', (req, res) => {
 
 
 
-router.post('/', (req, res) => {
-    let message = req.params.body;
+router.put('/', checkAuth, (req, res) => {
+    let message = req.body;
+    let user = req.decodedUser;
 
     console.log(message);
+
+    let msg = {
+        chatId: message.chatId,
+        text: message.text,
+        date: Date.now(),
+        by: user
+    };
+
+    messenger.sendMessage(msg)
+        .then(result => console.log(result))
+        .catch(err => console.log(err));
 
 
 });
