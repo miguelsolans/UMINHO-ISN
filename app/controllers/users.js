@@ -56,6 +56,17 @@ module.exports.getGroups = (username) => {
   }).exec()
 };
 
+module.exports.getInfoFeed = (username) => {
+  return User.find({
+    username: username
+  }, {
+    id: 0,
+    fullName: 1,
+    username: 1,
+    photo: 1
+  }).exec()
+};
+
 module.exports.addGroup = (userId, groupInfo) => {
   return User.findOneAndUpdate({
     _id: userId

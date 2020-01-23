@@ -22,7 +22,7 @@ const mongoose = require('mongoose');
 
 // Connection to Database
 mongoose
-    .connect(`${process.env.MONGO_ATLAS}`, {
+    .connect(`${process.env.MONGO_LOCAL}`, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
@@ -80,6 +80,9 @@ app.use('/api/feed', FeedAPI);
 
 const UserPostAPI = require('../app/routes/api/user-posts');
 app.use('/api/userpost', UserPostAPI);
+
+const UsersAPI = require('../app/routes/api/users');
+app.use('/api/user', UsersAPI);
 
 
 

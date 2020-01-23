@@ -9,4 +9,8 @@ router.get('/groups', checkAuth, (req, res) => {
 })
 
 
+router.get('/infofeed', checkAuth, (req, res) => {
+    Users.getInfoFeed(req.decodedUser).then(result => res.jsonp(result)).catch(err => res.jsonp(err))
+})
+
 module.exports = router;

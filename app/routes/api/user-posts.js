@@ -35,12 +35,12 @@ router.put('/:id', checkAuth, checkPostOwner, (req, res) => {
 });
 
 router.get('/search', checkAuth, (req, res) => {
-
     UserPosts.postsSearch(req.body.pesquisa).then(result => res.jsonp(result)).catch(err => res.jsonp(err))
 })
 
 
 router.get('/feed' /*, checkAuth , pagination(UserPost)*/ , (req, res) => {
+    console.log(req.headers);
     UserPosts.postsDate().then(result => res.jsonp(result)).catch(err => res.jsonp(err)) // pra usar pafinação, fazer res.AdvencedResults
 })
 
