@@ -1,44 +1,38 @@
-const UserPost = require('../models/userPost');
+const GroupPost = require('../models/groupPost');
 const mongoose = require('mongoose')
 
-// get all users posts
-exports.getAllPosts = () => {
-    return UserPost.find({}).exec();
+
+// get all groups posts
+exports.getAllGroupPosts = () => {
+    return GroupPost.find({}).exec();
 };
 
 // get post by id
-exports.getPostId = (id) => {
-    return UserPost.findOne({
+exports.getGroupPostId = (id) => {
+    return GroupPost.findOne({
         _id: id
     }).exec();
 };
 
-// add new post
-module.exports.addNew = (data) => {
-    let newData = new UserPost(data);
-
-    return newData.save();
-};
-
-// get user posts
-module.exports.userPosts = (username) => {
-    return UserPost.find({
-        createdBy: username
+// get group posts
+module.exports.userPosts = (groupID) => {
+    return GroupPost.find({
+        groupId: groupID
     }).sort({
         createdAt: 'desc'
     }).exec()
 };
 
-// get all posts ordered by created date
-module.exports.postsDate = () => {
-    return UserPost.find({}).sort({
-        createdAt: 'desc'
-    }).exec();
+// add new post
+module.exports.addNewGroupPost = (data) => {
+    let newData = new GroupPost(data);
+
+    return newData.save();
 };
 
 // pesquisa de posts pelo texto
 module.exports.postsSearch = (word) => {
-    return UserPost.find({
+    return GroupPost.find({
         "content.text": {
             "$regex": word,
             "$options": "i"
@@ -48,19 +42,33 @@ module.exports.postsSearch = (word) => {
     }).exec();
 };
 
-// delete post --> na route verificar primeiro se existe
+// update post
+module.exports.updatePost = (postId, data) => {
+    return GroupPost.findByIdAndUpdate(postId, data, {
+        new: true,
+        runValidators: true
+    }).exec();
+};
+
+// remover post
 module.exports.deletePost = (postId) => {
-    return UserPost.findByIdAndRemove({
+    return GroupPost.findByIdAndRemove({
         _id: postId
     }).exec();
 };
 
-// update post
-module.exports.updatePost = (postId, data) => {
-    return UserPost.findByIdAndUpdate(postId, data, {
+// add comment
+module.exports.addComment = (postId, comment) => {
+    return GroupPost.findOneAndUpdate({
+        _id: postId
+    }, {
+        $push: {
+            comments: comment
+        }
+    }, {
         new: true,
         runValidators: true
-    }).exec();
+    });
 };
 
 // add comment
@@ -79,7 +87,7 @@ module.exports.addComment = (postId, comment) => {
 
 // remove comment 
 module.exports.removeComment = (postId, commentId) => {
-    return UserPost.update({
+    return GroupPost.update({
         _id: postId
     }, {
         "$pull": {
@@ -95,7 +103,7 @@ module.exports.removeComment = (postId, commentId) => {
 
 // update comment 
 module.exports.updateComment = (postId, commentId, text) => {
-    return UserPost.updateOne({
+    return GroupPost.updateOne({
         "_id": postId,
         "comments._id": commentId
     }, {
@@ -111,7 +119,7 @@ module.exports.updateComment = (postId, commentId, text) => {
 module.exports.postByCommentId = (commentId) => {
 
     var id = mongoose.Types.ObjectId(commentId);
-    return UserPost.aggregate([{
+    return GroupPost.aggregate([{
             $unwind: "$comments"
         }, {
             $match: {
