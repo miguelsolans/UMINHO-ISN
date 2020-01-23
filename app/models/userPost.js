@@ -25,7 +25,7 @@ const commentSchema = new mongoose.Schema({
 });
 
 const postContentSchema = new mongoose.Schema({
-    image: String,
+    files: [String],
     text: String,
     url: String,
 });
@@ -43,7 +43,8 @@ const userPostSchema = new mongoose.Schema({
         type: [String]
     },
     comments: {
-        type: [commentSchema]
+        type: [commentSchema],
+        default: []
     },
     createdAt: {
         type: Date,
