@@ -3,6 +3,8 @@ $(document).ready( () => {
     $("#chat-selected").hide();
     let previousConversation;
 
+    $("#new-chatroom-modal").modal();
+
     /**
      * Open a Given Conversation
      */
@@ -36,7 +38,6 @@ $(document).ready( () => {
                 });
                 // messages-wrapper
 
-                console.table(response.messages);
             },
             error: response => {
                 console.log(response);
@@ -59,20 +60,22 @@ $(document).ready( () => {
             chatId: chatId
         };
 
-        alert(chatId);
         $.ajax({
             type: 'put',
             url: `/messenger`,
             contentType: 'application/json',
             data: JSON.stringify(body),
             success: response => {
-                alert(response);
+                // on success add my message to chat history
+                $("#messages-wrapper").append(`<li class="list-group-item">${body.text}</li>`);
+                console.log(response);
+
             },
             error: response => {
+                // Oops...
                 console.log(response);
             }
         });
 
-        alert(msg);
     })
 });

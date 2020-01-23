@@ -22,6 +22,41 @@
 <!--<body>-->
 <%- include('partials/header') %>
 
+<!-- New Chatroom Modal -->
+<div class="modal" id="new-chatroom-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">New Chatroom</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/messenger" method="POST">
+                    <div class="form-group">
+                        <label for="chatRoomName">Chatroom Name</label>
+                        <input type="text" class="form-control" id="chatRoomName" name="name" aria-describedby="emailHelp" placeholder="Chatroom Name">
+                        <small id="chatRoomNameHelp" class="form-text text-muted">You will be automatically associated with this chatroom.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="chatRoomParticipants">Password</label>
+                        <input type="text" class="form-control" id="chatRoomParticipants" name="participants" placeholder="Participants">
+                        <small id="chatRoomParticipantsHelp" class="form-text text-muted">Add a comma after each participant username</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <div class="container-fluid d-flex h-100 flex-column">
     <div class="row full-height">
         <div class="col-3 border-right">
