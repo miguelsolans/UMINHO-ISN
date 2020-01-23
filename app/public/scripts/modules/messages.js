@@ -3,7 +3,9 @@ $(document).ready( () => {
     $("#chat-selected").hide();
     let previousConversation;
 
-    $("#new-chatroom-modal").modal();
+    $('#new-chat').on('click', event => {
+        $("#new-chatroom-modal").modal();
+    });
 
     /**
      * Open a Given Conversation
@@ -67,7 +69,7 @@ $(document).ready( () => {
             data: JSON.stringify(body),
             success: response => {
                 // on success add my message to chat history
-                $("#messages-wrapper").append(`<li class="list-group-item">${body.text}</li>`);
+                $("#messages-wrapper").append(`<li class="list-group-item list-group-item-primary">${body.text}</li>`);
                 console.log(response);
 
             },
