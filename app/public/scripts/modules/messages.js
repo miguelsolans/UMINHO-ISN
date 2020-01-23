@@ -7,6 +7,7 @@ $(document).ready( () => {
         $("#new-chatroom-modal").modal();
     });
 
+
     /**
      * Open a Given Conversation
      */
@@ -70,6 +71,7 @@ $(document).ready( () => {
             success: response => {
                 // on success add my message to chat history
                 $("#messages-wrapper").append(`<li class="list-group-item list-group-item-primary">${body.text}</li>`);
+
                 console.log(response);
 
             },

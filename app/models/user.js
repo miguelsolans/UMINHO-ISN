@@ -13,6 +13,11 @@ const widgetSchema = new mongoose.Schema({
   display: Boolean
 });
 
+const groupSchema = new mongoose.Schema({
+  groupId: String,
+  groupName: String
+});
+
 const userSchema = new mongoose.Schema({
   _id: {
     type: mongoose.Types.ObjectId,
@@ -48,7 +53,8 @@ const userSchema = new mongoose.Schema({
     type: Array
   },
   groups: {
-    type: [String]
+    type: [groupSchema],
+    default: []
   },
   likes: {
     type: [String]
@@ -70,7 +76,7 @@ const userSchema = new mongoose.Schema({
 
 // coloquei aqui pq antes a password ficava logo hashed e nao passava pelo teste da password ter no minimo de 8 caratetes
 // Encrypt password using bccrypt
-userSchema.pre('save', async function(next) {
+userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {
     next();
   }
@@ -80,7 +86,7 @@ userSchema.pre('save', async function(next) {
 });
 
 // gerar e hash do token de reset da password
-userSchema.methods.getResetPasswordToken = function() {
+userSchema.methods.getResetPasswordToken = function () {
   // gerar token --- sequencia aleatoria de bytes
   const resetToken = crypto.randomBytes(20).toString('hex');
 
