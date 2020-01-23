@@ -25,7 +25,8 @@ const commentSchema = new mongoose.Schema({
 });
 
 const postContentSchema = new mongoose.Schema({
-    image: [String],
+
+    files: [String],
     text: String,
     url: String,
 });
