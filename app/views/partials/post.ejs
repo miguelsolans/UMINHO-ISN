@@ -1,17 +1,17 @@
 <div class="post-info border-top border-bottom">
     <div class="row">
-        <div class="col-2">
-            <img src="images/User.png" class="img-fluid">
+        <div class="col-1 p-3 ">
+            <div class="circle-avatar" style="background-image:url(uploads/diogoesnog/Foto.jpg)"></div>
         </div>
-        <div class="col-10">
-            <p><%= post.createdBy %></p>
-            <p><%= post.content.text %></p>
+        <div class="col-7 py-3">
+            @<%= post.createdBy %><%= post.createdAt %>
+            <br>
+            <div class="text-justify">
+                <%= post.content.text %>
+            </div>
         </div>
-    </div>
-</div>
-<div class="post-buttons">
-    <div class="row">
-        <div class="col-6 "><i class="far fa-heart"></i> Gosto</div>
-        <div class="col-6"><i class="far fa-comment"></i> Comentar</div>
+        <div class="col-4 p-4 my-auto">
+            <div class="col-6 align-middle"><i class="far fa-comment"></i> Comentar</div>
+        </div>
     </div>
 </div>

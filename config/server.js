@@ -21,15 +21,13 @@ const colors = require('colors');
 const mongoose = require('mongoose');
 
 // Connection to Database
-mongoose
-  .connect(`${process.env.MONGO_LOCAL}`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
-  .then(() =>
-    console.log('Connection to MongoDB successfully established.'.cyan.bold)
-  )
-  .catch(() => console.log("Couldn't connect to MongoDB".red));
+
+mongoose.connect(`${process.env.MONGO_LOCAL}`, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+    .then(() => console.log("Connection to MongoDB successfully established.".cyan.bold))
+    .catch(() => onsole.log("Couldn't connect to MongoDB".red));
 
 // Display Request Status
 // app.use(logger('dev'));
@@ -43,9 +41,9 @@ app.set('views', './app/views');
 
 // To Read it in JSON
 app.use(
-  bodyParser.urlencoded({
-    extended: true
-  })
+    bodyParser.urlencoded({
+        extended: true
+    })
 );
 app.use(bodyParser.json());
 
@@ -85,18 +83,18 @@ app.use('/api/user', UsersAPI);
 
 // Catch 404 and forward to Error Handler
 app.use((req, res, next) => {
-  next(createError(404));
+    next(createError(404));
 });
 
 // Error Handler
 app.use((err, req, res, next) => {
-  // Set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+    // Set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // Render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // Render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 // Module Export
