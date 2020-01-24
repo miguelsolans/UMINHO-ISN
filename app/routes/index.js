@@ -6,6 +6,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const sendEmail = require('../utils/sendEmail');
 const crypto = require('crypto');
+const fs = require('fs');
+const path = require('path');
 
 const user = require('../controllers/users');
 
@@ -85,9 +87,13 @@ router.post('/register', (req, res) => {
                     .then(result => console.log(result))
                     .catch(err => console.log(err));
 
+                let userDir = path.join(__dirname, `../public/uploads/${newUser.username}`);
+                fs.mkdir(userDir, err => {
+                    if(err) console.log(err);
+                });
                 res.redirect('/');
             } else {
-                console.log(`User with username ${req.body.username} already exist`);
+                console.log(`User with username ${req.body.username} already exists`);
             }
         })
         .catch(err => {
