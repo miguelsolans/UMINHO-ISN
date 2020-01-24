@@ -5,8 +5,15 @@ const checkAuth = require('../../middleware/check-auth');
 
 
 router.get('/groups', checkAuth, (req, res) => {
-    Users.getGroups(req.decodedUser).then(result => res.jsonp(result)).catch(err => res.jsonp(err))
+    Users.getGroups(req.decodedUser)
+        .then(result => res.jsonp(result))
+        .catch(err => res.jsonp(err))
 })
 
+router.get('/users', checkAuth, (req, res) => {
+    Users.registeredUsers()
+        .then(result => res.jsonp(result))
+        .catch(err => res.jsonp(err));
+});
 
 module.exports = router;
