@@ -2,23 +2,32 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-2 d-none d-lg-block">
-            <img alt="User Picture" class="img-fluid" src="/uploads/<%= data.username %>/profile.jpg">
-            <h3>Full Name</h3>
+        <div class="col-sm-2 d-none d-lg-block border-right position-fixed">
+            <div class="circle-avatar" style="background-image:url(<%- infoFeed.photo %>)"></div>
+           
+            <p><h4>
+                <img alt="User Picture" class="img-fluid" src="/images/Welcome.png">
+                <b><center><%- firstName %></center></b>
+            </h4></p>
+            <h6>
+                <center>
+                    @
+                    <%- infoFeed.username %>
+                </center>
+            </h6>
             <hr>
-            <p>Grupos</p>
+            <p><b>Groups</b></p>
         </div>
-        <div class="col-sm-10">
+        <div class="col offset-2 col-sm-10">
             <h2>Feed</h2>
-            <!-- Create the editor container -->
             <%- include('partials/composer') %>
             <!--            <form action="/feed" method="post">-->
             <!--                <button type="submit">Post</button>-->
             <!--            </form>-->
             <% data.forEach(post => {%>
-                <div class="">
-                    <%- include('partials/post', {post: post}) %>
-                </div>
+            <div class="">
+                <%- include('partials/post', {post: post}) %>
+            </div>
             <% }) %>
         </div>
     </div>
