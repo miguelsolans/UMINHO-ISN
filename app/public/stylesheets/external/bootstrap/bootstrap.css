@@ -248,7 +248,9 @@ textarea {
 
 button,
 input {
-  overflow: visible;
+  border: 0;
+  outline: 0;
+  border-bottom: 2px solid blue;
 }
 
 button,
@@ -1881,12 +1883,11 @@ pre code {
   border: 0;
 }
 
-.form-control:focus {
-  color: #495057;
-  background-color: #fff;
-  border-color: #80bdff;
-  outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+.form-control:focus{
+  border-color:#CCC;
+  outline:0;
+  -webkit-box-shadow:none;
+  box-shadow:none;
 }
 
 .form-control::-webkit-input-placeholder {
@@ -2996,6 +2997,9 @@ input[type="reset"].btn-block,
 input[type="button"].btn-block {
   width: 100%;
 }
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
 
 .fade {
   transition: opacity 0.15s linear;
@@ -3628,7 +3632,7 @@ input[type="button"].btn-block {
 }
 
 .custom-control-input:focus:not(:checked) ~ .custom-control-label::before {
-  border-color: #80bdff;
+  border-color: none;
 }
 
 .custom-control-input:not(:disabled):active ~ .custom-control-label::before {
@@ -3771,9 +3775,8 @@ input[type="button"].btn-block {
 }
 
 .custom-select:focus {
-  border-color: #80bdff;
-  outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  box-shadow: none!important;
+  border-color: #ced4da!important;
 }
 
 .custom-select:focus::-ms-value {
@@ -3829,10 +3832,13 @@ input[type="button"].btn-block {
   opacity: 0;
 }
 
-.custom-file-input:focus ~ .custom-file-label {
-  border-color: #80bdff;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+input:focus::-webkit-input-placeholder {
+  color: #dc3545;
 }
+
+.custom-file-input:focus ~ .custom-file-label {
+  box-shadow: none!important;
+  border-color: #ced4da!important;}
 
 .custom-file-input:disabled ~ .custom-file-label {
   background-color: #e9ecef;
@@ -4171,9 +4177,6 @@ input[type="button"].btn-block {
 
 .navbar-brand {
   display: inline-block;
-  padding-top: 0.3125rem;
-  padding-bottom: 0.3125rem;
-  margin-right: 1rem;
   font-size: 1.25rem;
   line-height: inherit;
   white-space: nowrap;
@@ -6705,6 +6708,26 @@ button.bg-dark:focus {
 
 .rounded-circle {
   border-radius: 50% !important;
+}
+
+.circle-avatar{
+  max-width: 100%;
+  height:auto;
+  padding-top:100%;
+  
+  border-radius:50%;
+  
+  background-position-y: center;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  
+  background-size: cover;
+  
+  margin: 0 auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .rounded-pill {

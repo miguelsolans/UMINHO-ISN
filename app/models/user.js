@@ -14,8 +14,9 @@ const widgetSchema = new mongoose.Schema({
 });
 
 const groupSchema = new mongoose.Schema({
-  groupId: String,
-  groupName: String
+  groupId: mongoose.Types.ObjectId,
+  groupName: String,
+  groupSigla: String
 });
 
 const userSchema = new mongoose.Schema({
@@ -65,7 +66,7 @@ const userSchema = new mongoose.Schema({
   },
   photo: {
     type: String,
-    default: 'default.jpg'
+    default: '/images/User.png'
   },
   birthdate: {
     type: Date

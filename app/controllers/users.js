@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const User = require('../models/user');
 
 // List Group of Users, depending on a Query
@@ -8,10 +7,10 @@ module.exports.list = query => {
 
 module.exports.searchUser = user => {
   return User.findOne({
-      username: user
-    })
-    .select('+password')
-    .exec();
+    username: user
+  })
+      .select('+password')
+      .exec();
 };
 
 module.exports.searchUserEmail = email => {
@@ -32,12 +31,25 @@ module.exports.addNew = data => {
 };
 
 module.exports.updateInfo = (user, info) => {
-  return User.findOneAndUpdate({
-      username: user
-    },
-    info
-  );
+  return User.findOneAndUpdate(user, info, {
+    new: true,
+    runValidators: true
+  });
 };
+
+module.exports.updateAvatar = ({
+                                 username,
+                                 avatar
+                               }) => {
+  return User.findOneAndUpdate({
+    username: username
+  }, {
+    $set: {
+      photo: avatar
+    }
+  });
+};
+
 
 module.exports.updatePassword = (user, password) => {
   return User.findOneAndUpdate({
@@ -47,24 +59,28 @@ module.exports.updatePassword = (user, password) => {
   });
 };
 
-module.exports.getGroups = (username) => {
+module.exports.getGroups = username => {
   return User.findOne({
     username: username
-  }).select({
-    _id: 0,
-    groups: 1
-  }).exec()
+  })
+      .select({
+        _id: 0,
+        groups: 1
+      })
+      .exec();
 };
 
-module.exports.getInfoFeed = (username) => {
+module.exports.getInfoFeed = username => {
   return User.findOne({
     username: username
-  }).select({
-    _id: 0,
-    username: 1,
-    fullName: 1,
-    photo: 1
-  }).exec()
+  })
+      .select({
+        _id: 0,
+        username: 1,
+        fullName: 1,
+        photo: 1
+      })
+      .exec();
 };
 
 module.exports.addGroup = (userId, groupInfo) => {
@@ -78,24 +94,19 @@ module.exports.addGroup = (userId, groupInfo) => {
     new: true,
     runValidators: true
   });
-}
+};
 
 module.exports.removeGroup = (userId, groupId) => {
   return User.update({
     _id: userId
   }, {
-    "$pull": {
-      "groups": {
+    $pull: {
+      groups: {
         groupId: groupId
       }
     }
   }, {
     safe: true,
     multi: true
-  })
-}
-
-module.exports.registeredUsers = () => {
-  return User.find({}, { _id: 0, username: 1})
-      .exec();
+  });
 };

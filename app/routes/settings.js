@@ -34,18 +34,18 @@ router.post('/picture-update', checkAuth, upload.single("file"), (req, res) => {
 
     let userPorfilePath = path.join(__dirname, `../public/uploads/${user}/${req.file.originalname}`);
 
-    fs.rename(uploadedFile, userPorfilePath, err => {
-        if(err)
-            throw err;
-    });
+    fs.rename(uploadedFile, userPorfilePath, err => { if(err) throw err; });
 
+    let pictureUpdate = {
+        username: user,
+        avatar: `/uploads/${user}/${req.file.originalname}`
+    };
 
+    console.table(pictureUpdate);
 
-    console.log(userPorfilePath);
-    // fs.write()
-
-    // let oldPath = __dirname
-
+    User.updateAvatar(pictureUpdate)
+        .then(result => console.log(result))
+        .catch(err => console.log(err));
 
 });
 

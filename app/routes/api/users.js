@@ -20,4 +20,13 @@ router.get('/infofeed', checkAuth, (req, res) => {
     Users.getInfoFeed(req.decodedUser).then(result => res.jsonp(result)).catch(err => res.jsonp(err))
 })
 
+router.get('/infofeed', checkAuth, (req, res) => {
+    Users.getInfoFeed(req.decodedUser).then(result => res.jsonp(result)).catch(err => res.jsonp(err))
+})
+
+router.put('/groups', checkAuth, (req, res) => {
+    console.log(req.body.groups);
+    Users.updateInfo(req.decodedUser, req.body).then(result => res.jsonp(result)).catch(err => res.jsonp(err))
+})
+
 module.exports = router;
