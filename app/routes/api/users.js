@@ -16,4 +16,8 @@ router.get('/users', checkAuth, (req, res) => {
         .catch(err => res.jsonp(err));
 });
 
+router.get('/infofeed', checkAuth, (req, res) => {
+    Users.getInfoFeed(req.decodedUser).then(result => res.jsonp(result)).catch(err => res.jsonp(err))
+})
+
 module.exports = router;
