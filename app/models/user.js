@@ -15,7 +15,8 @@ const widgetSchema = new mongoose.Schema({
 
 const groupSchema = new mongoose.Schema({
   groupId: String,
-  groupName: String
+  groupName: String,
+  groupSigla: String
 });
 
 const userSchema = new mongoose.Schema({
