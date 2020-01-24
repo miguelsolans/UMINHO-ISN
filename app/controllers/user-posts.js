@@ -54,6 +54,8 @@ module.exports.infoUserPost = () => {
             "InfoUser.photo": 1,
             "InfoUser.fullName": 1
           }
+        }, {
+            '$sort': { 'createdAt': -1 }
         }
       ]).exec();
 }
