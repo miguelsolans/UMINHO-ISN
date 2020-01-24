@@ -39,9 +39,6 @@ const userPostSchema = new mongoose.Schema({
         required: true
     },
     content: postContentSchema,
-    likes: {
-        type: [String]
-    },
     comments: {
         type: [commentSchema],
         default: []

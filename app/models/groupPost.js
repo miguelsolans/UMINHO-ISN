@@ -44,9 +44,6 @@ const groupPostSchema = new mongoose.Schema({
         default: Date.now
     },
     content: postContentSchema,
-    likes: {
-        type: [String]
-    },
     comments: {
         type: [commentSchema]
     },
