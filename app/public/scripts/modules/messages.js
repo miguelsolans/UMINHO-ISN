@@ -3,10 +3,12 @@ $(document).ready( () => {
     $("#chat-selected").hide();
     let previousConversation;
 
+    /**
+     * Create a new Conversation Modal
+     */
     $('#new-chat').on('click', event => {
         $("#new-chatroom-modal").modal();
     });
-
 
     /**
      * Open a Given Conversation
@@ -27,7 +29,7 @@ $(document).ready( () => {
 
         $.ajax({
             type: 'GET',
-            url: `/messenger/${id}`,
+            url: `/api/messenger/${id}`,
             success: response => {
                 $("#messages-wrapper").html("");
                 $("#no-chat-selected").hide();
@@ -35,6 +37,7 @@ $(document).ready( () => {
 
                 $("#chatName").text(response.name);
                 $('input[name=chatId]').val(response._id);
+                $("#leave-conversation").attr('value', response._id);
 
                 response.messages.forEach(message => {
                     $("#messages-wrapper").append(`<li class="list-group-item">${message.by}: ${message.text}</li>`)
@@ -65,7 +68,7 @@ $(document).ready( () => {
 
         $.ajax({
             type: 'put',
-            url: `/messenger`,
+            url: `/api/messenger`,
             contentType: 'application/json',
             data: JSON.stringify(body),
             success: response => {
@@ -80,6 +83,22 @@ $(document).ready( () => {
                 console.log(response);
             }
         });
+    });
 
+    $(document).on('click', '#leave-conversation', event => {
+        let id = $(event.currentTarget).attr('value');
+
+        alert(id);
+
+        $.ajax({
+            type: 'delete',
+            url: `/api/messenger/${id}`,
+            success: response => {
+                console.log(response);
+            },
+            error: response => {
+                console.log(response);
+            }
+        })
     })
 });

@@ -21,19 +21,12 @@ const colors = require('colors');
 const mongoose = require('mongoose');
 
 // Connection to Database
-mongoose
-    .connect(`${process.env.MONGO_LOCAL}`, {
+mongoose.connect(`${process.env.MONGO_ATLAS}`, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
-    .then(() => {
-        console.log(
-            "Connection to MongoDB successfully established.".cyan.bold
-        );
-    })
-    .catch(() => {
-        console.log("Couldn't connect to MongoDB".red);
-    });
+    .then(() => console.log("Connection to MongoDB successfully established.".cyan.bold))
+    .catch(() => onsole.log("Couldn't connect to MongoDB".red));
 
 // Display Request Status
 // app.use(logger('dev'));
@@ -76,10 +69,15 @@ app.use('/userpost', UserPostRoutes);
 
 // API Routes
 const FeedAPI = require('../app/routes/api/feed');
-app.use('/api/feed', FeedAPI);
-
 const UserPostAPI = require('../app/routes/api/user-posts');
+const UsersAPI = require('../app/routes/api/users');
+const MessengerAPI = require('../app/routes/api/messenger');
+
 app.use('/api/userpost', UserPostAPI);
+app.use('/api/feed', FeedAPI);
+app.use('/api/users', UsersAPI);
+app.use('/api/messenger', MessengerAPI);
+app.use('/api/user', UsersAPI);
 
 const UsersAPI = require('../app/routes/api/users');
 app.use('/api/user', UsersAPI);
