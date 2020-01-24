@@ -48,11 +48,22 @@ module.exports.updatePassword = (user, password) => {
 };
 
 module.exports.getGroups = (username) => {
-  return User.find({
+  return User.findOne({
     username: username
-  }, {
-    id: 0,
+  }).select({
+    _id: 0,
     groups: 1
+  }).exec()
+};
+
+module.exports.getInfoFeed = (username) => {
+  return User.findOne({
+    username: username
+  }).select({
+    _id: 0,
+    username: 1,
+    fullName: 1,
+    photo: 1
   }).exec()
 };
 

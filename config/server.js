@@ -81,6 +81,9 @@ app.use('/api/feed', FeedAPI);
 const UserPostAPI = require('../app/routes/api/user-posts');
 app.use('/api/userpost', UserPostAPI);
 
+const UsersAPI = require('../app/routes/api/users');
+app.use('/api/user', UsersAPI);
+
 
 
 // Catch 404 and forward to Error Handler
