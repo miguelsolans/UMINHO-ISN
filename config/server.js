@@ -21,7 +21,7 @@ const colors = require('colors');
 const mongoose = require('mongoose');
 
 // Connection to Database
-mongoose.connect(`${process.env.MONGO_ATLAS}`, {
+mongoose.connect(`${process.env.MONGO_LOCAL}`, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
