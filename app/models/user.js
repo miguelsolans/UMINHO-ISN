@@ -14,7 +14,7 @@ const widgetSchema = new mongoose.Schema({
 });
 
 const groupSchema = new mongoose.Schema({
-  groupId: String,
+  groupId: mongoose.Types.ObjectId,
   groupName: String,
   groupSigla: String
 });

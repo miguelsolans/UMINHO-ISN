@@ -25,6 +25,7 @@ router.get('/infofeed', checkAuth, (req, res) => {
 })
 
 router.put('/groups', checkAuth, (req, res) => {
+    console.log(req.body.groups);
     Users.updateInfo(req.decodedUser, req.body).then(result => res.jsonp(result)).catch(err => res.jsonp(err))
 })
 
