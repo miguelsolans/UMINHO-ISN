@@ -14,12 +14,17 @@ const groupSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
+    },
+    sigla: {
+        type: String,
+        required: true
     }
     /*,
         members: { // gardar aqui ou no user ou em ambos?
             type: [String]
         }*/
 });
+
 
 const Group = mongoose.model('groups', groupSchema, 'groups');
 
