@@ -32,11 +32,13 @@ router.get('/', checkAuth, function (req, res, next) {
             const posts = responses[0].data;
             const infoFeed = responses[1].data;
             const groups = responses[2].data;
+            const firstName = responses[1].data.fullName.split(" ")[0];
 
             res.render('feed', {
                 data: posts,
                 infoFeed: infoFeed,
                 groups: groups,
+                firstName: firstName 
             });
         }))
         .catch(error => res.render('error', {
