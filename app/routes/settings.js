@@ -2,14 +2,15 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const checkAuth = require('../middleware/check-auth');
+const fs = require('fs');
+const path = require('path');
+
 
 const multer = require('multer');
 const upload = multer({
     dest: 'app/public/uploads'
 });
 
-
-const path = require('path');
 
 const User = require('../controllers/users');
 
@@ -28,19 +29,22 @@ router.get('/', checkAuth, (req, res) => {
 router.post('/picture-update', checkAuth, upload.single("file"), (req, res) => {
     let user = req.decodedUser;
 
-    console.log('Profile Picture Update');
+    // let uploadedFile = path.join(__dirname, `../public/uploads/${req.file.path}`);
+    let uploadedFile = req.file.path;
 
-    console.log(req.file);
+    let userPorfilePath = path.join(__dirname, `../public/uploads/${user}/${req.file.originalname}`);
 
-    console.log(user);
+    fs.rename(uploadedFile, userPorfilePath, err => {
+        if(err)
+            throw err;
+    });
 
-    let oldPath = __dirname + '/../' + req.file.path;
-    let newPath = __dirname + '/../public/ficheiros/' + req.file.originalname;
 
-    console.log(`${oldPath}\n${newPath}`);
-    //fs.rename(oldPath, newPath, function (err) {
-        //if (err) throw err;
-    //})
+
+    console.log(userPorfilePath);
+    // fs.write()
+
+    // let oldPath = __dirname
 
 
 });
