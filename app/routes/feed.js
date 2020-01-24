@@ -40,33 +40,36 @@ router.get('/', checkAuth, function (req, res, next) {
     //console.log(req.headers);
 
     const requestOne = axios.get(one, {
-        withCredentials: true
+        headers: {
+            Cookie: `userToken=${req.cookies.userToken}`
+        }
     });
     const requestTwo = axios.get(two, {
-        withCredentials: true
+        headers: {
+            Cookie: `userToken=${req.cookies.userToken}`
+        }
     });
     const requestThree = axios.get(three, {
-        withCredentials: true
+        headers: {
+            Cookie: `userToken=${req.cookies.userToken}`
+        }
     });
 
-    axios
-        .all([requestOne, requestTwo, requestThree])
-        .then(
-            axios.spread((...responses) => {
-                const posts = responses[0].data;
-                const infoFeed = responses[1].data;
-                const groups = responses[2].data;
+    axios.all([requestOne, requestTwo, requestThree])
+        .then(axios.spread((...responses) => {
+            const posts = responses[0].data;
+            const infoFeed = responses[1].data;
+            const groups = responses[2].data;
 
-                //console.log(infoFeed);
-                //console.log(groups);
+            //console.log(infoFeed);
+            //console.log(groups);
 
-                res.render('feed', {
-                    data: posts,
-                    infoFeed: infoFeed,
-                    groups: groups,
-                });
-            })
-        )
+            res.render('feed', {
+                data: posts,
+                infoFeed: infoFeed,
+                groups: groups,
+            });
+        }))
         .catch(error => res.render('error', {
             data: error.data
         }))
