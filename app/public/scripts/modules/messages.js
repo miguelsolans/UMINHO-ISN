@@ -1,3 +1,11 @@
+const addMessage = (message) => {
+    $("#messages-wrapper").append(`<li class="list-group-item">${message.by}: ${message.text}</li>`);
+    console.log("Adding message...");
+    console.table(message);
+    // console.(message.by);
+    // alert(message.text);
+};
+
 
 $(document).ready( () => {
     $("#chat-selected").hide();
@@ -40,7 +48,7 @@ $(document).ready( () => {
                 $("#leave-conversation").attr('value', response._id);
 
                 response.messages.forEach(message => {
-                    $("#messages-wrapper").append(`<li class="list-group-item">${message.by}: ${message.text}</li>`)
+                    addMessage(message);
                 });
                 // messages-wrapper
 
@@ -72,11 +80,8 @@ $(document).ready( () => {
             contentType: 'application/json',
             data: JSON.stringify(body),
             success: response => {
-                // on success add my message to chat history
-                $("#messages-wrapper").append(`<li class="list-group-item list-group-item-primary">${body.text}</li>`);
-
-                console.log(response);
-
+                body.by = "me";
+                addMessage(body);
             },
             error: response => {
                 // Oops...
@@ -85,6 +90,9 @@ $(document).ready( () => {
         });
     });
 
+    /**
+     * Remove myself from conversation
+     */
     $(document).on('click', '#leave-conversation', event => {
         let id = $(event.currentTarget).attr('value');
 
@@ -100,5 +108,16 @@ $(document).ready( () => {
                 console.log(response);
             }
         })
-    })
+    });
+
+
+    /**
+     * Socketio Bidirectional Communication
+     *
+     */
+    // let socket = io();
+    //
+    // socket.on('connection', () => {
+    //     console.log("CONNECTING...");
+    // })
 });

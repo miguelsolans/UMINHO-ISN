@@ -68,4 +68,14 @@ $(document).ready(() => {
 
     // let form = document.querySelector("#quill-settings-about")
     // quill-settings-about
+
+
+
+    $('#signout').on('click', () => {
+        document.cookie = "userToken" + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        //let cookies = $.cookie();
+
+        //cookies.forEach(cookie => $.removeCookie(cookie));
+
+    });
 });

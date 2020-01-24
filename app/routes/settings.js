@@ -4,26 +4,25 @@ const bcrypt = require('bcryptjs');
 const checkAuth = require('../middleware/check-auth');
 const fs = require('fs');
 const path = require('path');
-
+const axios = require('axios');
 
 const multer = require('multer');
 const upload = multer({
     dest: 'app/public/uploads'
 });
 
-
 const User = require('../controllers/users');
 
 router.get('/', checkAuth, (req, res) => {
-    console.log(req.decodedUser);
+    let user = req.decodedUser;
 
-    User.searchUser(req.decodedUser)
-        .then(data =>
-            res.render('settings', {
-                data: data
-            })
-        )
-        .catch(err => console.log(err));
+    axios.get(`${process.env.API_URL}/settings`, {
+        headers:  {
+            Cookie: `userToken=${req.cookies.userToken}`
+        }
+    }).then(response => res.render('settings', { data: response.data}))
+        .catch(err => res.render('error', err));
+
 });
 
 router.post('/picture-update', checkAuth, upload.single("file"), (req, res) => {
