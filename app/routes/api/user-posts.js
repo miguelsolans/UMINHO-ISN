@@ -48,7 +48,7 @@ router.get('/search', checkAuth, (req, res) => {
 
 
 router.get('/feed', checkAuth, pagination(UserPost), (req, res) => {
-    UserPosts.postsDate()
+    UserPosts.infoUserPost()
         .then(result => res.jsonp(result))
         .catch(err => res.jsonp(err)) // pra usar pafinação, fazer res.AdvencedResults
 });

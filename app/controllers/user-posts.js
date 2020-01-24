@@ -36,6 +36,29 @@ module.exports.postsDate = () => {
     }).exec();
 };
 
+module.exports.infoUserPost = () => {
+    return UserPost.aggregate([
+        {
+          '$lookup': {
+            'from': 'users', 
+            'localField': 'createdBy', 
+            'foreignField': 'username', 
+            'as': 'InfoUser'
+          }
+        }, {
+          '$project': {
+            "createdBy": 1,
+            "content": 1,
+            "comments": 1,
+            "createdAt": 1,
+            "InfoUser.photo": 1,
+            "InfoUser.fullName": 1
+          }
+        }
+      ]).exec();
+}
+
+
 // pesquisa de posts pelo texto
 module.exports.postsSearch = (word) => {
     return UserPost.find({

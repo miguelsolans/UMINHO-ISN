@@ -30,6 +30,7 @@ router.get('/', checkAuth, function (req, res, next) {
     axios.all([requestOne, requestTwo, requestThree])
         .then(axios.spread((...responses) => {
             const posts = responses[0].data;
+            console.log(posts);
             const infoFeed = responses[1].data;
             const groups = responses[2].data;
             const firstName = responses[1].data.fullName.split(" ")[0];
