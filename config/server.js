@@ -77,8 +77,6 @@ app.use('/api/userpost', UserPostAPI);
 app.use('/api/feed', FeedAPI);
 app.use('/api/users', UsersAPI);
 app.use('/api/messenger', MessengerAPI);
-
-const UsersAPI = require('../app/routes/api/users');
 app.use('/api/user', UsersAPI);
 
 
