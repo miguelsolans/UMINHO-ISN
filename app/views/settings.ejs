@@ -10,18 +10,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/settings/picture-update" method="POST" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="file">File</label>
-                        <input id="file" name="file" type="file">
-                        <button type="submit">Save</button>
+                <form action="/settings/picture-update" method="POST" class="dropzone" enctype="multipart/form-data">
+                    <div class="fallback">
+                        <input name="file" type="file" />
                     </div>
                 </form>
-                <!--                <form action="/settings/picture-update" class="dropzone" enctype="multipart/form-data">-->
-                <!--                    <div class="fallback">-->
-                <!--                        <input name="file" type="file" multiple />-->
-                <!--                    </div>-->
-                <!--                </form>-->
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -60,9 +53,9 @@
 
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-3 d-none d-lg-block">
-            <img alt="Change Picture" id="edit-profile" class="img-fluid" src="/uploads/<%= data.username %>/profile.jpg">
+    <div class="row h-100">
+        <div class="col-sm-3 d-none d-lg-block border-right">
+            <img alt="Change Picture" id="edit-profile" class="img-fluid" src="<%= data.photo %>">
             <hr>
             <div style="text-align: center;"><h2>Widgets</h2></div>
             <% data.widgets.forEach(widget => { %>
@@ -85,14 +78,18 @@
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="account">
                     <h4 class="mt-2">Account</h4>
-                    <form action="/settings/update" method="post">
+
+                    <form action="/settings/update" method="post" id="update-user-info">
                         <div class="form-label-group">
                             <label for="fullName">Full Name</label>
                             <input id="fullName" id="fullName" class="form-control" placeholder="Full Name" value="<%= data.fullName %>" autofocus required>
                         </div>
                         <div class="form-label-group">
                             <label for="bio">About</label>
-                            <textarea name="bio" id="bio" class="form-control" placeholder="About" autofocus><%= data.bio %></textarea>
+                            <div id="quill-settings-about">
+                                <%- data.bio %>
+                            </div>
+                            <input name="bio" id="bio" val="<%= data.bio %>">
                         </div>
 
                         <div class="form-label-group">

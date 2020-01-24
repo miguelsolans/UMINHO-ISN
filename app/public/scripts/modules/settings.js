@@ -31,4 +31,41 @@ $(document).ready(() => {
         })
     });
 
+
+    /**
+     * QuillJS Configuration
+     */
+    const quill = new Quill('#quill-settings-about', {
+        theme: 'snow',
+        placeholder: 'Write something cool 😎',
+        formats: [
+            'bold',
+            'header',
+            'italic',
+            'link',
+            'list',
+            'blockquote',
+            'image',
+            'indent'
+        ],
+        modules: {
+            toolbar: [
+                ['bold', 'italic', 'link'],
+                ['blockquote', {'list': 'ordered'}, {'list': 'bullet'}],
+            ],
+            clipboard: {
+                matchVisual: false // https://quilljs.com/docs/modules/clipboard/#matchvisual
+            }
+        }
+    });
+
+
+    function submitChanges() {
+        let content = $("#quill-settings-about").html();
+        alert(content);
+        $("#bio").attr("bio", content);
+    }
+
+    // let form = document.querySelector("#quill-settings-about")
+    // quill-settings-about
 });

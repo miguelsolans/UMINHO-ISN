@@ -21,19 +21,12 @@ const colors = require('colors');
 const mongoose = require('mongoose');
 
 // Connection to Database
-mongoose
-    .connect(`${process.env.MONGO_LOCAL}`, {
+mongoose.connect(`${process.env.MONGO_ATLAS}`, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
-    .then(() => {
-        console.log(
-            "Connection to MongoDB successfully established.".cyan.bold
-        );
-    })
-    .catch(() => {
-        console.log("Couldn't connect to MongoDB".red);
-    });
+    .then(() => console.log("Connection to MongoDB successfully established.".cyan.bold))
+    .catch(() => onsole.log("Couldn't connect to MongoDB".red));
 
 // Display Request Status
 // app.use(logger('dev'));
@@ -61,7 +54,7 @@ const SettingsRoutes = require('../app/routes/settings');
 const MessengerRoutes = require('../app/routes/messenger');
 const GroupRoutes = require('../app/routes/group');
 const TestRoutes = require('../app/routes/test');
-const PostRoutes = require('../app/routes/posts');
+const UserPostRoutes = require('../app/routes/user-posts');
 
 // Webapp Root Routes
 app.use('/', RootRoutes);
@@ -71,12 +64,20 @@ app.use('/settings', SettingsRoutes);
 app.use('/messenger', MessengerRoutes);
 app.use('/group', GroupRoutes);
 app.use('/test', TestRoutes);
-app.use('/post', PostRoutes);
+app.use('/userpost', UserPostRoutes);
 
 
 // API Routes
 const FeedAPI = require('../app/routes/api/feed');
+const UserPostAPI = require('../app/routes/api/user-posts');
+const UsersAPI = require('../app/routes/api/users');
+const MessengerAPI = require('../app/routes/api/messenger');
+
+app.use('/api/userpost', UserPostAPI);
 app.use('/api/feed', FeedAPI);
+app.use('/api/users', UsersAPI);
+app.use('/api/messenger', MessengerAPI);
+app.use('/api/user', UsersAPI);
 
 
 

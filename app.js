@@ -1,6 +1,7 @@
 /* Entry Point
  * Author: Miguel Solans, Mateus Silva, Diogo Nogueira
  */
+// Comentário Desnecessário
 const app = require('./config/server');
 
 const PORT = process.env.PORT || process.env.APP_PORT;

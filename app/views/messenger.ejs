@@ -1,43 +1,101 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Webapp Title</title>
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <meta charset="utf-8">-->
+<!--    <title>Webapp Title</title>-->
 
-    <!-- Bootstrap -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!--    &lt;!&ndash; Bootstrap &ndash;&gt;-->
+<!--    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"-->
+<!--          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
 
-    <script
-            src="https://code.jquery.com/jquery-3.4.1.js"
-            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-            crossorigin="anonymous"></script>
+<!--    <script-->
+<!--            src="https://code.jquery.com/jquery-3.4.1.js"-->
+<!--            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="-->
+<!--            crossorigin="anonymous"></script>-->
 
-    <script src="chatScript.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <!-- QuillJS -->
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-</head>
-<body>
+<!--    <script src="chatScript.js"></script>-->
+<!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>-->
+<!--    &lt;!&ndash; QuillJS &ndash;&gt;-->
+<!--    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">-->
+<!--    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>-->
+<!--</head>-->
+<!--<body>-->
+<%- include('partials/header') %>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-2">
-            <div class="row">Mensagens Privadas</div>
-        </div>
-        <div class="col-8">
-            <div class="row">NOME CHAT</div>
-            <div id="message1"></div>
-            <div id="editor"></div>
-            <button id="send-message">Send</button>
-        </div>
-        <div class="col-2">
-            <div class="row">
-                <p>Assets</p>
+<!-- New Chatroom Modal -->
+<div class="modal" id="new-chatroom-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">New Chatroom</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/messenger" method="POST">
+                    <div class="form-group">
+                        <label for="chatRoomName">Chatroom Name</label>
+                        <input type="text" class="form-control" id="chatRoomName" name="name" aria-describedby="emailHelp" placeholder="Chatroom Name">
+                        <small id="chatRoomNameHelp" class="form-text text-muted">You will be automatically associated with this chatroom.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="chatRoomParticipants">Password</label>
+                        <input type="text" class="form-control" id="chatRoomParticipants" name="participants" placeholder="Participants">
+                        <small id="chatRoomParticipantsHelp" class="form-text text-muted">Add a comma after each participant username</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
+</div>
 
+
+
+<div class="container-fluid d-flex h-100 flex-column">
+    <div class="row full-height">
+        <div class="col-3 border-right">
+            <h4>Chats</h4>
+            <button id="new-chat" class="btn btn-primary">New Chat</button>
+            <div class="chat-sidebar-container">
+                <ul class="list-group">
+                    <% data.forEach(message => { %>
+                        <li class="list-group-item open-conversation" id="<%= message._id %>">
+                            <%= message.name%>
+                        </li>
+                    <% }); %>
+                </ul>
+            </div>
+
+        </div>
+        <div class="col-9">
+            <div id="chat-box-container">
+                <div id="no-chat-selected">
+                    <h2 class="text-center">Mensagens</h2>
+                    <br>
+                    <br>
+                    <p class="text-center">Para visualizar uma mensagem, selecione um Chat da barra lateral esquerda</p>
+                </div>
+
+                <div id="chat-selected">
+                    <h2 class="text-center" id="chatName"></h2>
+                    <ul class="list-group" id="messages-wrapper"></ul>
+
+                    <form>
+                        <input type="text" name="text" id="message-body-form">
+                        <input type="hidden" name="chatId" value="">
+                        <input type="button" id="send-message-button" value="Send">
+                    </form>
+                    <button class="btn btn-danger" id="leave-conversation" value="">Leave</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
 <%- include('partials/footer') %>

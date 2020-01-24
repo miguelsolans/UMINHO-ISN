@@ -2,11 +2,15 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const checkAuth = require('../middleware/check-auth');
-/*const multer = require('multer');
+const fs = require('fs');
+const path = require('path');
+
+
+const multer = require('multer');
 const upload = multer({
     dest: 'app/public/uploads'
-});*/
-const path = require('path');
+});
+
 
 const User = require('../controllers/users');
 
@@ -22,46 +26,27 @@ router.get('/', checkAuth, (req, res) => {
         .catch(err => console.log(err));
 });
 
-router.post('/picture-update', checkAuth, (req, res) => {
+router.post('/picture-update', checkAuth, upload.single("file"), (req, res) => {
     let user = req.decodedUser;
 
-    console.log('Profile Picture Update');
+    // let uploadedFile = path.join(__dirname, `../public/uploads/${req.file.path}`);
+    let uploadedFile = req.file.path;
 
-    console.log(req.body.file);
+    let userPorfilePath = path.join(__dirname, `../public/uploads/${user}/${req.file.originalname}`);
 
-    /*
-      let user = req.decodedUser;
+    fs.rename(uploadedFile, userPorfilePath, err => { if(err) throw err; });
 
-      console.log('Profile Picture Update');
-      console.log(user);
-      console.log(req.file)
+    let pictureUpdate = {
+        username: user,
+        avatar: `/uploads/${user}/${req.file.originalname}`
+    };
 
+    console.table(pictureUpdate);
 
-      if (!req.files) {
-          console.log('Não foi dado upload de nenhum ficheiro');
-      }
+    User.updateAvatar(pictureUpdate)
+        .then(result => console.log(result))
+        .catch(err => console.log(err));
 
-      const file = req.files.file;
-
-      if (!file.mimetype.startsWith('image')) {
-          console.log('O ficheiro não é uma imagem');
-      }
-
-      if (file.size > process.env.MAX_FILE_SIZE) {
-          console.log('Ficheiro demasiado grande');
-      }
-
-      file.name = `photo_${bootcamp._id}${path.parse(file.name).ext}`;
-
-      file.mv(`${process.env.FILE_UPLOAD_PATH}/${file.name}`, async err => {
-          if (err) {
-              console.error(err);
-          }
-
-          await User.updateInfo(user, {
-              photo: file.name
-          });
-      });*/
 });
 
 // Mudar para PUT

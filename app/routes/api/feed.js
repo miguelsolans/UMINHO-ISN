@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 });
 
 // Publicar no feed
-router.post('/', checkAuth, (req, res) => {
+router.put('/', checkAuth, (req, res) => {
     feed.addToFeed(req.decodedUser)
         .then(data => res.jsonp(data))
         .catch(error => res.jsonp(error));

@@ -6,13 +6,48 @@ const checkAuth = require('../middleware/check-auth');
 const feed = require('../controllers/feed');
 
 
-router.get('/', checkAuth, (req, res) => {
+router.get('/', checkAuth, function (req, res, next) {
+    let one = `${process.env.APP_URL}/api/userpost/feed`;
+    let two = `${process.env.APP_URL}/api/user/infofeed`;
+    let three = `${process.env.APP_URL}/api/user/groups`;
 
-    console.log(`${process.env.APP_URL}`);
-    axios.get(`${process.env.APP_URL}/api/feed`)
-        .then(result => res.render('feed', { data: result.data }))
-        .catch(error => res.render('error', {data: error.data }));
+    const requestOne = axios.get(one, {
+        headers: {
+            Cookie: `userToken=${req.cookies.userToken}`
+        }
+    });
+    const requestTwo = axios.get(two, {
+        headers: {
+            Cookie: `userToken=${req.cookies.userToken}`
+        }
+    });
+    const requestThree = axios.get(three, {
+        headers: {
+            Cookie: `userToken=${req.cookies.userToken}`
+        }
+    });
+
+    axios.all([requestOne, requestTwo, requestThree])
+        .then(axios.spread((...responses) => {
+            const posts = responses[0].data;
+            const infoFeed = responses[1].data;
+            const groups = responses[2].data;
+
+            res.render('feed', {
+                data: posts,
+                infoFeed: infoFeed,
+                groups: groups,
+            });
+        }))
+        .catch(error => res.render('error', {
+            data: error.data
+        }))
 });
+
+
+
+
+
 
 // Publicar no feed
 router.post('/', checkAuth, (req, res) => {

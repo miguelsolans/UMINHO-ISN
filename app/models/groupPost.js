@@ -25,10 +25,12 @@ const commentSchema = new mongoose.Schema({
 });
 
 const postContentSchema = new mongoose.Schema({
-    image: String,
+
+    files: [String],
     text: String,
     url: String,
 });
+
 const groupPostSchema = new mongoose.Schema({
     _id: {
         type: mongoose.Types.ObjectId,
