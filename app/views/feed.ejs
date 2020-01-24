@@ -3,8 +3,9 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-2 d-none d-lg-block">
-            <img alt="User Picture" class="img-fluid" src="/uploads/<%= data.username %>/profile.jpg">
-            <h3>Full Name</h3>
+            <img alt="User Picture" class="img-fluid" src="<%= infoFeed.photo %>">>
+            <h3><%= infoFeed.fullName %></h3>
+            <h5><%= infoFeed.username %></h5>
             <hr>
             <p>Grupos</p>
         </div>
@@ -16,9 +17,9 @@
             <!--                <button type="submit">Post</button>-->
             <!--            </form>-->
             <% data.forEach(post => {%>
-                <div class="">
-                    <%- include('partials/post', {post: post}) %>
-                </div>
+            <div class="">
+                <%- include('partials/post', {post: post}) %>
+            </div>
             <% }) %>
         </div>
     </div>

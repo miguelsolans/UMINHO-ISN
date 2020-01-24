@@ -21,7 +21,7 @@ const colors = require('colors');
 const mongoose = require('mongoose');
 
 // Connection to Database
-mongoose.connect(`${process.env.MONGO_ATLAS}`, {
+mongoose.connect(`${process.env.MONGO_LOCAL}`, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
@@ -75,13 +75,9 @@ const MessengerAPI = require('../app/routes/api/messenger');
 
 app.use('/api/userpost', UserPostAPI);
 app.use('/api/feed', FeedAPI);
-app.use('/api/users', UsersAPI);
+//app.use('/api/users', UsersAPI);
 app.use('/api/messenger', MessengerAPI);
 app.use('/api/user', UsersAPI);
-
-const UsersAPI = require('../app/routes/api/users');
-app.use('/api/user', UsersAPI);
-
 
 
 // Catch 404 and forward to Error Handler
