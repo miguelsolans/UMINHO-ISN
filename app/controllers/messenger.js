@@ -63,3 +63,11 @@ module.exports.sendMessage = ({chatId, text, date, by}) => {
     });
 
 };
+
+module.exports.removeFromConversation = ({chatId, username}) => {
+    return Messenger.findOneAndUpdate( { _id: chatId }, {
+        $pull: {
+            participants: username
+        }
+    })
+};
