@@ -1,5 +1,9 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">ISN</a>
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light shadow-sm p-0 pl-2 pr-4 mb-5">
+    
+    <a class="navbar-brand" href="/feed">
+        <img src="/images/Logo.png" width="121" height="47" class="d-inline-block align-top" alt="">
+    </a>    
+    <b>Informatics Social Networks</b>&nbsp;
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -17,16 +21,15 @@
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <div class="col-sm-0 col-xs-0 col-md-0 col-lg-0">
+                <input class="form-control mr-lg-0 border-0 bg-light" type="search" placeholder="Search Here...">
+                <a href="/settings" class="btn btn-dark btn-sm rounded-circle">
+                    <span class="fas fa-cog" style="color:#fff" aria-hidden="true"></span>
+                </a>
+                <a href="/signout" class="btn btn-danger btn-sm rounded-circle">
+                    <span class="fas fa-sign-out-alt" style="color:#fff" aria-hidden="true"></span>
+                </a> 
+            </div>
         </form>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/settings"><i class="fas fa-cogs"></i></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/signout"><i class="fas fa-sign-out-alt"></i></a>
-            </li>
-        </ul>
     </div>
 </nav>
