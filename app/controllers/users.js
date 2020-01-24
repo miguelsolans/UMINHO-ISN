@@ -94,3 +94,8 @@ module.exports.removeGroup = (userId, groupId) => {
     multi: true
   })
 }
+
+module.exports.registeredUsers = () => {
+  return User.find({}, { _id: 0, username: 1})
+      .exec();
+};

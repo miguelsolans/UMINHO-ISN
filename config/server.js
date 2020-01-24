@@ -76,10 +76,14 @@ app.use('/userpost', UserPostRoutes);
 
 // API Routes
 const FeedAPI = require('../app/routes/api/feed');
-app.use('/api/feed', FeedAPI);
-
 const UserPostAPI = require('../app/routes/api/user-posts');
+const UsersAPI = require('../app/routes/api/users');
+const MessengerAPI = require('../app/routes/api/messenger');
+
 app.use('/api/userpost', UserPostAPI);
+app.use('/api/feed', FeedAPI);
+app.use('/api/users', UsersAPI);
+app.use('/api/messenger', MessengerAPI);
 
 const UsersAPI = require('../app/routes/api/users');
 app.use('/api/user', UsersAPI);
