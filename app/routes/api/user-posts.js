@@ -47,8 +47,7 @@ router.get('/search', checkAuth, (req, res) => {
 });
 
 
-router.get('/feed', checkAuth , pagination(UserPost), (req, res) => {
-    console.log("api /feed" + req.decodedUser);
+router.get('/feed', checkAuth, pagination(UserPost), (req, res) => {
     UserPosts.postsDate()
         .then(result => res.jsonp(result))
         .catch(err => res.jsonp(err)) // pra usar pafinação, fazer res.AdvencedResults
