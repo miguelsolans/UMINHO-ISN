@@ -101,6 +101,11 @@ router.put('/comment/:postId', checkAuth, checkCommentOwner, (req, res) => {
         .catch(err => res.jsonp(err))
 });
 
+router.get('/:id', checkAuth, (req, res) => {
+    UserPosts.getPostId(req.params.id)
+        .then(result => res.jsonp(result))
+        .catch(err => res.jsonp(err))
+});
 
 
 module.exports = router;
