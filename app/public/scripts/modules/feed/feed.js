@@ -58,13 +58,38 @@ define([
         /**
          * Edit a post
          */
-        $(document).on('click', 'edit-post', event => {
+        $(document).on('click', '.edit-post', event => {
+
             let id = $(event.currentTarget).attr("data-value");
 
-            alert(id);
+            $.ajax({
+                method: "GET",
+                url: `/api/userpost/${id}`,
+                success: response => {
+                    $('#edit-post-text').val(response.content.text);
+                    $('#edit-post-id').attr('value', response._id);
+                    $('#edit-post-modal').modal()
+                },
+                error: response => console.log(response)
+            });
+        });
 
+        // update-post-button
+        $('#update-post-button').on('click', () => {
+            let text = $('#edit-post-text').val();
+            let id = $('#edit-post-id').attr('value');
 
-
+            $.ajax({
+                method: "PUT",
+                url: `/api/userpost/${id}`,
+                data: {
+                    content: {
+                        text: text
+                    }
+                },
+                success: response => console.log(response),
+                error: response => console.log(response)
+            });
         });
 
         /**
