@@ -88,22 +88,22 @@ router.get('/', checkAuth, function (req, res, next) {
                 const timehours = timeHours(date, now);
                 const timeminutes = timeMinutes(date, now);
                 if (timeyears > 0) {
-                    posts[i].createdAt = '' + timeyears + ' year' + (timeyears == 1 ? "" : "s")
+                    posts[i].createdAt = '' + timeyears + ' year' + (timeyears === 1 ? "" : "s")
                 } else if (timemonth > 0) {
-                    posts[i].createdAt = '' + timemonth + ' month' + (timemonth == 1 ? "" : "s")
+                    posts[i].createdAt = '' + timemonth + ' month' + (timemonth === 1 ? "" : "s")
                 } else if (timeweeks > 0) {
-                    posts[i].createdAt = '' + timeweeks + ' week' + (timeweeks == 1 ? "" : "s")
+                    posts[i].createdAt = '' + timeweeks + ' week' + (timeweeks === 1 ? "" : "s")
                 } else if (timedays > 0) {
-                    posts[i].createdAt = '' + timedays + ' day' + (timedays == 1 ? "" : "s")
+                    posts[i].createdAt = '' + timedays + ' day' + (timedays === 1 ? "" : "s")
                 } else if (timehours > 0) {
-                    posts[i].createdAt = '' + timehours + ' hour' + (timehours == 1 ? "" : "s")
+                    posts[i].createdAt = '' + timehours + ' hour' + (timehours === 1 ? "" : "s")
                 } else if (timeminutes > 0) {
-                    posts[i].createdAt = '' + timeminutes + ' minute' + (timeminutes == 1 ? "" : "s")
+                    posts[i].createdAt = '' + timeminutes + ' minute' + (timeminutes === 1 ? "" : "s")
                 } else {
                     posts[i].createdAt = "Right Now"
                 }
 
-                if (posts[i].Comments[0].InfoComment[0] == undefined) {
+                if (posts[i].Comments[0].InfoComment[0] === undefined) {
                     posts[i].Comments = []
                 }
             }

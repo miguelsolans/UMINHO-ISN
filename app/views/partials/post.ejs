@@ -32,9 +32,42 @@
     </div>
 </div>
 
+<div class="modal fade" id="edit-post-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLongTitle">Editing Post</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <form>
+                    <div class="form-group">
+                        <label for="edit-post-text">Post</label>
+                        <textarea class="form-control" id="edit-post-text" rows="3" name="text">
+                        </textarea>
+                    </div>
+                    <input id="edit-post-id" value="" hidden>
+                    <input type="button" id="update-post-button" class="btn btn-primary" value="Update!">
+                </form>
+
+                <div class="col" id="comments-container">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 
 <div class="post-info border-bottom">
-    <div class="row">
+    <div class="row" id="<%= post._id %>">
         <div class="col-1 p-3">
             <div class="circle-avatar" style="background-image:url(<%= post.InfoUser[0].photo %>)"></div>
         </div>
@@ -54,16 +87,16 @@
         <div class="col-4 p-4 my-auto">
 
             <% if (post.createdBy == infoFeed.username) { %>
-            <i class="btn btn-danger btn-sm rounded-circle">
-                <span href="/userpost/delete/<%= post._id %>" class="fas fa-trash-alt" style="color:#fff"
-                    aria-hidden="true"></span>
+            <i class="btn btn-danger btn-sm rounded-circle delete-post" data-value="<%= post._id %>">
+                <span class="fas fa-trash-alt" style="color:#fff"
+                      aria-hidden="true"></span>
             </i>
-            <i class="btn btn-dark btn-sm rounded-circle">
+            <i class="btn btn-dark btn-sm rounded-circle edit-post" data-value="<%= post._id %>">
                 <span class="fas fa-pencil-alt" style="color:#fff" aria-hidden="true"></span>
             </i>
             <% } %>
 
-            <i class="btn btn-dark btn-sm rounded-circle view-comments" id="<%= post._id %>" data-toggle="modal"
+            <i class="btn btn-dark btn-sm rounded-circle view-comments" data-value="<%= post._id %>" data-toggle="modal"
                 data-target="#exampleModalLong">
                 <span class="fas fa-comment" style="color:#fff" aria-hidden="true"></span>
             </i>
