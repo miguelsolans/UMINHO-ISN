@@ -1,19 +1,36 @@
-<div class="post-info border-top border-bottom">
+<head>
+    <script type="module" src="/scripts/utils/deletePost.js"></script>
+</head>
+
+<div class="post-info border-bottom">
     <div class="row">
         <div class="col-1 p-3 ">
             <div class="circle-avatar" style="background-image:url(<%= post.InfoUser[0].photo %>)"></div>
         </div>
         <div class="col-7 py-3">
-            <b>
+            <t class="font-weight-bold">
                 <%= post.InfoUser[0].fullName %>
-            </b> @<%= post.createdBy %>
+            </t> 
+            <t class="text-muted">
+                @<%= post.createdBy %>
+                • <%= post.createdAt %>
+            </t>
             <br>
             <div class="text-justify">
                 <%= post.content.text %>
             </div>
         </div>
         <div class="col-4 p-4 my-auto">
-            <div class="col-6 align-middle"><i class="far fa-comment"></i> Comentar</div>
+
+            <% if (post.createdBy == infoFeed.username) { %>            
+                <i class="btn btn-dark btn-sm rounded-circle" id="signout">
+                    <span class="fas fa-pencil-alt" style="color:#fff" aria-hidden="true"></span>
+                </i>
+                <i class="btn btn-danger btn-sm rounded-circle" id="signout">
+                    <span href="/userpost/delete/<%= post._id %>" class="fas fa-trash-alt" style="color:#fff" aria-hidden="true"></span>
+                </i>
+            <% } %>
+
         </div>
     </div>
 </div>
