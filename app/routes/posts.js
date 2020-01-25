@@ -17,9 +17,7 @@ const router = express.Router();
 
 
 
-router
-    .route("/")
-    .get(pagination(Post), getPosts)
+router.route("/").get(pagination(Post), getPosts);
 
 router.post('/', checkAuth, (req, res) => {
 

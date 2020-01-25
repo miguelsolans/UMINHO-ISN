@@ -26,8 +26,7 @@ const commentSchema = new mongoose.Schema({
 
 const postContentSchema = new mongoose.Schema({
     files: [String],
-    text: String,
-    url: String,
+    text: String
 });
 const userPostSchema = new mongoose.Schema({
     _id: {

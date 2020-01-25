@@ -1,4 +1,4 @@
-const UserPosts = require('../controllers/user-posts');
+const UserPosts = require('../controllers/userPosts');
 
 module.exports = (req, res, next) => {
     try {

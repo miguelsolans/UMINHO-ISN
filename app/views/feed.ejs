@@ -19,9 +19,6 @@
         <div class="col offset-2 col-sm-10">
             <h1><b>News Feed</b></h1>
             <%- include('partials/composer') %>
-            <!--            <form action="/feed" method="post">-->
-            <!--                <button type="submit">Post</button>-->
-            <!--            </form>-->
             <% data.forEach(post => {%>
             <div class="">
                 <%- include('partials/post', {post: post}) %>
