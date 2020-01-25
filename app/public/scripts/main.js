@@ -6,11 +6,11 @@ require.config({
          */
         // jQuery & Plguins
         "jquery": "external/jQuery/jquery-3.4.1.min",
-        "jquery-confirm": "external/jQuery/plugins/jquery-confirm",
+        "jquery-confirm": "external/jQuery/plugins/jquery-confirm/jquery-confirm",
 
         // Bootstrap
-        "bootstrap": "external/bootstrap/bootstrap",
-        "popper": "external/bootstrap/popper",
+        "bootstrap": "external/bootstrap/bootstrap.bundle",
+        // "popper": "external/bootstrap/popper",
 
         // Tagify
         "tagify": "external/tagify/tagify",
@@ -45,8 +45,8 @@ require.config({
     },
     "bootstrap": {
         "deps": [
-            'jquery',
-            'popper'
+            'jquery'
+            // 'popper'
         ]
     }
 });
