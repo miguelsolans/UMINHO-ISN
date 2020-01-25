@@ -89,7 +89,7 @@
                             <div id="quill-settings-about">
                                 <%- data.bio %>
                             </div>
-                            <input name="bio" id="bio" val="<%= data.bio %>">
+                            <input name="bio" id="bio" value="" hidden>
                         </div>
 
                         <div class="form-label-group">
@@ -98,8 +98,8 @@
                         </div>
 
                         <div>
-                            <label for="course">Course</label>
-                            <input type="text" name="course" id="course" value="<%= data.courses %>" placeholder="Courses" autofocus>
+                            <label for="courses">Course</label>
+                            <input type="text" name="courses" id="courses" value="<%= data.courses %>" placeholder="Courses" autofocus>
                         </div>
                         <div class="">
                             <div id="change-password" class="btn btn-link">Change Password</div>

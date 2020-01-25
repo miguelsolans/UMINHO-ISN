@@ -1,27 +1,23 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-const checkAuth = require('../middleware/check-auth');
+const checkAuth = require('../../middleware/check-auth');
 const fs = require('fs');
 const path = require('path');
-const axios = require('axios');
 
 const multer = require('multer');
 const upload = multer({
     dest: 'app/public/uploads'
 });
 
-const User = require('../controllers/users');
+const User = require('../../controllers/users');
 
 router.get('/', checkAuth, (req, res) => {
+    let user = req.decodedUser;
 
-    axios.get(`${process.env.API_URL}/settings`, {
-        headers:  {
-            Cookie: `userToken=${req.cookies.userToken}`
-        }
-    }).then(response => res.render('settings', { data: response.data}))
-        .catch(err => res.render('error', err));
-
+    User.searchUser(user)
+        .then(data => res.jsonp(data))
+        .catch(err => res.jsonp(err));
 });
 
 router.post('/picture-update', checkAuth, upload.single("file"), (req, res) => {
@@ -47,19 +43,30 @@ router.post('/picture-update', checkAuth, upload.single("file"), (req, res) => {
 
 });
 
-router.post('/update', checkAuth, (req, res) => {
-    // let user = req.decodedUser;
-    // console.log('New Data');
-    // console.log(req.body);
+router.put('/update', checkAuth, (req, res) => {
+    let user = req.decodedUser;
+    console.log(`UPDATING ${user}`);
 
-    axios(`${process.env.API_URL}/settings/update`, {
-        method: "put",
-        data: req.body,
-        headers: {
-            Cookie: `userToken=${req.cookies.userToken}`
-        },
-    }).then(response => res.redirect('/settings'))
-        .catch(err => console.log(err));
+    console.log(req.body);
+    console.log(req.body.courses.length);
+
+    let courses = [];
+
+    if(req.body.courses.length > 0) {
+        let coursesJson = JSON.parse(req.body.courses);
+        coursesJson.forEach(course => courses.push(course.value));
+
+    }
+
+    let info = {
+        bio: req.body.bio,
+        courses: courses,
+        email: req.body.email
+    };
+
+    User.updateInfo(user, info)
+        .then(result => res.jsonp(result))
+        .catch(err => res.jsonp(err));
 });
 
 router.put('/change-password', checkAuth, (req, res) => {
