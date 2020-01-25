@@ -13,7 +13,6 @@ const upload = multer({
 const User = require('../../controllers/users');
 
 router.get('/', checkAuth, (req, res) => {
-
     let user = req.decodedUser;
 
     User.searchUser(user)
@@ -44,17 +43,30 @@ router.post('/picture-update', checkAuth, upload.single("file"), (req, res) => {
 
 });
 
-// Mudar para PUT
-router.post('/update', checkAuth, (req, res) => {
+router.put('/update', checkAuth, (req, res) => {
     let user = req.decodedUser;
-    console.log('New Data');
+    console.log(`UPDATING ${user}`);
+
     console.log(req.body);
+    console.log(req.body.courses.length);
 
-    User.updateInfo(user, req.body)
-        .then(result => console.log(result))
-        .catch(err => console.log(err));
+    let courses = [];
 
-    res.redirect('/settings');
+    if(req.body.courses.length > 0) {
+        let coursesJson = JSON.parse(req.body.courses);
+        coursesJson.forEach(course => courses.push(course.value));
+
+    }
+
+    let info = {
+        bio: req.body.bio,
+        courses: courses,
+        email: req.body.email
+    };
+
+    User.updateInfo(user, info)
+        .then(result => res.jsonp(result))
+        .catch(err => res.jsonp(err));
 });
 
 router.put('/change-password', checkAuth, (req, res) => {

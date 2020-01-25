@@ -96,18 +96,48 @@ $(document).ready( () => {
     $(document).on('click', '#leave-conversation', event => {
         let id = $(event.currentTarget).attr('value');
 
-        alert(id);
+        $.confirm({
+            title: 'Leave Conversation?',
+            content: 'Are you sure!?',
+            buttons: {
+                confirm: () => {
+                    $.alert('Sad to see you go...! 😢');
+                    $.ajax({
+                        type: 'delete',
+                        url: `/api/messenger/${id}`,
+                        success: response => {
+                            console.log("Left room!");
+                            let message = {
+                                title: "Farewell my friend...",
+                                body: `You've just left ${response.name} conversation`
+                            };
 
-        $.ajax({
-            type: 'delete',
-            url: `/api/messenger/${id}`,
-            success: response => {
-                console.log(response);
-            },
-            error: response => {
-                console.log(response);
+                            warningAlert(message);
+
+                            $(`#${response._id}`).remove();
+                            $('#chat-selected').hide();
+                            $('#no-chat-selected').show();
+
+                            console.log(response);
+                        },
+                        error: response => {
+                            console.log(response);
+                        }
+                    });
+                },
+                cancel: () => {
+                    $.alert('Glad you are staying! 🤘🏽');
+                },
+                // somethingElse: {
+                //     text: 'Something else',
+                //     btnClass: 'btn-blue',
+                //     keys: ['enter', 'shift'],
+                //     action: function(){
+                //         $.alert('Something else?');
+                //     }
+                // }
             }
-        })
+        });
     });
 
 

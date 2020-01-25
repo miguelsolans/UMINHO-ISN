@@ -14,7 +14,6 @@ const upload = multer({
 const User = require('../controllers/users');
 
 router.get('/', checkAuth, (req, res) => {
-    let user = req.decodedUser;
 
     axios.get(`${process.env.API_URL}/settings`, {
         headers:  {
@@ -48,17 +47,19 @@ router.post('/picture-update', checkAuth, upload.single("file"), (req, res) => {
 
 });
 
-// Mudar para PUT
 router.post('/update', checkAuth, (req, res) => {
-    let user = req.decodedUser;
-    console.log('New Data');
-    console.log(req.body);
+    // let user = req.decodedUser;
+    // console.log('New Data');
+    // console.log(req.body);
 
-    User.updateInfo(user, req.body)
-        .then(result => console.log(result))
+    axios(`${process.env.API_URL}/settings/update`, {
+        method: "put",
+        data: req.body,
+        headers: {
+            Cookie: `userToken=${req.cookies.userToken}`
+        },
+    }).then(response => res.redirect('/settings'))
         .catch(err => console.log(err));
-
-    res.redirect('/settings');
 });
 
 router.put('/change-password', checkAuth, (req, res) => {
