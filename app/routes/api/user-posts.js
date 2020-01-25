@@ -28,8 +28,8 @@ router.post('/', checkAuth, (req, res) => {
 router.delete('/:id', checkAuth, checkPostOwner, (req, res) => {
 
     UserPosts.deletePost(req.params.id)
-        .then(result => console.log(result))
-        .catch(err => console.log(err))
+        .then(result => res.jsonp(result))
+        .catch(err => res.jsonp(err));
 
 });
 
@@ -101,6 +101,11 @@ router.put('/comment/:postId', checkAuth, checkCommentOwner, (req, res) => {
         .catch(err => res.jsonp(err))
 });
 
+router.get('/:id', checkAuth, (req, res) => {
+    UserPosts.getPostId(req.params.id)
+        .then(result => res.jsonp(result))
+        .catch(err => res.jsonp(err))
+});
 
 
 module.exports = router;
