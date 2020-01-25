@@ -7,10 +7,10 @@ module.exports.list = query => {
 
 module.exports.searchUser = user => {
   return User.findOne({
-      username: user
-    })
-    .select('+password')
-    .exec();
+    username: user
+  })
+      .select('+password')
+      .exec();
 };
 
 module.exports.searchUserEmail = email => {
@@ -38,9 +38,9 @@ module.exports.updateInfo = (user, info) => {
 };
 
 module.exports.updateAvatar = ({
-  username,
-  avatar
-}) => {
+                                 username,
+                                 avatar
+                               }) => {
   return User.findOneAndUpdate({
     username: username
   }, {
@@ -61,26 +61,26 @@ module.exports.updatePassword = (user, password) => {
 
 module.exports.getGroups = username => {
   return User.findOne({
-      username: username
-    })
-    .select({
-      _id: 0,
-      groups: 1
-    })
-    .exec();
+    username: username
+  })
+      .select({
+        _id: 0,
+        groups: 1
+      })
+      .exec();
 };
 
 module.exports.getInfoFeed = username => {
   return User.findOne({
-      username: username
-    })
-    .select({
-      _id: 0,
-      username: 1,
-      fullName: 1,
-      photo: 1
-    })
-    .exec();
+    username: username
+  })
+      .select({
+        _id: 0,
+        username: 1,
+        fullName: 1,
+        photo: 1
+      })
+      .exec();
 };
 
 module.exports.addGroup = (userId, groupInfo) => {

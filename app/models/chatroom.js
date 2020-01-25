@@ -10,7 +10,11 @@ const chatSchema = new mongoose.Schema({
     _id: { type: mongoose.Types.ObjectId, auto: true },
     name: String,
     participants: [ String ],
-    messages: [messageSchema]
+    messages: [messageSchema],
+    publicRoom: {
+        type: Boolean,
+        default: false,
+    }
 });
 
 const Chatroom = mongoose.model('chatrooms', chatSchema, 'chatrooms');
