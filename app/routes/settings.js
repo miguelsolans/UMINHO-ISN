@@ -27,16 +27,15 @@ router.get('/', checkAuth, (req, res) => {
 router.post('/picture-update', checkAuth, upload.single("file"), (req, res) => {
     let user = req.decodedUser;
 
-    // let uploadedFile = path.join(__dirname, `../public/uploads/${req.file.path}`);
     let uploadedFile = req.file.path;
 
-    let userPorfilePath = path.join(__dirname, `../public/uploads/${user}/${req.file.originalname}`);
+    let userPorfilePath = path.join(__dirname, `../public/uploads/users/${user}/${req.file.originalname}`);
 
-    fs.rename(uploadedFile, userPorfilePath, err => { if(err) throw err; });
+    fs.rename(uploadedFile, userPorfilePath, err => { if(err) console.log(err); });
 
     let pictureUpdate = {
         username: user,
-        avatar: `/uploads/${user}/${req.file.originalname}`
+        avatar: `/uploads/users/${user}/${req.file.originalname}`
     };
 
     console.table(pictureUpdate);

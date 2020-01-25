@@ -1,4 +1,24 @@
-const Feed = require('../models/user');
+const Feed = require('../models/userPost');
+
+// const userPostSchema = new mongoose.Schema({
+//     _id: {
+//         type: mongoose.Types.ObjectId,
+//         auto: true
+//     },
+//     createdBy: {
+//         type: String,
+//         required: true
+//     },
+//     content: postContentSchema,
+//     comments: {
+//         type: [commentSchema],
+//         default: []
+//     },
+//     createdAt: {
+//         type: Date,
+//         default: Date.now
+//     }
+// });
 
 module.exports.getUserFeed = (username) => {
     return Feed.aggregate([{
@@ -28,20 +48,14 @@ module.exports.getFeed = () => {
             posts: 1
         }
     }]);
-    // return Feed.find().select({ fullName: true, posts: true }).exec();
 };
 
-module.exports.addToFeed = (username) => {
+module.exports.addToFeed = ({createdBy, content}) => {
 
-    let newContent = {
-        content: {
-            text: "Hello World! Welcome to ISN"
-        },
-        date: new Date(),
-        likes: 0
-    };
-
-    return Feed.update({ username: username}, {
-        $push: { posts: newContent }
+    let newPost = new userPost({
+        createdBy: createdBy,
+        content: content
     });
+
+    return newPost.save();
 };
