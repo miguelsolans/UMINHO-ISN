@@ -11,21 +11,27 @@ const path = require('path');
 
 const user = require('../controllers/users');
 
+/**
+ * Login Root Route
+ */
 router.get('/', (req, res) => {
+    if(req.cookies.userToken !== undefined)
+        res.redirect('/feed');
+
+    console.log(user);
     res.render('login', {message: req.flash("message")});
 });
 
-// @desc    Login user
-// @route   POST /login
-// @access  Public
+/**
+ * User Login
+ */
 router.post('/login', (req, res) => {
     console.log(req.body);
     console.log('login requested');
 
     // fazer aqui verificação se username e password estão vazios?
 
-    user
-        .searchUser(req.body.username)
+    user.searchUser(req.body.username)
         .then(data => {
             if (data !== null) {
                 bcrypt
@@ -95,7 +101,29 @@ router.post('/register', (req, res) => {
                 fs.mkdir(userDir, err => {
                     if(err) console.log(err);
                 });
-                res.redirect('/');
+
+                const token = jwt.sign(
+                    {
+                        username: newUser.username
+                    },
+                    process.env.JWT_KEY,
+                    {
+                        expiresIn: process.env.JWT_EXPIRE
+                    },
+                    {
+                        algorithm: 'RS256'
+                    }
+                );
+
+                const cookieOptions = {
+                    expires: new Date(
+                        Date.now() +
+                        process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000
+                    ),
+                    httpOnly: false
+                };
+                res.cookie('userToken', token, cookieOptions);
+                res.redirect('/feed');
             } else {
                 req.flash("message", `User ${req.body.username} already exists!`);
                 res.redirect('/');
