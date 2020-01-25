@@ -8,7 +8,22 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
+
+
             <div class="modal-body">
+
+                <form action="/userpost" method="POST" enctype="multipart/form-data">
+                    <input type="file" id="files" name="files">
+
+                    <div class="form-group">
+                        <label for="text">Post</label>
+                        <textarea class="form-control" id="text" rows="3" name="text"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Post!</button>
+                </form>
+
                 <div class="col" id="comments-container">
 
 

@@ -34,11 +34,14 @@ define([
             let id = $(event.currentTarget).attr('id');
             $.ajax({
                 type: "get",
-                url: `/api/userposts/comments/${id}`,
+                url: `/api/userpost/comments/${id}`,
                 success: response => {
-                    console.table(response);
-                    $('#comments-container').html()
-                    response.forEach(content => formatComment(content));
+                    $('#comments-container').html("")
+                    if (response.length > 0) {
+                        response[0].Comments.forEach(content => formatComment(content));
+                    }
+                    $('#comments-modal').modal()
+
                 },
                 error: response => {
 
