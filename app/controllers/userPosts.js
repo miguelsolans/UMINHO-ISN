@@ -1,6 +1,7 @@
 const UserPost = require('../models/userPost');
 const mongoose = require('mongoose');
 
+
 // get all users posts
 exports.getAllPosts = () => {
     return UserPost.find({})
@@ -14,7 +15,10 @@ exports.getPostId = (id) => {
 };
 
 // add new post
-module.exports.addNew = ({createdBy, content}) => {
+module.exports.addNew = ({
+    createdBy,
+    content
+}) => {
     let newData = new UserPost({
         createdBy: createdBy,
         content: content
@@ -39,64 +43,101 @@ module.exports.postsDate = () => {
     });
 };
 
-module.exports.infoUserPost = () => {
-    return UserPost.aggregate([
-        {
-          '$lookup': {
-            'from': 'users', 
-            'localField': 'createdBy', 
-            'foreignField': 'username', 
-            'as': 'InfoUser'
-          }
-        }, {
-          '$unwind': {
-            'path': '$comments', 
-            'preserveNullAndEmptyArrays': true
-          }
-        }, {
-          '$lookup': {
-            'from': 'users', 
-            'localField': 'comments.createdBy', 
-            'foreignField': 'username', 
-            'as': 'comments.InfoComment'
-          }
-        }, {
-          '$group': {
-            '_id': '$_id', 
-            'createdBy': {
-              '$first': '$createdBy'
-            }, 
-            'content': {
-              '$first': '$content'
-            }, 
-            'createdAt': {
-              '$first': '$createdAt'
-            }, 
-            'InfoUser': {
-              '$first': '$InfoUser'
-            }, 
-            'Comments': {
-              '$push': '$comments'
-            }
-          }
-        }, {
-          '$project': {
-            'createdBy': 1, 
-            'content': 1, 
-            'Comments._id': 1, 
-            'Comments.createdBy': 1, 
-            'Comments.text': 1, 
-            'Comments.createdAt': 1, 
-            'Comments.InfoComment.fullName': 1, 
-            'Comments.InfoComment.photo': 1, 
-            'createdAt': 1, 
-            'InfoUser.photo': 1, 
-            'InfoUser.fullName': 1
-          }
-        }, {
-            '$sort': { 'createdAt': -1 }
+module.exports.getComments = (id) => {
+    return UserPost.aggregate([{
+        '$match': {
+            '_id': mongoose.Types.ObjectId(id)
         }
-    ])
+    }, {
+        '$unwind': {
+            'path': '$comments',
+            'preserveNullAndEmptyArrays': false
+        }
+    }, {
+        '$lookup': {
+            'from': 'users',
+            'localField': 'comments.createdBy',
+            'foreignField': 'username',
+            'as': 'comments.InfoComment'
+        }
+    }, {
+        '$group': {
+            '_id': '$_id',
+            'Comments': {
+                '$push': '$comments'
+            }
+        }
+    }, {
+        '$project': {
+            'Comments.createdBy': 1,
+            'Comments.text': 1,
+            'Comments.createdAt': 1,
+            'Comments.InfoComment.fullName': 1,
+            'Comments.InfoComment.photo': 1
+        }
+    }])
+};
+
+
+
+module.exports.infoUserPost = () => {
+    return UserPost.aggregate([{
+        '$lookup': {
+            'from': 'users',
+            'localField': 'createdBy',
+            'foreignField': 'username',
+            'as': 'InfoUser'
+        }
+    }, {
+        '$unwind': {
+            'path': '$comments',
+            'preserveNullAndEmptyArrays': true
+        }
+    }, {
+        '$lookup': {
+            'from': 'users',
+            'localField': 'comments.createdBy',
+            'foreignField': 'username',
+            'as': 'comments.InfoComment'
+        }
+    }, {
+        '$group': {
+            '_id': '$_id',
+            'createdBy': {
+                '$first': '$createdBy'
+            },
+            'content': {
+                '$first': '$content'
+            },
+            'createdAt': {
+                '$first': '$createdAt'
+            },
+            'InfoUser': {
+                '$first': '$InfoUser'
+            },
+            'Comments': {
+                '$push': '$comments'
+            }
+        }
+    }, {
+        '$project': {
+            'createdBy': 1,
+            'content': 1,
+            'Comments._id': 1,
+            'Comments.createdBy': 1,
+            'Comments.text': 1,
+            'Comments.createdAt': 1,
+            'Comments.InfoComment.fullName': 1,
+            'Comments.InfoComment.photo': 1,
+            'createdAt': 1,
+            'InfoUser.photo': 1,
+            'InfoUser.fullName': 1
+        }
+    }, {
+        '$sort': {
+            'createdAt': -1
+        }
+    }])
 };
 
 
@@ -176,15 +217,15 @@ module.exports.postByCommentId = (commentId) => {
 
     let id = mongoose.Types.ObjectId(commentId);
     return UserPost.aggregate([{
-            $unwind: "$comments"
-        }, {
-            $match: {
-                "comments._id": id
-            }
-        }, {
-            $project: {
-                _id: 0,
-                comments: 1
-            }
-        }]);
+        $unwind: "$comments"
+    }, {
+        $match: {
+            "comments._id": id
+        }
+    }, {
+        $project: {
+            _id: 0,
+            comments: 1
+        }
+    }]);
 };

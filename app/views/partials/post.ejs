@@ -1,3 +1,43 @@
+<div class="modal fade" id="comments-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLongTitle">Comments</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+
+
+            <div class="modal-body">
+
+                <form action="/userpost" method="POST" enctype="multipart/form-data">
+                    <input type="file" id="files" name="files">
+
+                    <div class="form-group">
+                        <label for="text">Post</label>
+                        <textarea class="form-control" id="text" rows="3" name="text"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Post!</button>
+                </form>
+
+                <div class="col" id="comments-container">
+
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="post-info border-bottom">
     <div class="row">
         <div class="col-1 p-3">
@@ -6,7 +46,7 @@
         <div class="col-7 py-3">
             <t class="font-weight-bold">
                 <%= post.InfoUser[0].fullName %>
-            </t> 
+            </t>
             <t class="text-muted">
                 @<%= post.createdBy %>
                 • <%= post.createdAt %>
@@ -18,61 +58,26 @@
         </div>
         <div class="col-4 p-4 my-auto">
 
-            <% if (post.createdBy == infoFeed.username) { %>            
-                <i class="btn btn-dark btn-sm rounded-circle" id="signout">
-                    <span class="fas fa-pencil-alt" style="color:#fff" aria-hidden="true"></span>
-                </i>
-                <i class="btn btn-danger btn-sm rounded-circle" id="signout">
-                    <span href="/userpost/delete/<%= post._id %>" class="fas fa-trash-alt" style="color:#fff" aria-hidden="true"></span>
-                </i>
+            <% if (post.createdBy == infoFeed.username) { %>
+            <i class="btn btn-dark btn-sm rounded-circle">
+                <span class="fas fa-pencil-alt" style="color:#fff" aria-hidden="true"></span>
+            </i>
+            <i class="btn btn-danger btn-sm rounded-circle">
+                <span href="/userpost/delete/<%= post._id %>" class="fas fa-trash-alt" style="color:#fff"
+                    aria-hidden="true"></span>
+            </i>
             <% } %>
 
-            <i class="btn btn-dark btn-sm rounded-circle" data-toggle="modal" data-target="#exampleModalLong" id="signout">
+            <i class="btn btn-dark btn-sm rounded-circle view-comments" id="<%= post._id %>" data-toggle="modal"
+                data-target="#exampleModalLong">
                 <span class="fas fa-comment" style="color:#fff" aria-hidden="true"></span>
             </i>
-            
-            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title text-center" id="exampleModalLongTitle">Comments</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="col">
-                            <% if (post.Comments != 'undefined') { %>           
-                                <% post.Comments.forEach(comment => {%>
-                                    <div class="post-info border-bottom">
-                                        <div class="row">
-                                            <div class="col-2 p-3">
-                                                <div class="circle-avatar" style="background-image:url(<%= comment.InfoComment[0].photo %>)"></div>
-                                            </div>
-                                            <div class="col-8">
-                                                <t class="font-weight-bold">
-                                                    <%= comment.createdBy %>
-                                                </t> 
-                                                <t class="text-muted">
-                                                    @<%= comment.createdBy %>
-                                                </t>
-                                                <br>
-                                                <div class="text-justify">
-                                                    <%= comment.text %>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <% }) %>
-                            <% } %>
-                        </div>  
-                    </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-                </div>
-            </div>
+
+
+
+
+
+            <p><%= post.Comments.length %></p>
 
         </div>
     </div>
