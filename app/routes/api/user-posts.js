@@ -46,6 +46,11 @@ router.get('/search', checkAuth, (req, res) => {
         .catch(err => res.jsonp(err))
 });
 
+router.get('/comments/:id', checkAuth, (req, res) => {
+    UserPosts.getComments(req.params.id)
+        .then(result => res.jsonp(result))
+        .catch(err => res.jsonp(err))
+});
 
 router.get('/feed', checkAuth, pagination(UserPost), (req, res) => {
     UserPosts.infoUserPost()
