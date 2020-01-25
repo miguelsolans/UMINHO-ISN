@@ -1,11 +1,13 @@
 <!--<textarea class="content" name="example"></textarea>-->
 <form action="/userpost" method="POST" enctype="multipart/form-data">
-    <input type="file" id="files" name="files">
-
-    <div class="form-group">
-        <label for="text">Post</label>
-        <textarea class="form-control" id="text" rows="3" name="text"></textarea>
+    <div class="row">
+        <div class="col-sm-6">
+            <label for="text">Create New Post</label>
+            <textarea class="form-control" id="text" rows="3" name="text"></textarea>
+        </div>
+        <div class="col-sm-4 py-4">  
+            <input type="file" id="files" name="files">
+            <button type="submit" class="btn btn-primary">Submit Post</button>
+        </div>
     </div>
-
-    <button type="submit" class="btn btn-primary">Post!</button>
 </form>
