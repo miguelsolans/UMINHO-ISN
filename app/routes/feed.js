@@ -103,12 +103,12 @@ router.get('/', checkAuth, function (req, res, next) {
                     posts[i].createdAt = "Right Now"
                 }
 
-                if(posts[i].Comments[0].InfoComment[0] == undefined) {
-                    posts[i].Comments = "undefined"
+                if (posts[i].Comments[0].InfoComment[0] == undefined) {
+                    posts[i].Comments = []
                 }
             }
 
-            console.log(posts)
+            console.log(posts[1].Comments.length)
             res.render('feed', {
                 data: posts,
                 infoFeed: infoFeed,

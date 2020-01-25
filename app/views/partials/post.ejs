@@ -6,7 +6,7 @@
         <div class="col-7 py-3">
             <t class="font-weight-bold">
                 <%= post.InfoUser[0].fullName %>
-            </t> 
+            </t>
             <t class="text-muted">
                 @<%= post.createdBy %>
                 • <%= post.createdAt %>
@@ -18,59 +18,69 @@
         </div>
         <div class="col-4 p-4 my-auto">
 
-            <% if (post.createdBy == infoFeed.username) { %>            
-                <i class="btn btn-dark btn-sm rounded-circle" id="signout">
-                    <span class="fas fa-pencil-alt" style="color:#fff" aria-hidden="true"></span>
-                </i>
-                <i class="btn btn-danger btn-sm rounded-circle" id="signout">
-                    <span href="/userpost/delete/<%= post._id %>" class="fas fa-trash-alt" style="color:#fff" aria-hidden="true"></span>
-                </i>
+            <% if (post.createdBy == infoFeed.username) { %>
+            <i class="btn btn-dark btn-sm rounded-circle" id="signout">
+                <span class="fas fa-pencil-alt" style="color:#fff" aria-hidden="true"></span>
+            </i>
+            <i class="btn btn-danger btn-sm rounded-circle" id="signout">
+                <span href="/userpost/delete/<%= post._id %>" class="fas fa-trash-alt" style="color:#fff"
+                    aria-hidden="true"></span>
+            </i>
             <% } %>
 
-            <i class="btn btn-dark btn-sm rounded-circle" data-toggle="modal" data-target="#exampleModalLong" id="signout">
+            <i class="btn btn-dark btn-sm rounded-circle" data-toggle="modal" data-target="#exampleModalLong"
+                id="signout">
                 <span class="fas fa-comment" style="color:#fff" aria-hidden="true"></span>
             </i>
-            
-            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+
+            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title text-center" id="exampleModalLongTitle">Comments</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="col">
-                            <% if (post.Comments != 'undefined') { %>           
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-center" id="exampleModalLongTitle">Comments</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="col">
+
+                                <p>asdfadfa</p>
+                                <% if (post.Comments.length > 0) { %>
+                                <p>asdasda</p>
+
+
                                 <% post.Comments.forEach(comment => {%>
-                                    <div class="post-info border-bottom">
-                                        <div class="row">
-                                            <div class="col-2 p-3">
-                                                <div class="circle-avatar" style="background-image:url(<%= comment.InfoComment[0].photo %>)"></div>
-                                            </div>
-                                            <div class="col-8">
-                                                <t class="font-weight-bold">
-                                                    <%= comment.createdBy %>
-                                                </t> 
-                                                <t class="text-muted">
-                                                    @<%= comment.createdBy %>
-                                                </t>
-                                                <br>
-                                                <div class="text-justify">
-                                                    <%= comment.text %>
-                                                </div>
+
+                                <div class="post-info border-bottom">
+                                    <div class="row">
+                                        <div class="col-2 p-3">
+                                            <div class="circle-avatar"
+                                                style="background-image:url(<%= comment.InfoComment[0].photo %>)"></div>
+                                        </div>
+                                        <div class="col-8">
+                                            <t class="font-weight-bold">
+                                                <%= comment.createdBy %>
+                                            </t>
+                                            <t class="text-muted">
+                                                @<%= comment.createdBy %>
+                                            </t>
+                                            <br>
+                                            <div class="text-justify">
+                                                <%= comment.text %>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                                 <% }) %>
-                            <% } %>
-                        </div>  
+                                <% } %>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
                 </div>
             </div>
 
