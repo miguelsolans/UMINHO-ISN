@@ -28,6 +28,10 @@ require.config({
         // Messages
         "messages": "modules/messages/messages",
 
+        // Feed
+        "feed": "modules/feed/feed",
+
+
         /**
          * Application Utils
          */
@@ -54,5 +58,6 @@ require.config({
 require([
     'settings',
     'messages',
-    'alert'
+    'alert',
+    'feed'
 ], () => console.log("RequireJS Modules Loaded"));
