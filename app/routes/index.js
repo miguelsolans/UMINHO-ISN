@@ -12,7 +12,7 @@ const path = require('path');
 const user = require('../controllers/users');
 
 router.get('/', (req, res) => {
-    res.render('login');
+    res.render('login', {message: req.flash("message")});
 });
 
 // @desc    Login user
@@ -31,7 +31,10 @@ router.post('/login', (req, res) => {
                 bcrypt
                     .compare(req.body.password, data.password)
                     .then(result => {
-                        if (!result) console.log('Wrong Password');
+                        if (!result) {
+                            req.flash("message", "Wrong Password or Username!");
+                            res.redirect('/')
+                        }
                         else {
                             console.log('Valid Password');
                             const token = jwt.sign(
@@ -60,6 +63,7 @@ router.post('/login', (req, res) => {
                     })
                     .catch(err => console.log(err));
             } else {
+                req.flash("message", `User with username ${req.body.username} does not exist`);
                 console.log(`User with username ${req.body.username} does not exist`);
                 res.redirect('/');
             }
@@ -93,7 +97,8 @@ router.post('/register', (req, res) => {
                 });
                 res.redirect('/');
             } else {
-                console.log(`User with username ${req.body.username} already exists`);
+                req.flash("message", `User ${req.body.username} already exists!`);
+                res.redirect('/');
             }
         })
         .catch(err => {
