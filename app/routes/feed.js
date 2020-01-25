@@ -108,7 +108,6 @@ router.get('/', checkAuth, function (req, res, next) {
                 }
             }
 
-            console.log(posts[1].Comments.length)
             res.render('feed', {
                 data: posts,
                 infoFeed: infoFeed,
@@ -116,9 +115,7 @@ router.get('/', checkAuth, function (req, res, next) {
                 firstName: firstName
             });
         }))
-        .catch(error => res.render('error', {
-            data: error.data
-        }))
+        .catch(error => console.log(error));
 });
 
 
