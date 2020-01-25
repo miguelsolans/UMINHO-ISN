@@ -6,12 +6,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- jQuery -->
-        <script src="/scripts/external/jquery.js"></script>
+        <script src="/scripts/external/jQuery/jquery-3.4.1.min.js"></script>
 
+        <!-- jQuery Plugins -->
+        <script src="/scripts/external/jQuery/plugins/jquery-confirm/jquery-confirm.js"></script>
+        <link rel="stylesheet" href="/stylesheets/external/jquery-confirm/jquery-confirm.css">
 
         <!-- Bootstrap -->
         <link rel="stylesheet" href="/stylesheets/external/bootstrap/bootstrap.css">
         <script src="/scripts/external/bootstrap/bootstrap.js"></script>
+
+        <!-- Alerts Utils -->
+        <script src="/scripts/modules/alerts.js"></script>
 
         <!-- Settings -->
         <script src="/scripts/external/tagify.js"></script>
@@ -26,10 +32,8 @@
         <script src="/scripts/external/dropzone.js"></script>
         <link rel="stylesheet" href="/stylesheets/external/dropzone.min.css">
 
-
-        <!-- RichText -->
-<!--        <script src="/scripts/external/jquery.richtext.min.js"></script>-->
-<!--        <link rel="stylesheet" href="/stylesheets/external/richtext.min.css">-->
+        <!-- Socket.io -->
+        <script src="/scripts/external/socketio/socket.io.js"></script>
 
         <!-- QuillJS -->
         <script src="/scripts/external/quill/quill.js"></script>
@@ -48,4 +52,9 @@
     </head>
 <body>
 
+<div id="alerts-container">
+    <!-- User alerts will go here -->
+</div>
+
 <%- include('nav') %>
+

@@ -7,6 +7,7 @@ const dotenv = require('dotenv').config();
 const express = require('express');
 const app = express();
 
+
 // Body Parser
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -77,11 +78,14 @@ const FeedAPI = require('../app/routes/api/feed');
 const UserPostAPI = require('../app/routes/api/user-posts');
 const UsersAPI = require('../app/routes/api/users');
 const MessengerAPI = require('../app/routes/api/messenger');
+const SettingsAPI = require('../app/routes/api/settings');
 
 app.use('/api/userpost', UserPostAPI);
 app.use('/api/feed', FeedAPI);
+app.use('/api/users', UsersAPI);
 app.use('/api/messenger', MessengerAPI);
 app.use('/api/user', UsersAPI);
+app.use('/api/settings', SettingsAPI);
 
 // Catch 404 and forward to Error Handler
 app.use((req, res, next) => {

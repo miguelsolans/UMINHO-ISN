@@ -1,3 +1,11 @@
+const addMessage = (message) => {
+    $("#messages-wrapper").append(`<li class="list-group-item">${message.by}: ${message.text}</li>`);
+    console.log("Adding message...");
+    console.table(message);
+    // console.(message.by);
+    // alert(message.text);
+};
+
 
 $(document).ready( () => {
     $("#chat-selected").hide();
@@ -40,7 +48,7 @@ $(document).ready( () => {
                 $("#leave-conversation").attr('value', response._id);
 
                 response.messages.forEach(message => {
-                    $("#messages-wrapper").append(`<li class="list-group-item">${message.by}: ${message.text}</li>`)
+                    addMessage(message);
                 });
                 // messages-wrapper
 
@@ -72,11 +80,8 @@ $(document).ready( () => {
             contentType: 'application/json',
             data: JSON.stringify(body),
             success: response => {
-                // on success add my message to chat history
-                $("#messages-wrapper").append(`<li class="list-group-item list-group-item-primary">${body.text}</li>`);
-
-                console.log(response);
-
+                body.by = "me";
+                addMessage(body);
             },
             error: response => {
                 // Oops...
@@ -85,20 +90,64 @@ $(document).ready( () => {
         });
     });
 
+    /**
+     * Remove myself from conversation
+     */
     $(document).on('click', '#leave-conversation', event => {
         let id = $(event.currentTarget).attr('value');
 
-        alert(id);
+        $.confirm({
+            title: 'Leave Conversation?',
+            content: 'Are you sure!?',
+            buttons: {
+                confirm: () => {
+                    $.alert('Sad to see you go...! 😢');
+                    $.ajax({
+                        type: 'delete',
+                        url: `/api/messenger/${id}`,
+                        success: response => {
+                            console.log("Left room!");
+                            let message = {
+                                title: "Farewell my friend...",
+                                body: `You've just left ${response.name} conversation`
+                            };
 
-        $.ajax({
-            type: 'delete',
-            url: `/api/messenger/${id}`,
-            success: response => {
-                console.log(response);
-            },
-            error: response => {
-                console.log(response);
+                            warningAlert(message);
+
+                            $(`#${response._id}`).remove();
+                            $('#chat-selected').hide();
+                            $('#no-chat-selected').show();
+
+                            console.log(response);
+                        },
+                        error: response => {
+                            console.log(response);
+                        }
+                    });
+                },
+                cancel: () => {
+                    $.alert('Glad you are staying! 🤘🏽');
+                },
+                // somethingElse: {
+                //     text: 'Something else',
+                //     btnClass: 'btn-blue',
+                //     keys: ['enter', 'shift'],
+                //     action: function(){
+                //         $.alert('Something else?');
+                //     }
+                // }
             }
-        })
-    })
+        });
+    });
+
+
+    /**
+     * Socketio Bidirectional Communication
+     *
+     */
+    // let socket = io();
+    //
+    // socket.on('connection', () => {
+    //     console.log("CONNECTING...");
+    // })
 });

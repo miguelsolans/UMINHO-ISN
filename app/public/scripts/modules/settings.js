@@ -1,5 +1,5 @@
 $(document).ready(() => {
-    let input = document.querySelector("input[name=course]");
+    let input = document.querySelector("input[name=courses]");
     let tagify = new Tagify(input);
 
     // Triggers
@@ -15,7 +15,6 @@ $(document).ready(() => {
     // Perform Put Actions
     $('#changePasswordButton').on('click', event => {
         let newPassword = $('#password').val();
-
 
         $.ajax({
             type: "PUT",
@@ -60,12 +59,34 @@ $(document).ready(() => {
     });
 
 
-    function submitChanges() {
-        let content = $("#quill-settings-about").html();
-        alert(content);
-        $("#bio").attr("bio", content);
-    }
+    // Submit Changes
+    const $infoForm = $('#update-user-info');
+    $infoForm.on('submit', handler => {
+        handler.preventDefault();
 
-    // let form = document.querySelector("#quill-settings-about")
-    // quill-settings-about
+        let content = $("#quill-settings-about .ql-editor").html();
+
+        $("#bio").attr("value", content);
+
+        let dataArray = $infoForm.serializeArray();
+        let dataJson = {};
+        dataArray.forEach(entry => {
+            dataJson[entry.name] = entry.value;
+        });
+
+        console.log(dataJson);
+        $.ajax({
+            url: `/api/settings/update`,
+            type: 'put',
+            data: dataJson,
+            success: response => console.log(response),
+            error: response => console.log(response)
+        });
+    });
+
+
+
+    $('#signout').on('click', () => {
+        document.cookie = "userToken" + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    });
 });
