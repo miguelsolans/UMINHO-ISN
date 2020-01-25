@@ -8,9 +8,6 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-
-
-
             <div class="modal-body">
 
                 <form action="/userpost" method="POST" enctype="multipart/form-data">
@@ -25,8 +22,6 @@
                 </form>
 
                 <div class="col" id="comments-container">
-
-
 
                 </div>
             </div>
@@ -59,12 +54,12 @@
         <div class="col-4 p-4 my-auto">
 
             <% if (post.createdBy == infoFeed.username) { %>
-            <i class="btn btn-dark btn-sm rounded-circle">
-                <span class="fas fa-pencil-alt" style="color:#fff" aria-hidden="true"></span>
-            </i>
             <i class="btn btn-danger btn-sm rounded-circle">
                 <span href="/userpost/delete/<%= post._id %>" class="fas fa-trash-alt" style="color:#fff"
                     aria-hidden="true"></span>
+            </i>
+            <i class="btn btn-dark btn-sm rounded-circle">
+                <span class="fas fa-pencil-alt" style="color:#fff" aria-hidden="true"></span>
             </i>
             <% } %>
 
@@ -72,13 +67,6 @@
                 data-target="#exampleModalLong">
                 <span class="fas fa-comment" style="color:#fff" aria-hidden="true"></span>
             </i>
-
-
-
-
-
-            <p><%= post.Comments.length %></p>
-
         </div>
     </div>
 </div>
