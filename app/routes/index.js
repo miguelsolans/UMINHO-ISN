@@ -87,7 +87,7 @@ router.post('/register', (req, res) => {
                     .then(result => console.log(result))
                     .catch(err => console.log(err));
 
-                let userDir = path.join(__dirname, `../public/uploads/${newUser.username}`);
+                let userDir = path.join(__dirname, `../public/uploads/users/${newUser.username}`);
                 fs.mkdir(userDir, err => {
                     if(err) console.log(err);
                 });

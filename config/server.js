@@ -23,10 +23,10 @@ const mongoose = require('mongoose');
 
 // Connection to Database
 
-mongoose
-  .connect(`${process.env.MONGO_LOCAL}`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+mongoose.connect(`${process.env.MONGO_LOCAL}`, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false
   })
   .then(() =>
     console.log('Connection to MongoDB successfully established.'.cyan.bold)
@@ -79,6 +79,7 @@ const UserPostAPI = require('../app/routes/api/user-posts');
 const UsersAPI = require('../app/routes/api/users');
 const MessengerAPI = require('../app/routes/api/messenger');
 const SettingsAPI = require('../app/routes/api/settings');
+const GroupsAPI = require('../app/routes/api/group');
 
 app.use('/api/userpost', UserPostAPI);
 app.use('/api/feed', FeedAPI);
@@ -86,6 +87,7 @@ app.use('/api/users', UsersAPI);
 app.use('/api/messenger', MessengerAPI);
 app.use('/api/user', UsersAPI);
 app.use('/api/settings', SettingsAPI);
+app.use('/api/group', GroupsAPI);
 
 // Catch 404 and forward to Error Handler
 app.use((req, res, next) => {

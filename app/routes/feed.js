@@ -127,8 +127,8 @@ router.post('/', checkAuth, (req, res) => {
 });
 
 // Gostar de uma publicação
-router.put('/:id', (req, res) => {
-
-});
+// router.put('/:id', (req, res) => {
+//
+// });
 
 module.exports = router;

@@ -25,10 +25,8 @@ const commentSchema = new mongoose.Schema({
 });
 
 const postContentSchema = new mongoose.Schema({
-
     files: [String],
-    text: String,
-    url: String,
+    text: String
 });
 
 const groupPostSchema = new mongoose.Schema({
@@ -43,14 +41,12 @@ const groupPostSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    createdBy: String,
+
     content: postContentSchema,
     comments: {
         type: [commentSchema]
     },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    }
 });
 
 const GroupPost = mongoose.model('groupPosts', groupPostSchema, 'groupPosts');
