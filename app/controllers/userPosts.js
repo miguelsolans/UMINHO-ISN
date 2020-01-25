@@ -49,18 +49,54 @@ module.exports.infoUserPost = () => {
             'as': 'InfoUser'
           }
         }, {
+          '$unwind': {
+            'path': '$comments', 
+            'preserveNullAndEmptyArrays': true
+          }
+        }, {
+          '$lookup': {
+            'from': 'users', 
+            'localField': 'comments.createdBy', 
+            'foreignField': 'username', 
+            'as': 'comments.InfoComment'
+          }
+        }, {
+          '$group': {
+            '_id': '$_id', 
+            'createdBy': {
+              '$first': '$createdBy'
+            }, 
+            'content': {
+              '$first': '$content'
+            }, 
+            'createdAt': {
+              '$first': '$createdAt'
+            }, 
+            'InfoUser': {
+              '$first': '$InfoUser'
+            }, 
+            'Comments': {
+              '$push': '$comments'
+            }
+          }
+        }, {
           '$project': {
-            "createdBy": 1,
-            "content": 1,
-            "comments": 1,
-            "createdAt": 1,
-            "InfoUser.photo": 1,
-            "InfoUser.fullName": 1
+            'createdBy': 1, 
+            'content': 1, 
+            'Comments._id': 1, 
+            'Comments.createdBy': 1, 
+            'Comments.text': 1, 
+            'Comments.createdAt': 1, 
+            'Comments.InfoComment.fullName': 1, 
+            'Comments.InfoComment.photo': 1, 
+            'createdAt': 1, 
+            'InfoUser.photo': 1, 
+            'InfoUser.fullName': 1
           }
         }, {
             '$sort': { 'createdAt': -1 }
         }
-      ]);
+    ])
 };
 
 
