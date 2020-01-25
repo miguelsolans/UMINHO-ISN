@@ -21,12 +21,16 @@ const colors = require('colors');
 const mongoose = require('mongoose');
 
 // Connection to Database
-mongoose.connect(`${process.env.MONGO_LOCAL}`, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    })
-    .then(() => console.log("Connection to MongoDB successfully established.".cyan.bold))
-    .catch(() => console.log("Couldn't connect to MongoDB".red));
+
+mongoose
+  .connect(`${process.env.MONGO_LOCAL}`, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() =>
+    console.log('Connection to MongoDB successfully established.'.cyan.bold)
+  )
+  .catch(() => console.log("Couldn't connect to MongoDB".red));
 
 // Display Request Status
 // app.use(logger('dev'));
