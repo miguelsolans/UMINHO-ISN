@@ -18,11 +18,10 @@ const groupSchema = new mongoose.Schema({
     sigla: {
         type: String,
         required: true
+    },
+    members: { // gardar aqui ou no user ou em ambos?
+        type: [String]
     }
-    /*,
-        members: { // gardar aqui ou no user ou em ambos?
-            type: [String]
-        }*/
 });
 
 

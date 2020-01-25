@@ -102,9 +102,13 @@ router.get('/', checkAuth, function (req, res, next) {
                 } else {
                     posts[i].createdAt = "Right Now"
                 }
-                //console.log(posts[i].createdAt);
+
+                if(posts[i].Comments[0].InfoComment[0] == undefined) {
+                    posts[i].Comments = "undefined"
+                }
             }
 
+            console.log(posts)
             res.render('feed', {
                 data: posts,
                 infoFeed: infoFeed,
@@ -127,8 +131,8 @@ router.post('/', checkAuth, (req, res) => {
 });
 
 // Gostar de uma publicação
-router.put('/:id', (req, res) => {
-
-});
+// router.put('/:id', (req, res) => {
+//
+// });
 
 module.exports = router;

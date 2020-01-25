@@ -13,11 +13,11 @@ const widgetSchema = new mongoose.Schema({
   display: Boolean
 });
 
-const groupSchema = new mongoose.Schema({
-  groupId: mongoose.Types.ObjectId,
-  groupName: String,
-  groupSigla: String
-});
+// const groupSchema = new mongoose.Schema({
+//   groupId: mongoose.Types.ObjectId,
+//   groupName: String,
+//   groupSigla: String
+// });
 
 const userSchema = new mongoose.Schema({
   _id: {
@@ -45,7 +45,8 @@ const userSchema = new mongoose.Schema({
     match: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   },
   bio: {
-    type: String
+    type: String,
+    default: ""
   },
   widgets: {
     type: [widgetSchema]
@@ -53,10 +54,7 @@ const userSchema = new mongoose.Schema({
   courses: {
     type: Array
   },
-  groups: {
-    type: [groupSchema],
-    default: []
-  },
+  groups: [String],
   likes: {
     type: [String]
   },
