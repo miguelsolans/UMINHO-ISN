@@ -1,7 +1,7 @@
 define([
     'jquery',
-    'jquery-confirm',
     'alert',
+    'jquery-confirm',
     'bootstrap'
 ], ($, alert) => {
     "use strict";

@@ -28,8 +28,8 @@ router.post('/', checkAuth, (req, res) => {
 router.delete('/:id', checkAuth, checkPostOwner, (req, res) => {
 
     UserPosts.deletePost(req.params.id)
-        .then(result => console.log(result))
-        .catch(err => console.log(err))
+        .then(result => res.jsonp(result))
+        .catch(err => res.jsonp(err));
 
 });
 
