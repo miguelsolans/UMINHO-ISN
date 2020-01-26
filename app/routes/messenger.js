@@ -57,44 +57,5 @@ router.post('/new', checkAuth, (req, res) => {
     }).then(response => res.redirect('/messenger'))
         .catch(err => console.log(err));
 });
-// io.on('connect', socket => {
-//     console.log("user connected");
-// });
-
-/*io.configure(function() {
-    io.set('transports', ['websocket']);
-});
-
-io.configure('production', function() {
-    io.set('log level', 1);
-});
-
-io.sockets.on('connection', socket => {
-
-    socket.on('join', (channel, ack) => {
-        socket.get('channel', (err, oldChannel) => {
-            if(oldChannel)
-                socket.leave(oldChannel);
-
-            socket.set('channel', channel, () => {
-                ack();
-            })
-        })
-    });
-
-    socket.on('message', (msg, ack) => {
-        socket.get('channel', (err, channel) => {
-            if (err) {
-                socket.emit('error', err);
-            } else if (channel) {
-                socket.broadcast.to(channel).emit('broadcast', msg);
-                ack();
-            } else {
-                socket.emit('error', 'no channel');
-            }
-        });
-    });
-});*/
-
 
 module.exports = router;
