@@ -51,11 +51,10 @@
     </div>
 </div>
 
-
 <div class="container-fluid">
     <div class="row h-100">
         <div class="col-sm-3 d-none d-lg-block border-right">
-            <img alt="Change Picture" id="edit-profile" class="img-fluid" src="<%= data.photo %>">
+            <div data-toggle="tooltip" data-placement="top" title="Tooltip on top" alt="Change Picture" id="edit-profile" class="circle-avatar" style="background-image:url(<%- data.photo %>)"></div>
             <hr>
             <div style="text-align: center;"><h2>Widgets</h2></div>
             <% data.widgets.forEach(widget => { %>

@@ -11,27 +11,36 @@ const path = require('path');
 
 const user = require('../controllers/users');
 
+/**
+ * Login Root Route
+ */
 router.get('/', (req, res) => {
-    res.render('login');
+    if(req.cookies.userToken !== undefined)
+        res.redirect('/feed');
+
+    console.log(user);
+    res.render('login', {message: req.flash("message")});
 });
 
-// @desc    Login user
-// @route   POST /login
-// @access  Public
+/**
+ * User Login
+ */
 router.post('/login', (req, res) => {
     console.log(req.body);
     console.log('login requested');
 
     // fazer aqui verificação se username e password estão vazios?
 
-    user
-        .searchUser(req.body.username)
+    user.searchUser(req.body.username)
         .then(data => {
             if (data !== null) {
                 bcrypt
                     .compare(req.body.password, data.password)
                     .then(result => {
-                        if (!result) console.log('Wrong Password');
+                        if (!result) {
+                            req.flash("message", "Wrong Password or Username!");
+                            res.redirect('/')
+                        }
                         else {
                             console.log('Valid Password');
                             const token = jwt.sign(
@@ -60,6 +69,7 @@ router.post('/login', (req, res) => {
                     })
                     .catch(err => console.log(err));
             } else {
+                req.flash("message", `User with username ${req.body.username} does not exist`);
                 console.log(`User with username ${req.body.username} does not exist`);
                 res.redirect('/');
             }
@@ -91,9 +101,32 @@ router.post('/register', (req, res) => {
                 fs.mkdir(userDir, err => {
                     if(err) console.log(err);
                 });
-                res.redirect('/');
+
+                const token = jwt.sign(
+                    {
+                        username: newUser.username
+                    },
+                    process.env.JWT_KEY,
+                    {
+                        expiresIn: process.env.JWT_EXPIRE
+                    },
+                    {
+                        algorithm: 'RS256'
+                    }
+                );
+
+                const cookieOptions = {
+                    expires: new Date(
+                        Date.now() +
+                        process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000
+                    ),
+                    httpOnly: false
+                };
+                res.cookie('userToken', token, cookieOptions);
+                res.redirect('/feed');
             } else {
-                console.log(`User with username ${req.body.username} already exists`);
+                req.flash("message", `User ${req.body.username} already exists!`);
+                res.redirect('/');
             }
         })
         .catch(err => {
