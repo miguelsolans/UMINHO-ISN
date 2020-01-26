@@ -1,6 +1,10 @@
 // Loading Modules
 const createError = require('http-errors');
 
+const flash = require('connect-flash');
+
+const session = require('express-session');
+
 const dotenv = require('dotenv').config();
 
 // Express Server
@@ -52,6 +56,15 @@ app.use(
 app.use(bodyParser.json());
 
 app.use(cookieParser());
+
+app.use(session({
+    secret: process.env.JWT_KEY,
+    cookie: { maxAge: 60000 },
+    resave: false,    // forces the session to be saved back to the store
+    saveUninitialized: false  // dont save unmodified
+}));
+
+app.use(flash());
 
 // Frontend Routes
 const RootRoutes = require('../app/routes/index');
