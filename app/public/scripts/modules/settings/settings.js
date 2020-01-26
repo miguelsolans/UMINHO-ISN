@@ -1,8 +1,9 @@
 define([
     'jquery',
-    'quill',
-    'tagify'
-], ($, Quill, Tagify) => {
+    'tagify',
+    'composer',
+    'dropzone'
+], ($, Tagify, composer, dropzone) => {
     "use strict";
 
     $(document).ready(() => {
@@ -38,48 +39,22 @@ define([
         });
 
 
-        /**
-         * QuillJS Configuration
-         */
-        const quill = new Quill('#quill-settings-about', {
-            theme: 'snow',
-            placeholder: 'Write something cool 😎',
-            formats: [
-                'bold',
-                'header',
-                'italic',
-                'link',
-                'list',
-                'blockquote',
-                'image',
-                'indent'
-            ],
-            modules: {
-                toolbar: [
-                    ['bold', 'italic', 'link'],
-                    ['blockquote', {'list': 'ordered'}, {'list': 'bullet'}],
-                ],
-                clipboard: {
-                    matchVisual: false // https://quilljs.com/docs/modules/clipboard/#matchvisual
-                }
-            }
-        });
-
-
         // Submit Changes
         const $infoForm = $('#update-user-info');
         $infoForm.on('submit', handler => {
             handler.preventDefault();
+            // quill-settings-about
 
-            let content = $("#quill-settings-about .ql-editor").html();
+            // let content = $("#quill-settings-about .ql-editor").html();
 
-            $("#bio").attr("value", content);
+            // $("#bio").attr("value", content);
 
             let dataArray = $infoForm.serializeArray();
-            let dataJson = {};
-            dataArray.forEach(entry => {
-                dataJson[entry.name] = entry.value;
-            });
+            // (data, id, attr)
+            let dataJson = composer.parseData(dataArray, '#bio', 'value');
+            // dataArray.forEach(entry => {
+            //     dataJson[entry.name] = entry.value;
+            // });/settings/update
 
             console.log(dataJson);
             $.ajax({
@@ -98,6 +73,27 @@ define([
 
             $(location).attr('href', '/')
         });
+
+
+        // Settings Dropzone
+        // let t = new dropzone.Dropzone("#settings-dropzone", { url: "/file/post"});
+        $("#settings-dropzone").dropzone({
+            url: "/settings/picture-update",
+            uploadMultiple: false,
+            acceptedFiles: 'image/*',
+            success: function(file, res) {
+                console.log('Upload success.');
+                console.log(res);
+            },
+            error: function(file, res) {
+                console.log('Upload error.');
+                console.log(res);
+            }
+        });
     });
+
+    $('#save-profile-picture').on('click', () => {
+        $(location).attr("href", "/settings")
+    })
 });
 
