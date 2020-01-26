@@ -1,13 +1,20 @@
 <!--<textarea class="content" name="example"></textarea>-->
-<form action="/userpost" method="POST" enctype="multipart/form-data">
-    <div class="row">
-        <div class="col-sm-6">
-            <label for="text">Create New Post</label>
-            <textarea class="form-control" id="text" rows="3" name="text"></textarea>
-        </div>
-        <div class="col-sm-4 py-4">  
-            <input type="file" id="files" name="files">
-            <button type="submit" class="btn btn-primary">Submit Post</button>
-        </div>
+<form action="/userpost" method="POST" enctype="multipart/form-data" id="feed-post-form">
+    <div class="quill-composer" id="quill-feed-newpost">
     </div>
+    <input type="text" name="text" id="user-post-text" value="" hidden>
+    <button class="btn btn-lg btn-primary" type="submit">Post!</button>
 </form>
+
+<!--    <div class="row">-->
+<!--        <div class="col-sm-6">-->
+<!--            <label for="text">Create New Post</label>-->
+<!--            <textarea class="form-control" id="text" rows="3" name="text" hidden></textarea>-->
+<!--            <div class="quill-composer" id="quill-settings-about">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-sm-4 py-4">-->
+<!--            <input type="file" id="files" name="files">-->
+<!--            <button type="submit" class="btn btn-primary">Submit Post</button>-->
+<!--        </div>-->
+<!--    </div>-->

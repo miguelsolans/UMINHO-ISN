@@ -1,9 +1,10 @@
 define([
   'jquery',
   'alert',
+  'composer',
   'jquery-confirm',
   'bootstrap'
-], function ($, alert) {
+], function ($, alert, composer) {
   'use strict';
 
   function formatComment(content) {
@@ -26,7 +27,7 @@ define([
               </div>
           </div>
       </div>
-  </div>`
+  </div>`;
 
     $('#comments-container').append(info);
 
@@ -122,6 +123,20 @@ define([
           cancel: () => {},
         }
       });
+    });
+
+    /**
+     * Create a new Post
+     */
+    const $postForm = $('#feed-post-form');
+
+    $postForm.on('submit', () => {
+
+
+      let content = $(".quill-composer .ql-editor").html();
+      $('#user-post-text').attr('value', content);
+
+      $postForm.unbind('submit').submit();
     })
-  })
+  });
 });
