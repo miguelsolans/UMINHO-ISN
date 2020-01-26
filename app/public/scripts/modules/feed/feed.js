@@ -19,9 +19,9 @@ define([
                 <t class="font-weight-bold">
                     ${content.InfoComment[0].fullName}
                 </t>
-                <t class="text-muted">
-                @${content.username}
-                </t>
+                <a href="/profile/${content.createdBy}" class="text-muted">
+                    @${content.createdBy}
+                </a>
                 <br>
                 <div class="text-justify">
                    ${content.text}
@@ -33,7 +33,27 @@ define([
         $('#comments-container').append(info);
 
     }
-    
+
+    // update-post-button
+    $('#update-post-button').on('click', () => {
+        let text = $('#edit-post-text').val();
+        let id = $('#edit-post-id').attr('value');
+
+        $.ajax({
+            method: "PUT",
+            url: `/api/userpost/${id}`,
+            data: {
+                content: {
+                    text: text
+                }
+            },
+            success: response => {
+                console.log(response);
+                $(location).attr('href', '/feed');
+            },
+            error: response => console.log(response)
+        });
+    });
     
     $(document).ready(() => {
         /**
@@ -50,10 +70,8 @@ define([
                         response[0].Comments.forEach(content => formatComment(content));
                     }
                     $('#comments-modal').modal();
-
                 },
                 error: response => {
-
                 }
             })
         });
@@ -89,7 +107,10 @@ define([
                         text: text
                     }
                 },
-                success: response => console.log(response),
+                success: response => {
+                    console.log(response);
+                    $(location).attr('href', '/feed');
+                },
                 error: response => console.log(response)
             });
         });
@@ -100,17 +121,16 @@ define([
         $(document).on("click", ".delete-post", event => {
             let id = $(event.currentTarget).attr('data-value');
             $.confirm({
-                title: 'Remove Post?',
-                content: 'Are you sure!?',
+                title: 'Remove Post',
+                content: 'Are you sure?',
                 buttons: {
                     confirm: () => {
-                        $.alert('You removed your post...! 😢');
 
                         $.ajax({
                             type: "delete",
                             url: `/api/userpost/${id}`,
                             success: response => {
-                                alert.warningAlert({title: "Post Deleted", body: "You removed your own post"});
+                                alert.warningAlert({title: "Post Deleted", body: ""});
                                 console.log(response);
                                 $(`#${response._id}`).remove();
                             },
@@ -120,7 +140,6 @@ define([
                         });
                     },
                     cancel: () => {
-                        $.alert('You opt-out not removing your kick-ass post 🤘🏽');
                     },
                 }
             });
@@ -138,6 +157,7 @@ define([
             $('#user-post-text').attr('value', content);
 
             $postForm.unbind('submit').submit();
+
         })
     });
 

@@ -10,7 +10,6 @@ const upload = multer({
     dest: 'app/public/uploads'
 });
 
-
 router.post('/', checkAuth, upload.array('files', 12), (req, res) => {
     let user = req.decodedUser;
     // const postContentSchema = new mongoose.Schema({
@@ -45,7 +44,7 @@ router.post('/', checkAuth, upload.array('files', 12), (req, res) => {
     };
 
     Post.addNew(newPost)
-        .then(result => res.jsonp(result))
+        .then(result => res.redirect('/feed'))
         .catch(err => res.jsonp(err));
 
 });
