@@ -110,3 +110,18 @@ module.exports.removeGroup = (userId, groupId) => {
     multi: true
   });
 };
+
+module.exports.usernameMatch = (match) => {
+  return User.aggregate([
+    {
+      '$match': {
+        'username': new RegExp(`.*${match}*`)
+      }
+    }, {
+      '$project': {
+        '_id': 0,
+        'username': 1
+      }
+    }
+  ])
+};

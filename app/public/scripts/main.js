@@ -72,4 +72,6 @@ require([
     'alert',
     'feed',
     'composer',
-], () => console.log("RequireJS Modules Loaded"));
+], () => {
+    console.log("RequireJS Modules Loaded")
+});
