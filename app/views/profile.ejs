@@ -2,28 +2,31 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-3 d-none d-lg-block">
-            <div class="circle-avatar" alt="User Picture" style="background-image:url(<%- data.photo %>)"></div>
+            <div class="circle-avatar" alt="User Picture" style="background-image:url(<%- infoFeed.photo %>)"></div>
             <hr>
-            <div style="text-align: center;"><h3>Widgets</h3></div>
-            <% data.widgets.forEach(widget => {
+            <div style="text-align: center;">
+                <h3>Widgets</h3>
+            </div>
+            <% infoFeed.widgets.forEach(widget => {
                 if(widget.display) { %>
 
-                    <%- include('partials/widget', { widget })%>
+            <%- include('partials/widget', { widget })%>
 
-                <% } %>
+            <% } %>
             <% }) %>
 
         </div>
         <div class="col-lg-9">
-            <h1 class="font-weight-bold">I'm <%= data.fullName %>
+            <h1 class="font-weight-bold">I'm <%= infoFeed.fullName %>
             </h1>
             <h4>About Me</h4>
             <hr>
-            <p><%- data.bio %></p>
+            <p><%- infoFeed.bio %></p>
+
             <% postsUser.forEach(post => {%>
-                <div class="">
-                    <%- include('partials/post', {post: post}) %>
-                </div>
+            <div class="">
+                <%- include('partials/post', {post: post}) %>
+            </div>
             <% }) %>
         </div>
     </div>
