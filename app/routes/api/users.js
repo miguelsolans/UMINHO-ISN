@@ -3,12 +3,6 @@ const router = express.Router();
 const Users = require('../../controllers/users');
 const checkAuth = require('../../middleware/check-auth');
 
-router.get('/:id', checkAuth, (req, res) => {
-
-    Users.searchUser(req.params.id)
-        .then(result => res.jsonp(result))
-        .catch(err => res.jsonp(err))
-});
 
 router.get('/groups', checkAuth, (req, res) => {
     Users.getGroups(req.decodedUser)

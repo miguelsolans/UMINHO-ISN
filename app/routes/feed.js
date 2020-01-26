@@ -97,6 +97,7 @@ router.get('/', checkAuth, function (req, res, next) {
                 } else {
                     posts[i].createdAt = "Right Now"
                 }
+
             }
 
             res.render('feed', {
