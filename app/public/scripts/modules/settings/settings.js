@@ -8,7 +8,7 @@ define([
 
     $(document).ready(() => {
         let input = document.querySelector("input[name=courses]");
-        if(input !== null)
+        if (input !== null)
             new Tagify(input);
 
         // Triggers
@@ -82,11 +82,11 @@ define([
             url: "/settings/picture-update",
             uploadMultiple: false,
             acceptedFiles: 'image/*',
-            success: function(file, res) {
+            success: function (file, res) {
                 console.log('Upload success.');
                 console.log(res);
             },
-            error: function(file, res) {
+            error: function (file, res) {
                 console.log('Upload error.');
                 console.log(res);
             }
@@ -96,5 +96,35 @@ define([
     $('#save-profile-picture').on('click', () => {
         $(location).attr("href", "/settings")
     })
-});
 
+
+
+
+
+    $('#update-user-info-social').on('submit', () => {
+        let instagram = $('#instagram').val();
+        let twitter = $('#twitter').val();
+        let linkedIn = $('#linkedIn').val();
+        let github = $('#github').val();
+        let facebook = $('#facebook').val();
+
+
+        $.ajax({
+            method: "PUT",
+            url: `/api/settings/updatesocial`,
+            data: {
+                instagram: instagram,
+                twitter: twitter,
+                linkedIn: linkedIn,
+                github: github,
+                facebook: facebook
+            },
+            success: response => {
+                console.log(response);
+                $(location).attr('href', '/settings');
+            },
+            error: response => console.log(response)
+        });
+    });
+
+});
