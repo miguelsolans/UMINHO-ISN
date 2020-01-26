@@ -39,11 +39,11 @@ function timeYears(d1, d2) {
     return d2.getFullYear() - d1.getFullYear();
 }
 
-
-
 router.get('/', checkAuth, (req, res) => {
     let one = `${process.env.APP_URL}/api/user/${req.decodedUser}`;
     let two = `${process.env.APP_URL}/api/userpost/feed/${req.decodedUser}`;
+    
+    let loginUser = req.decodedUser;
 
     const requestOne = axios.get(one, {
         headers: {
@@ -94,7 +94,8 @@ router.get('/', checkAuth, (req, res) => {
 
                 res.render('profile', {
                     infoFeed: infoFeed,
-                    postsUser: postsUser
+                    postsUser: postsUser,
+                    loginUser: loginUser
                 });
             })
         )
@@ -105,6 +106,8 @@ router.get('/:username', checkAuth, function (req, res, next) {
     let one = `${process.env.APP_URL}/api/user/${req.params.username}`;
     let two = `${process.env.APP_URL}/api/userpost/feed/${req.params.username}`;
 
+    let loginUser = req.decodedUser;
+
     const requestOne = axios.get(one, {
         headers: {
             Cookie: `userToken=${req.cookies.userToken}`
@@ -151,10 +154,12 @@ router.get('/:username', checkAuth, function (req, res, next) {
                     }
 
                 }
-
+                console.log(loginUser)
+                console.log(postsUser)
                 res.render('profile', {
                     infoFeed: infoFeed,
-                    postsUser: postsUser
+                    postsUser: postsUser,
+                    loginUser: loginUser
                 });
             })
         )

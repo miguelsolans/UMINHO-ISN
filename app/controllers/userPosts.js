@@ -95,7 +95,10 @@ module.exports.getComments = (id) => {
             'Comments.InfoComment.fullName': 1,
             'Comments.InfoComment.photo': 1
         }
-    }])
+    }, {
+        '$sort': { 'Comments.createdAt': -1 }
+    }
+])
 };
 
 module.exports.infoUserPost = () => {

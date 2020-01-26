@@ -23,6 +23,8 @@ require.config({
         "dropzone": "external/dropzone/dropzone",
 
 
+        "highlight": "external/highlight/highlight",
+
         /**
          * Application Modules
          */

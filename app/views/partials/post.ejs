@@ -1,3 +1,4 @@
+<!-- Comments Modal -->
 <div class="modal fade" id="comments-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -9,12 +10,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/api/userpost/comment/<%= post._id %>" method="POST">
+                <!--action="/api/userpost/comment/<%= post._id %>"-->
+                <form action="" method="POST" id="submit-post-comment">
                     <div class="form-group">
                         <label for="text">Create New Comment</label>
                         <textarea class="form-control" id="text" rows="3" name="text"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit Comment</button>
+                    <button id="button-Submit-Comment" type="submit" class="btn btn-primary">Submit Comment</button>
                     <hr>
                 </form>
 
@@ -29,6 +31,7 @@
     </div>
 </div>
 
+<!-- Edit Post Modal -->
 <div class="modal fade" id="edit-post-modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -47,7 +50,7 @@
                         </textarea>
                     </div>
                     <input id="edit-post-id" value="" hidden>
-                    <input type="button" id="update-post-button" class="btn btn-primary" value="Update!">
+                    <input type="button" id="update-post-button" class="btn btn-primary" value="Update Post">
                 </form>
 
                 <div class="col" id="comments-container">
@@ -60,6 +63,7 @@
     </div>
 </div>
 
+<!-- Post content -->
 <div class="post-info border-bottom">
     <div class="row" id="<%= post._id %>">
         <div class="col-1 p-3">
@@ -69,8 +73,8 @@
             <t class="font-weight-bold">
                 <%= post.InfoUser[0].fullName %>
             </t>
+            <a class="text-muted" href="/profile/<%= post.createdBy %>">@<%= post.createdBy %></a>
             <t class="text-muted">
-                @<%= post.createdBy %>
                 • <%= post.createdAt %>
             </t>
             <br>
@@ -80,7 +84,7 @@
         </div>
         <div class="col-2 py-4 px-9">
 
-            <% if (post.createdBy == infoFeed.username) { %>
+            <% if (post.createdBy == loginUser) { %>
             <i class="btn btn-danger btn-sm rounded-circle delete-post" data-value="<%= post._id %>">
                 <span class="fas fa-trash-alt" style="color:#fff" aria-hidden="true"></span>
             </i>
