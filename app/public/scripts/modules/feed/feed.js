@@ -1,10 +1,11 @@
 define([
     'jquery',
     'alert',
+    'highlight',
     'composer',
     'jquery-confirm',
     'bootstrap'
-], function ($, alert, composer) {
+], function ($, alert, highlight, composer) {
     'use strict';
 
     function formatComment(content) {
@@ -138,5 +139,22 @@ define([
 
             $postForm.unbind('submit').submit();
         })
+    });
+
+
+    // Change Post form to Display uploader
+    $('#add-post-files').keypress(function(e) {
+        var keycode = (e.keyCode ? e.keyCode : e.which);
+        console.log("pressed");
+        if(keycode == '13') {
+            if($('#add-post-files').is(':checked')) {
+                console.log("checked");
+            }
+        }
+    });
+
+    // Highlight
+    document.querySelectorAll('pre .ql-syntax').forEach((block) => {
+        highlight.highlightBlock(block);
     });
 });

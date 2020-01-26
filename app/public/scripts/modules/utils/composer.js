@@ -9,7 +9,6 @@ define([
      */
     const quill = new Quill('.quill-composer', {
         theme: 'snow',
-        placeholder: 'Write something cool 😎',
         formats: [
             'bold',
             'header',
@@ -17,18 +16,21 @@ define([
             'link',
             'list',
             'blockquote',
-            'image',
-            'indent'
+            'indent',
+            'video',
+            'code-block'
         ],
         modules: {
             toolbar: [
-                ['bold', 'italic', 'link'],
-                ['blockquote', {'list': 'ordered'}, {'list': 'bullet'}],
+                ['bold', 'italic', 'link', 'underline', 'strike'],
+                ['blockquote', {'list': 'ordered'}, {'list': 'bullet'}, 'code-block'],
+                [ 'video' ]
             ],
             clipboard: {
                 matchVisual: false // https://quilljs.com/docs/modules/clipboard/#matchvisual
             }
-        }
+        },
+        placeholder: 'Write something cool 😎'
     });
 
     return {
