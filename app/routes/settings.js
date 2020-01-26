@@ -47,9 +47,6 @@ router.post('/picture-update', checkAuth, upload.single("file"), (req, res) => {
 });
 
 router.post('/update', checkAuth, (req, res) => {
-    // let user = req.decodedUser;
-    // console.log('New Data');
-    // console.log(req.body);
 
     axios(`${process.env.API_URL}/settings/update`, {
         method: "put",

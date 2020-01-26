@@ -8,7 +8,8 @@ define([
 
     $(document).ready(() => {
         let input = document.querySelector("input[name=courses]");
-        let tagify = new Tagify(input);
+        if(input !== null)
+            new Tagify(input);
 
         // Triggers
         // Edit Profile Picture Sidebar

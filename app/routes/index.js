@@ -17,9 +17,8 @@ const user = require('../controllers/users');
 router.get('/', (req, res) => {
     if(req.cookies.userToken !== undefined)
         res.redirect('/feed');
-
-    console.log(user);
-    res.render('login', {message: req.flash("message")});
+    else
+        res.render('login', {message: req.flash("message")});
 });
 
 /**

@@ -1,25 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html>-->
-<!--<head>-->
-<!--    <meta charset="utf-8">-->
-<!--    <title>Webapp Title</title>-->
-
-<!--    &lt;!&ndash; Bootstrap &ndash;&gt;-->
-<!--    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"-->
-<!--          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
-
-<!--    <script-->
-<!--            src="https://code.jquery.com/jquery-3.4.1.js"-->
-<!--            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="-->
-<!--            crossorigin="anonymous"></script>-->
-
-<!--    <script src="chatScript.js"></script>-->
-<!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>-->
-<!--    &lt;!&ndash; QuillJS &ndash;&gt;-->
-<!--    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">-->
-<!--    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>-->
-<!--</head>-->
-<!--<body>-->
 <%- include('partials/header') %>
 
 <!-- New Chatroom Modal -->
@@ -40,8 +18,8 @@
                         <small id="chatRoomNameHelp" class="form-text text-muted">You will be automatically associated with this chatroom.</small>
                     </div>
                     <div class="form-group">
-                        <label for="chatRoomParticipants">Password</label>
-                        <input type="text" class="form-control" id="chatRoomParticipants" name="participants" placeholder="Participants">
+                        <label for="chatRoomParticipants">Participants</label>
+                        <input type="text" name="participants" id="chatRoomParticipants" value="" placeholder="Participants" autofocus>
                         <small id="chatRoomParticipantsHelp" class="form-text text-muted">Add a comma after each participant username</small>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -61,7 +39,7 @@
     <div class="row full-height">
         <div class="col-3 border-right">
             <h4>Chats</h4>
-            <button id="new-chat" class="btn btn-primary">New Chat</button>
+            <button id="new-chat" class="btn btn-outline-danger" style="width:100%">New Chat</button>
             <div class="chat-sidebar-container">
                 <ul class="list-group">
                     <% data.forEach(message => { %>
