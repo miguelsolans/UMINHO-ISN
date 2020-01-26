@@ -1,5 +1,13 @@
-$(document).ready(() => {
-    const quill = new Quill('#composer', {
+define([
+    'jquery',
+    'quill'
+], ($, Quill) => {
+    "use strict";
+
+    /**
+     * QuillJS Configuration
+     */
+    const quill = new Quill('.quill-composer', {
         theme: 'snow',
         placeholder: 'Write something cool 😎',
         formats: [
@@ -22,4 +30,20 @@ $(document).ready(() => {
             }
         }
     });
+
+    return {
+        quill: this.quill,
+        parseData: (data, id, attr) => {
+            let content = $(".quill-composer .ql-editor").html();
+
+            $(id).attr(attr, content);
+
+            let dataJson = {};
+            data.forEach(entry => {
+                dataJson[entry.name] = entry.value;
+            });
+            return dataJson;
+        }
+    }
 });
+
