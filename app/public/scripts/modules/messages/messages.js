@@ -1,9 +1,10 @@
 define([
     'jquery',
     'alert',
+    'tagify',
     'jquery-confirm',
     'bootstrap'
-], ($, alert) => {
+], ($, alert, Tagify) => {
     "use strict";
 
     const addMessage = (message) => {
@@ -139,6 +140,7 @@ define([
         });
 
 
+
         /**
          * Socketio Bidirectional Communication
          *
@@ -149,6 +151,33 @@ define([
         //     console.log("CONNECTING...");
         // })
     });
+
+    let participantsInput = document.querySelector("input[name=participants]");
+    let tagifyParticipants = new Tagify(participantsInput, {whitelist: []});
+
+    let onInput = e => {
+        let value = e.detail.value;
+        tagifyParticipants.settings.whitelist.length = 0; // Reset whitelist
+
+        // tagifyParticipants.loading(true).dropdown.hide.call(tagifyParticipants)
+        $.ajax({
+            method: "GET",
+            url: `/api/user/${value}`,
+            success: response => {
+                console.log(response);
+
+                response.forEach(user => tagifyParticipants.settings.whitelist.push(user.username));
+            },
+            error: response => {
+                console.log(response);
+            }
+        });
+        console.log(value);
+    };
+
+
+    tagifyParticipants.on('input', onInput);
+
 
 });
 

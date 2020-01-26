@@ -12,8 +12,10 @@ router.get('/groups', checkAuth, (req, res) => {
         .catch(err => res.jsonp(err))
 })
 
-router.get('/users', checkAuth, (req, res) => {
-    Users.registeredUsers()
+router.get('/:id', checkAuth, (req, res) => {
+    let id = req.params.id;
+
+    Users.usernameMatch(id)
         .then(result => res.jsonp(result))
         .catch(err => res.jsonp(err));
 });
