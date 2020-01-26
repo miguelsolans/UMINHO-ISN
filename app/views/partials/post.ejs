@@ -49,7 +49,7 @@
                     <input id="edit-post-id" value="" hidden>
                     <input type="button" id="update-post-button" class="btn btn-primary" value="Update!">
                 </form>
-                
+
                 <div class="col" id="comments-container">
                 </div>
             </div>
@@ -82,8 +82,7 @@
 
             <% if (post.createdBy == infoFeed.username) { %>
             <i class="btn btn-danger btn-sm rounded-circle delete-post" data-value="<%= post._id %>">
-                <span class="fas fa-trash-alt" style="color:#fff"
-                      aria-hidden="true"></span>
+                <span class="fas fa-trash-alt" style="color:#fff" aria-hidden="true"></span>
             </i>
             <i class="btn btn-dark btn-sm rounded-circle edit-post" data-value="<%= post._id %>">
                 <span class="fas fa-pencil-alt" style="color:#fff" aria-hidden="true"></span>
