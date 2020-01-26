@@ -7,11 +7,11 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
 
-const widgetSchema = new mongoose.Schema({
-  title: String,
-  content: String,
-  display: Boolean
-});
+//const widgetSchema = new mongoose.Schema({
+//  title: String,
+//  content: String,
+//  display: Boolean
+//});
 
 // const groupSchema = new mongoose.Schema({
 //   groupId: mongoose.Types.ObjectId,
@@ -48,9 +48,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: ""
   },
-  widgets: {
-    type: [widgetSchema]
-  },
   courses: {
     type: Array
   },
@@ -70,10 +67,29 @@ const userSchema = new mongoose.Schema({
     type: Date
   },
   resetPasswordToken: String,
-  resetPasswordExpire: Date
+  resetPasswordExpire: Date,
+  instagram: {
+    type: String,
+    default: ""
+  },
+  twitter: {
+    type: String,
+    default: ""
+  },
+  linkedIn: {
+    type: String,
+    default: ""
+  },
+  github: {
+    type: String,
+    default: ""
+  },
+  facebook: {
+    type: String,
+    default: ""
+  }
 });
 
-// coloquei aqui pq antes a password ficava logo hashed e nao passava pelo teste da password ter no minimo de 8 caratetes
 // Encrypt password using bccrypt
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {

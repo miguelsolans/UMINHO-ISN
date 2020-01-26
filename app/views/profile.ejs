@@ -4,16 +4,7 @@
         <div class="col-sm-3 d-none d-lg-block">
             <div class="circle-avatar" alt="User Picture" style="background-image:url(<%- infoFeed.photo %>)"></div>
             <hr>
-            <div style="text-align: center;">
-                <h3>Widgets</h3>
-            </div>
-            <% infoFeed.widgets.forEach(widget => {
-                if(widget.display) { %>
 
-            <%- include('partials/widget', { widget })%>
-
-            <% } %>
-            <% }) %>
         </div>
         <div class="col-lg-9">
             <h1 class="font-weight-bold">I'm <%= infoFeed.fullName %>
