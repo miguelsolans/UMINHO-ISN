@@ -19,6 +19,9 @@ require.config({
         // QuillJS
         "quill": "external/quill/quill",
 
+        // Dropzone
+        "dropzone": "external/dropzone/dropzone",
+
 
         /**
          * Application Modules
@@ -49,6 +52,12 @@ require.config({
         deps: ['jquery'],
         exports: 'confirm'
     },
+
+    "dropzone": {
+        deps: ['jquery'],
+        exports: 'dropzone'
+    },
+
     "bootstrap": {
         "deps": [
             'jquery'
@@ -62,5 +71,5 @@ require([
     'messages',
     'alert',
     'feed',
-    'composer'
+    'composer',
 ], () => console.log("RequireJS Modules Loaded"));

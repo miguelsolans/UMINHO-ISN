@@ -1,8 +1,9 @@
 define([
     'jquery',
     'tagify',
-    'composer'
-], ($, Tagify, composer) => {
+    'composer',
+    'dropzone'
+], ($, Tagify, composer, dropzone) => {
     "use strict";
 
     $(document).ready(() => {
@@ -72,6 +73,27 @@ define([
 
             $(location).attr('href', '/')
         });
+
+
+        // Settings Dropzone
+        // let t = new dropzone.Dropzone("#settings-dropzone", { url: "/file/post"});
+        $("#settings-dropzone").dropzone({
+            url: "/settings/picture-update",
+            uploadMultiple: false,
+            acceptedFiles: 'image/*',
+            success: function(file, res) {
+                console.log('Upload success.');
+                console.log(res);
+            },
+            error: function(file, res) {
+                console.log('Upload error.');
+                console.log(res);
+            }
+        });
     });
+
+    $('#save-profile-picture').on('click', () => {
+        $(location).attr("href", "/settings")
+    })
 });
 

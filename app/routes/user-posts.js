@@ -45,7 +45,7 @@ router.post('/', checkAuth, upload.array('files', 12), (req, res) => {
     };
 
     Post.addNew(newPost)
-        .then(result => res.redirect('/'))
+        .then(result => res.jsonp(result))
         .catch(err => res.jsonp(err));
 
 });

@@ -10,15 +10,17 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/settings/picture-update" method="POST" class="dropzone" enctype="multipart/form-data">
-                    <div class="fallback">
-                        <input name="file" type="file" />
-                    </div>
-                </form>
+                <div class="dropzone" id="settings-dropzone">
+                </div>
+<!--                <form action="/settings/picture-update" method="POST" class="settings-dropzone" enctype="multipart/form-data">-->
+<!--                    <div class="fallback">-->
+<!--                        <input name="file" type="file" />-->
+<!--                    </div>-->
+<!--                </form>-->
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" id="save-profile-picture">Save changes</button>
             </div>
         </div>
     </div>
