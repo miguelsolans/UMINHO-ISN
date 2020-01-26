@@ -75,15 +75,14 @@
             </t>
             <br>
             <div class="text-justify">
-                <%= post.content.text %>
+                <%- post.content.text %>
             </div>
         </div>
         <div class="col-2 py-4 px-9">
 
             <% if (post.createdBy == infoFeed.username) { %>
             <i class="btn btn-danger btn-sm rounded-circle delete-post" data-value="<%= post._id %>">
-                <span class="fas fa-trash-alt" style="color:#fff"
-                      aria-hidden="true"></span>
+                <span class="fas fa-trash-alt" style="color:#fff" aria-hidden="true"></span>
             </i>
             <i class="btn btn-dark btn-sm rounded-circle edit-post" data-value="<%= post._id %>">
                 <span class="fas fa-pencil-alt" style="color:#fff" aria-hidden="true"></span>

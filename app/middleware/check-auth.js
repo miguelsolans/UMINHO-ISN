@@ -8,10 +8,7 @@ module.exports = (req, res, next)=> {
         req.decodedUser = decodedToken.username;
 
         next();
-
     } catch(error){
-        console.log(error);
-        // console.log(error)
         res.redirect('/');
     }
 };
