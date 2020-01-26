@@ -5,7 +5,6 @@ const router = express.Router();
 const checkAuth = require('../middleware/check-auth');
 const feed = require('../controllers/feed');
 
-
 function timeMinutes(d1, d2) {
     var diff = Math.abs(d1 - d2)
     return Math.floor((diff / 1000) / 60);
@@ -38,13 +37,9 @@ function timeMonth(d1, d2) {
     return (d2M + 12 * d2Y) - (d1M + 12 * d1Y);
 }
 
-
 function timeYears(d1, d2) {
     return d2.getFullYear() - d1.getFullYear();
 }
-
-
-
 
 router.get('/', checkAuth, function (req, res, next) {
     let one = `${process.env.APP_URL}/api/userpost/feed`;
@@ -102,10 +97,6 @@ router.get('/', checkAuth, function (req, res, next) {
                 } else {
                     posts[i].createdAt = "Right Now"
                 }
-
-                if (posts[i].Comments[0].InfoComment[0] === undefined) {
-                    posts[i].Comments = []
-                }
             }
 
             res.render('feed', {
@@ -117,7 +108,6 @@ router.get('/', checkAuth, function (req, res, next) {
         }))
         .catch(error => console.log(error));
 });
-
 
 // Publicar no feed
 router.post('/', checkAuth, (req, res) => {
