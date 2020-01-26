@@ -153,8 +153,7 @@ define([
     });
 
     let participantsInput = document.querySelector("input[name=participants]");
-    let tagifyParticipants = new Tagify(participantsInput, {whitelist: []});
-
+    let tagifyParticipants;
     let onInput = e => {
         let value = e.detail.value;
         tagifyParticipants.settings.whitelist.length = 0; // Reset whitelist
@@ -162,7 +161,7 @@ define([
         // tagifyParticipants.loading(true).dropdown.hide.call(tagifyParticipants)
         $.ajax({
             method: "GET",
-            url: `/api/user/${value}`,
+            url: `/api/user/match/${value}`,
             success: response => {
                 console.log(response);
 
@@ -176,7 +175,13 @@ define([
     };
 
 
-    tagifyParticipants.on('input', onInput);
+    if(participantsInput !== null) {
+        tagifyParticipants = new Tagify(participantsInput, {whitelist: []});
+        tagifyParticipants.on('input', onInput);
+
+    }
+
+
 
 
 });
