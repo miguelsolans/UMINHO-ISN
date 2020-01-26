@@ -9,16 +9,13 @@
                 </button>
             </div>
             <div class="modal-body">
-
-                <form action="/userpost" method="POST" enctype="multipart/form-data">
-                    <input type="file" id="files" name="files">
-
+                <form action="/api/userpost/comment/<%= post._id %>" method="POST">
                     <div class="form-group">
-                        <label for="text">Post</label>
+                        <label for="text">Create New Comment</label>
                         <textarea class="form-control" id="text" rows="3" name="text"></textarea>
                     </div>
-
-                    <button type="submit" class="btn btn-primary">Post!</button>
+                    <button type="submit" class="btn btn-primary">Submit Comment</button>
+                    <hr>
                 </form>
 
                 <div class="col" id="comments-container">
@@ -52,9 +49,8 @@
                     <input id="edit-post-id" value="" hidden>
                     <input type="button" id="update-post-button" class="btn btn-primary" value="Update!">
                 </form>
-
+                
                 <div class="col" id="comments-container">
-
                 </div>
             </div>
             <div class="modal-footer">
@@ -62,16 +58,14 @@
             </div>
         </div>
     </div>
-
 </div>
-
 
 <div class="post-info border-bottom">
     <div class="row" id="<%= post._id %>">
         <div class="col-1 p-3">
             <div class="circle-avatar" style="background-image:url(<%= post.InfoUser[0].photo %>)"></div>
         </div>
-        <div class="col-7 py-3">
+        <div class="col-9 py-3">
             <t class="font-weight-bold">
                 <%= post.InfoUser[0].fullName %>
             </t>
@@ -84,12 +78,11 @@
                 <%- post.content.text %>
             </div>
         </div>
-        <div class="col-4 p-4 my-auto">
+        <div class="col-2 py-4 px-9">
 
             <% if (post.createdBy == infoFeed.username) { %>
             <i class="btn btn-danger btn-sm rounded-circle delete-post" data-value="<%= post._id %>">
-                <span class="fas fa-trash-alt" style="color:#fff"
-                      aria-hidden="true"></span>
+                <span class="fas fa-trash-alt" style="color:#fff" aria-hidden="true"></span>
             </i>
             <i class="btn btn-dark btn-sm rounded-circle edit-post" data-value="<%= post._id %>">
                 <span class="fas fa-pencil-alt" style="color:#fff" aria-hidden="true"></span>
