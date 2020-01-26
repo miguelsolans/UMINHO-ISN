@@ -157,7 +157,21 @@ define([
 
     let onInput = e => {
         let value = e.detail.value;
+        tagifyParticipants.settings.whitelist.length = 0; // Reset whitelist
 
+        // tagifyParticipants.loading(true).dropdown.hide.call(tagifyParticipants)
+        $.ajax({
+            method: "GET",
+            url: `/api/user/${value}`,
+            success: response => {
+                console.log(response);
+
+                response.forEach(user => tagifyParticipants.settings.whitelist.push(user.username));
+            },
+            error: response => {
+                console.log(response);
+            }
+        });
         console.log(value);
     };
 
