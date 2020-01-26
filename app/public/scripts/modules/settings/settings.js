@@ -1,8 +1,8 @@
 define([
     'jquery',
-    'quill',
-    'tagify'
-], ($, Quill, Tagify) => {
+    'tagify',
+    'composer'
+], ($, Tagify, composer) => {
     "use strict";
 
     $(document).ready(() => {
@@ -38,48 +38,22 @@ define([
         });
 
 
-        /**
-         * QuillJS Configuration
-         */
-        const quill = new Quill('#quill-settings-about', {
-            theme: 'snow',
-            placeholder: 'Write something cool 😎',
-            formats: [
-                'bold',
-                'header',
-                'italic',
-                'link',
-                'list',
-                'blockquote',
-                'image',
-                'indent'
-            ],
-            modules: {
-                toolbar: [
-                    ['bold', 'italic', 'link'],
-                    ['blockquote', {'list': 'ordered'}, {'list': 'bullet'}],
-                ],
-                clipboard: {
-                    matchVisual: false // https://quilljs.com/docs/modules/clipboard/#matchvisual
-                }
-            }
-        });
-
-
         // Submit Changes
         const $infoForm = $('#update-user-info');
         $infoForm.on('submit', handler => {
             handler.preventDefault();
+            // quill-settings-about
 
-            let content = $("#quill-settings-about .ql-editor").html();
+            // let content = $("#quill-settings-about .ql-editor").html();
 
-            $("#bio").attr("value", content);
+            // $("#bio").attr("value", content);
 
             let dataArray = $infoForm.serializeArray();
-            let dataJson = {};
-            dataArray.forEach(entry => {
-                dataJson[entry.name] = entry.value;
-            });
+            // (data, id, attr)
+            let dataJson = composer.parseData(dataArray, '#bio', 'value');
+            // dataArray.forEach(entry => {
+            //     dataJson[entry.name] = entry.value;
+            // });/settings/update
 
             console.log(dataJson);
             $.ajax({
