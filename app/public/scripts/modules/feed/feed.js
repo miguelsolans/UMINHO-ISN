@@ -1,10 +1,11 @@
 define([
     'jquery',
     'alert',
+    'highlight',
     'composer',
     'jquery-confirm',
     'bootstrap'
-], function ($, alert, composer) {
+], function ($, alert, highlight, composer) {
     'use strict';
 
     function formatComment(content) {
@@ -53,7 +54,7 @@ define([
             error: response => console.log(response)
         });
     });
-    
+
     $(document).ready(() => {
         /**
          * View Comments Modal
@@ -65,6 +66,9 @@ define([
                 url: `/api/userpost/comments/${id}`,
                 success: response => {
                     $('#comments-container').html("");
+
+                    $('#submit-post-comment').attr('action', `api/userpost/comment/${id}`);
+
                     if (response.length > 0) {
                         response[0].Comments.forEach(content => formatComment(content));
                     }
@@ -85,6 +89,7 @@ define([
                 method: "GET",
                 url: `/api/userpost/${id}`,
                 success: response => {
+
                     $('#edit-post-text').val(response.content.text);
                     $('#edit-post-id').attr('value', response._id);
                     $('#edit-post-modal').modal()
@@ -157,6 +162,24 @@ define([
 
             $postForm.unbind('submit').submit();
 
-        })
+        });
+
+        // Change Post form to Display uploader
+        // $('#add-post-files').keypress(function(e) {
+        //     var keycode = (e.keyCode ? e.keyCode : e.which);
+        //     console.log("pressed");
+        //     if(keycode == '13') {
+        //         if($('#add-post-files').is(':checked')) {
+        //             console.log("checked");
+        //         }
+        //     }
+        // });
+
+        // Highlight
+        document.querySelectorAll('pre .ql-syntax').forEach((block) => {
+            highlight.highlightBlock(block);
+        });
+
+
     });
 });
