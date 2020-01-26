@@ -71,8 +71,6 @@ router.get('/', checkAuth, function (req, res, next) {
 
             let now = new Date()
 
-            //console.log(posts);
-
             for (var i in posts) {
                 let date = new Date(posts[i].createdAt)
 

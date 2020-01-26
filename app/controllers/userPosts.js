@@ -29,30 +29,30 @@ module.exports.addNew = ({
 
 // get user posts
 module.exports.userPosts = (username) => {
-    return UserPost.aggregate([
-        {
-            '$match': {
-                'createdBy': username
-            }
-        }, {
-          '$lookup': {
-            'from': 'users', 
-            'localField': 'createdBy', 
-            'foreignField': 'username', 
-            'as': 'InfoUser'
-          }
-        }, {
-          '$project': {
-            'createdBy': 1, 
-            'content': 1, 
-            'createdAt': 1, 
-            'InfoUser.photo': 1, 
-            'InfoUser.fullName': 1
-          }
-        }, {
-            '$sort': { 'createdAt': -1 }
+    return UserPost.aggregate([{
+        '$match': {
+            'createdBy': username
         }
-    ])
+    }, {
+        '$lookup': {
+            'from': 'users',
+            'localField': 'createdBy',
+            'foreignField': 'username',
+            'as': 'InfoUser'
+        }
+    }, {
+        '$project': {
+            'createdBy': 1,
+            'content': 1,
+            'createdAt': 1,
+            'InfoUser.photo': 1,
+            'InfoUser.fullName': 1
+        }
+    }, {
+        '$sort': {
+            'createdAt': -1
+        }
+    }])
 };
 
 // get all posts ordered by created date
@@ -99,26 +99,26 @@ module.exports.getComments = (id) => {
 };
 
 module.exports.infoUserPost = () => {
-    return UserPost.aggregate([
-        {
-          '$lookup': {
-            'from': 'users', 
-            'localField': 'createdBy', 
-            'foreignField': 'username', 
+    return UserPost.aggregate([{
+        '$lookup': {
+            'from': 'users',
+            'localField': 'createdBy',
+            'foreignField': 'username',
             'as': 'InfoUser'
-          }
-        }, {
-          '$project': {
-            'createdBy': 1, 
-            'content': 1, 
-            'createdAt': 1, 
-            'InfoUser.photo': 1, 
-            'InfoUser.fullName': 1
-          }
-        }, {
-            '$sort': { 'createdAt': -1 }
         }
-    ])
+    }, {
+        '$project': {
+            'createdBy': 1,
+            'content': 1,
+            'createdAt': 1,
+            'InfoUser.photo': 1,
+            'InfoUser.fullName': 1
+        }
+    }, {
+        '$sort': {
+            'createdAt': -1
+        }
+    }])
 };
 
 // pesquisa de posts pelo texto
