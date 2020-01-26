@@ -6,21 +6,12 @@ const checkAuth = require('../../middleware/check-auth');
 
 
 
+
 router.get('/groups', checkAuth, (req, res) => {
     Users.getGroups(req.decodedUser)
         .then(result => res.jsonp(result))
         .catch(err => res.jsonp(err))
 })
-
-router.get('/:id', checkAuth, (req, res) => {
-    let id = req.params.id;
-
-    Users.usernameMatch(id)
-        .then(result => res.jsonp(result))
-        .catch(err => res.jsonp(err));
-});
-
-
 
 
 router.get('/infofeed', checkAuth, (req, res) => {
