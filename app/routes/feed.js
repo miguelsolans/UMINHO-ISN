@@ -46,6 +46,8 @@ router.get('/', checkAuth, function (req, res, next) {
     let two = `${process.env.APP_URL}/api/user/infofeed`;
     let three = `${process.env.APP_URL}/api/user/groups`;
 
+    let loginUser= req.decodedUser;
+
     const requestOne = axios.get(one, {
         headers: {
             Cookie: `userToken=${req.cookies.userToken}`
@@ -100,9 +102,10 @@ router.get('/', checkAuth, function (req, res, next) {
 
             res.render('feed', {
                 data: posts,
-                infoFeed: infoFeed,
                 groups: groups,
-                firstName: firstName
+                firstName: firstName,
+                infoFeed: infoFeed,
+                loginUser: loginUser
             });
         }))
         .catch(error => console.log(error));
