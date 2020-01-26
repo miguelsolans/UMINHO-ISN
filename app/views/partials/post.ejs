@@ -1,3 +1,4 @@
+<!-- Comments Modal -->
 <div class="modal fade" id="comments-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -9,7 +10,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/api/userpost/comment/<%= post._id %>" method="POST">
+                <!--action="/api/userpost/comment/<%= post._id %>"-->
+                <form action="" method="POST" id="submit-post-comment">
                     <div class="form-group">
                         <label for="text">Create New Comment</label>
                         <textarea class="form-control" id="text" rows="3" name="text"></textarea>
@@ -29,6 +31,7 @@
     </div>
 </div>
 
+<!-- Edit Post Modal -->
 <div class="modal fade" id="edit-post-modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -60,6 +63,7 @@
     </div>
 </div>
 
+<!-- Post content -->
 <div class="post-info border-bottom">
     <div class="row" id="<%= post._id %>">
         <div class="col-1 p-3">
