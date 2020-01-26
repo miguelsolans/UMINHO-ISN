@@ -18,20 +18,20 @@ define([
                     ${content.InfoComment[0].fullName}
                 </t>
                 <t class="text-muted">
-                @${content.username}
+                @${content.createdBy}
                 </t>
                 <br>
                 <div class="text-justify">
                    ${content.text}
                 </div>
             </div>
+
         </div>
     </div>`
 
         $('#comments-container').append(info);
 
     }
-    
     
     $(document).ready(() => {
         /**
@@ -99,16 +99,16 @@ define([
             let id = $(event.currentTarget).attr('data-value');
             $.confirm({
                 title: 'Remove Post?',
-                content: 'Are you sure!?',
+                content: 'Are you sure?',
                 buttons: {
                     confirm: () => {
-                        $.alert('You removed your post...! 😢');
+                        $.alert('You removed your Post.');
 
                         $.ajax({
                             type: "delete",
                             url: `/api/userpost/${id}`,
                             success: response => {
-                                alert.warningAlert({title: "Post Deleted", body: "You removed your own post"});
+                                alert.warningAlert({title: "Post Deleted", body: "You removed your Post."});
                                 console.log(response);
                                 $(`#${response._id}`).remove();
                             },
@@ -118,7 +118,6 @@ define([
                         });
                     },
                     cancel: () => {
-                        $.alert('You opt-out not removing your kick-ass post 🤘🏽');
                     },
                 }
             });

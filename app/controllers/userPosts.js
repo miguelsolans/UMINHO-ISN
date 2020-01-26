@@ -29,11 +29,30 @@ module.exports.addNew = ({
 
 // get user posts
 module.exports.userPosts = (username) => {
-    return UserPost.find({
-        createdBy: username
-    }).sort({
-        createdAt: 'desc'
-    });
+    return UserPost.aggregate([
+        {
+            '$match': {
+                'createdBy': username
+            }
+        }, {
+          '$lookup': {
+            'from': 'users', 
+            'localField': 'createdBy', 
+            'foreignField': 'username', 
+            'as': 'InfoUser'
+          }
+        }, {
+          '$project': {
+            'createdBy': 1, 
+            'content': 1, 
+            'createdAt': 1, 
+            'InfoUser.photo': 1, 
+            'InfoUser.fullName': 1
+          }
+        }, {
+            '$sort': { 'createdAt': -1 }
+        }
+    ])
 };
 
 // get all posts ordered by created date
@@ -69,6 +88,7 @@ module.exports.getComments = (id) => {
         }
     }, {
         '$project': {
+            'Comments._id': 1,
             'Comments.createdBy': 1,
             'Comments.text': 1,
             'Comments.createdAt': 1,
@@ -78,68 +98,28 @@ module.exports.getComments = (id) => {
     }])
 };
 
-
-
 module.exports.infoUserPost = () => {
-    return UserPost.aggregate([{
-        '$lookup': {
-            'from': 'users',
-            'localField': 'createdBy',
-            'foreignField': 'username',
+    return UserPost.aggregate([
+        {
+          '$lookup': {
+            'from': 'users', 
+            'localField': 'createdBy', 
+            'foreignField': 'username', 
             'as': 'InfoUser'
-        }
-    }, {
-        '$unwind': {
-            'path': '$comments',
-            'preserveNullAndEmptyArrays': true
-        }
-    }, {
-        '$lookup': {
-            'from': 'users',
-            'localField': 'comments.createdBy',
-            'foreignField': 'username',
-            'as': 'comments.InfoComment'
-        }
-    }, {
-        '$group': {
-            '_id': '$_id',
-            'createdBy': {
-                '$first': '$createdBy'
-            },
-            'content': {
-                '$first': '$content'
-            },
-            'createdAt': {
-                '$first': '$createdAt'
-            },
-            'InfoUser': {
-                '$first': '$InfoUser'
-            },
-            'Comments': {
-                '$push': '$comments'
-            }
-        }
-    }, {
-        '$project': {
-            'createdBy': 1,
-            'content': 1,
-            'Comments._id': 1,
-            'Comments.createdBy': 1,
-            'Comments.text': 1,
-            'Comments.createdAt': 1,
-            'Comments.InfoComment.fullName': 1,
-            'Comments.InfoComment.photo': 1,
-            'createdAt': 1,
-            'InfoUser.photo': 1,
+          }
+        }, {
+          '$project': {
+            'createdBy': 1, 
+            'content': 1, 
+            'createdAt': 1, 
+            'InfoUser.photo': 1, 
             'InfoUser.fullName': 1
+          }
+        }, {
+            '$sort': { 'createdAt': -1 }
         }
-    }, {
-        '$sort': {
-            'createdAt': -1
-        }
-    }])
+    ])
 };
-
 
 // pesquisa de posts pelo texto
 module.exports.postsSearch = (word) => {

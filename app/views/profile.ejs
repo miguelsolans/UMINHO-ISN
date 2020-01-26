@@ -20,6 +20,11 @@
             <h4>About Me</h4>
             <hr>
             <p><%- data.bio %></p>
+            <% postsUser.forEach(post => {%>
+                <div class="">
+                    <%- include('partials/post', {post: post}) %>
+                </div>
+            <% }) %>
         </div>
     </div>
 </div>

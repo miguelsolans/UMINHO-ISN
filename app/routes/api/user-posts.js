@@ -73,7 +73,6 @@ router.get('/feed/:username', checkAuth, (req, res) => {
         .catch(err => res.jsonp(err))
 });
 
-
 // add comentário
 router.post('/comment/:postId', checkAuth, (req, res) => {
     const newComment = {
