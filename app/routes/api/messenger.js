@@ -22,15 +22,7 @@ router.get('/:id', checkAuth, (req, res) => {
 
 
 router.post('/', checkAuth, (req, res) => {
-    let user = req.decodedUser;
     let newRoom = req.body;
-
-    let participants = newRoom.participants.split(',');
-
-    participants.push(user);
-    console.log(participants);
-    newRoom.participants = participants;
-    console.log(newRoom);
 
     messenger.newRoom(newRoom)
         .then(data => res.jsonp(data))
