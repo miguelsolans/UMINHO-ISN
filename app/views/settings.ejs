@@ -116,9 +116,9 @@
                     <form id="update-user-info-social">
 
                         <div class="form-label-group mt-3">
-                            <label class="font-weight-bold" for="instagram">Instagram</label>
-                            <input type="text" name="instagram" id="instagram" class="form-control"
-                                placeholder="Enter Your Instagram Username" value="<%= data.instagram %>" autofocus>
+                            <label class="font-weight-bold" for="facebook">Facebook</label>
+                            <input type="text" name="facebook" id="facebook" class="form-control"
+                                placeholder="Enter Your Facebook Username" value="<%= data.facebook %>" autofocus>
                         </div>
 
                         <div class="form-label-group mt-3">
@@ -127,6 +127,12 @@
                                 placeholder="Enter Your Twitter Username" value="<%= data.twitter %>" autofocus>
                         </div>
 
+                        <div class="form-label-group mt-3">
+                            <label class="font-weight-bold" for="instagram">Instagram</label>
+                            <input type="text" name="instagram" id="instagram" class="form-control"
+                                placeholder="Enter Your Instagram Username" value="<%= data.instagram %>" autofocus>
+                        </div>
+                        
                         <div class="form-label-group mt-3">
                             <label class="font-weight-bold" for="linkedIn">LinkedIn</label>
                             <input type="text" name="linkedIn" id="linkedIn" class="form-control"
@@ -139,11 +145,7 @@
                                 value="<%= data.github %>" autofocus>
                         </div>
 
-                        <div class="form-label-group mt-3">
-                            <label class="font-weight-bold" for="facebook">Facebook</label>
-                            <input type="text" name="facebook" id="facebook" class="form-control"
-                                placeholder="Enter Your Facebook Username" value="<%= data.facebook %>" autofocus>
-                        </div>
+
 
                         <input name="userId" type="text" hidden value="<%= data._id %>">
                         <button onclick="location.href = '/settings';" class="btn btn-muted2 btn-sm btn-block shadow-sm p-1 mt-3 text-muted2 border" type="submit">
