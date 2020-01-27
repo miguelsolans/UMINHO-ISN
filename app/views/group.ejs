@@ -1,0 +1,36 @@
+<%- include('partials/header') %>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-2 d-none d-lg-block border-right position-fixed">
+            <h4>
+                <img alt="User Picture" class="img-fluid" src="/images/Welcome.png">
+                <p class="text-center font-weight-bold">to <%- group.name %></p>
+            </h4>
+            </p>
+            <h6 class="text-center text-muted">
+                Description
+            </h6>
+            <% console.log(group) %>
+            <p class="text-justify"><%= group.description %></p>
+        </div>
+        <div class="col offset-2 col-sm-10">
+            <h1><b>News Feed</b></h1>
+            <h4>What are you thinking?</h4>
+            <br>
+            <%- include('partials/composer', { action: '/userpost', id: 'feed-post-form' }) %>
+            <% data.forEach(post => {%>
+                <%- include('partials/post', { post: post }) %>
+            <% }) %>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    require(['/scripts/main.js'], (main) => {
+        require(['/modules/group/main-group.js']);
+    });
+</script>
+
+<%- include('partials/footer') %>

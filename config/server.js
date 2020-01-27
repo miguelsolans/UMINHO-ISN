@@ -1,5 +1,6 @@
 // Loading Modules
 const createError = require('http-errors');
+const path = require('path');
 
 const flash = require('connect-flash');
 
@@ -41,7 +42,8 @@ mongoose.connect(`${process.env.MONGO_LOCAL}`, {
 // app.use(logger('dev'));
 
 // Tell node where Public Files are located
-app.use(express.static('./app/public'));
+// app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '../app/public')));
 
 // Setup EJS View Engine
 app.set('view engine', 'ejs');
@@ -73,7 +75,6 @@ const ProfileRoutes = require('../app/routes/profile');
 const SettingsRoutes = require('../app/routes/settings');
 const MessengerRoutes = require('../app/routes/messenger');
 const GroupRoutes = require('../app/routes/group');
-const TestRoutes = require('../app/routes/test');
 const UserPostRoutes = require('../app/routes/user-posts');
 
 // Webapp Root Routes
@@ -83,7 +84,6 @@ app.use('/profile', ProfileRoutes);
 app.use('/settings', SettingsRoutes);
 app.use('/messenger', MessengerRoutes);
 app.use('/group', GroupRoutes);
-app.use('/test', TestRoutes);
 app.use('/userpost', UserPostRoutes);
 
 // API Routes

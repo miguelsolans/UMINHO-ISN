@@ -35,7 +35,7 @@
 
 
 
-<div class="container-fluid d-flex h-100 flex-column">
+<div class="container-fluid d-flex h-100 flex-column mt-5 pt-5">
     <div class="row full-height">
         <div class="col-3 border-right">
             <h4>Chats</h4>
@@ -76,4 +76,10 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    require(['./scripts/main'], (main) => {
+        require(['modules/messages/main-messages']);
+    });
+</script>
 <%- include('partials/footer') %>

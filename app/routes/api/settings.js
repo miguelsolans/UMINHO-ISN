@@ -59,12 +59,11 @@ router.put('/update', checkAuth, (req, res) => {
         coursesJson.forEach(course => courses.push(course.value));
 
     }
-
     let info = {
         bio: req.body.bio,
         courses: courses,
-        email: req.body.email
-    }
+
+    };
     User.updateInfo(user, info)
         .then(result => res.jsonp(result))
         .catch(err => res.jsonp(err));
@@ -72,10 +71,10 @@ router.put('/update', checkAuth, (req, res) => {
 
 router.put('/updatesocial', checkAuth, (req, res) => {
     let user = req.decodedUser;
-    console.log(user);
+
     console.log(req.body);
 
-    User.updateInfo(user, req.body).then(result => res.jsonp(result))
+    User.updateInfoSocial(user, req.body).then(result => res.jsonp(result))
         .catch(err => res.jsonp(err));
 });
 

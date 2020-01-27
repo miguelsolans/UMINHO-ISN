@@ -1,10 +1,10 @@
 <%- include('partials/header') %>
 
-<div class="container-fluid">
+<div class="container-fluid mt-5 pt-5">
     <div class="row">
         <div class="col-sm-2 d-none d-lg-block border-right position-fixed">
             <div class="circle-avatar" style="background-image:url(<%- infoFeed.photo %>)"></div>
-            <p>
+            <p></p>
                 <h4>
                     <img alt="User Picture" class="img-fluid" src="/images/Welcome.png">
                     <p class="text-center font-weight-bold"><%- firstName %></p>
@@ -13,20 +13,62 @@
             <h6 class="text-center text-muted">
                 @<%- loginUser %>
             </h6>
+            <div class="text-center">
+                <% if (infoFeed.facebook !== "") { %>
+                    <a class="afacebook" href="https://www.facebook.com/<%- infoFeed.facebook %>" target="_blank">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                <% } %>
+                <% if (infoFeed.twitter !== "") { %>
+                    <a class="atwitter" href="https://www.twitter.com/<%- infoFeed.twitter %>" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                <% } %>
+                <% if (infoFeed.instagram !== "") { %>
+                    <a class="ainstagram" href="https://www.instagram.com/<%- infoFeed.instagram %>" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>                
+                <% } %>
+                <% if (infoFeed.github !== "") { %>
+                    <a class="agithub"  href="https://www.github.com/<%- infoFeed.github %>" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                <% } %>
+                <% if (infoFeed.linkedIn !== "") { %>
+                    <a href="https://www.linkedin.com/in/<%- infoFeed.linkedIn %>" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>                
+                <% } %>
+            </div>
             <hr>
-            <p><b>Groups</b></p>
+            <div class="text-center">
+                <p><b>Groups</b></p>
+                <% groups.forEach(group => {%>
+                    <a href="/group/<%= group._id %>"><%= group.name %></a>
+                <% }) %>
+            </div>
         </div>
         <div class="col offset-2 col-sm-10">
-            <h1><b>News Feed</b></h1>
-            <%- include('partials/composer') %>
-            <% data.forEach(post => {%>
-            <div class="">
-                <%- include('partials/post', {post: post}) %>
-            </div>
+            <h1 class="font-weight-bold">News Feed</h1>
+            <h4>What are you thinking?</h4>
+            <br>
+            <%- include('partials/composer', { action: '/userpost', id: 'feed-post-form' }) %>
+            <% data.forEach(post => { %>
+                <% console.log(post) %>
+                <div class="">
+                    <%- include('partials/post', {post: post}) %>
+                </div>
             <% }) %>
         </div>
     </div>
 
 </div>
+
+
+<script type="text/javascript">
+    require(['./scripts/main'], (main) => {
+        require(['modules/feed/main-feed']);
+    });
+</script>
 
 <%- include('partials/footer') %>

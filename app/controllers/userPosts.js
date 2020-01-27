@@ -145,10 +145,10 @@ module.exports.deletePost = (postId) => {
 
 // update post
 module.exports.updatePost = (postId, data) => {
-    return UserPost.findByIdAndUpdate(postId, data, {
-        new: true,
-        runValidators: true
-    });
+    return UserPost.updateOne(
+        {'_id': postId },
+        {'content.text': data.content.text}
+    ).exec();
 };
 
 // add comment

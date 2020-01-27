@@ -13,28 +13,28 @@ const upload = multer({
 
 router.post('/', checkAuth, upload.array('files', 12), (req, res) => {
     let user = req.decodedUser;
-    // const postContentSchema = new mongoose.Schema({
-    //     files: [String],
-    //     text: String
-    // });
-    console.table(req.body.text);
 
     let uploadedFiles = req.files;
     let fileNames = [];
+
+    // let userPorfilePath = path.join(__dirname, `../public/uploads/users/${user}/${req.file.originalname}`);
+    //
+    //     fs.rename(uploadedFile, userPorfilePath, err => {
+    //         if (err) console.log(err);
+    //     });
+    //
+    //     let pictureUpdate = {
+    //         username: user,
+    //         avatar: `/uploads/users/${user}/${req.file.originalname}`
+    //     };
 
     uploadedFiles.forEach(file => {
         let fileUpload = path.join(__dirname, `../public/uploads/files/${file.originalname}`);
 
         fs.rename(file.path, fileUpload, err => console.log(err));
 
-        fileNames.push(fileUpload);
+        fileNames.push(`/uploads/files/${file.originalname}`);
     });
-
-    console.log(fileNames);
-    // const postContentSchema = new mongoose.Schema({
-    //     files: [String],
-    //     text: String
-    // });
 
     let newPost = {
         createdBy: user,
