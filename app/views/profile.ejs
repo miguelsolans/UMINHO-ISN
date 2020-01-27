@@ -1,15 +1,15 @@
 <%- include('partials/header') %>
-<div class="container-fluid">
+<div class="container-fluid shadow border-bottom border-dark">
 
     <div class="rowProfile justify-content-md-center">
-        <div class="col-sm-2">
+        <div class="col-sm-2 mt-5 pt-5">
             <div class="circle-avatar2" alt="User Picture" style="background-image:url(<%- infoFeed.photo %>)"></div>
         </div>
         <div class="w-100 d-none d-md-block"></div>
         <br>
-        <h1 class="text-center">
+        <h1 class="text-center text-white">
             Hi, i'm
-            <t class="font-weight-bold text-dark"><%= infoFeed.fullName %></t>
+            <t class="font-weight-bold text-white"><%= infoFeed.fullName %></t>
         </h1>
         <div class="w-100 d-none d-md-block"></div>
         <div class="justify-content-center mt-2">
@@ -40,23 +40,23 @@
                     </a>                
                 <% } %>
             </h4>
+            <hr>
         </div>
-        <br>
     </div>
 </div>
 
 <div class="container">
-    <hr>
     <br>
     <h3 class="font-weight-bold text-center">About Me</h3>
+    <hr>
     <br>
     <p class="text-center text-justify">
         <%- infoFeed.bio %>
     </p>
     <br>
-    <hr>
     <br>
     <h3 class="font-weight-bold text-center">My Posts</h3>
+    <hr>
     <% postsUser.forEach(post => {%>
         <div class="">
             <%- include('partials/post', {post: post}) %>

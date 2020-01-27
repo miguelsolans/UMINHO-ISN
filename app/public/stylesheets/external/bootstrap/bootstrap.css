@@ -677,9 +677,9 @@ pre code {
   flex-wrap: wrap;
   margin-right: -15px;
   margin-left: -15px;
-  background: url();
+  background: url('/images/CoverProfile.jpg');
   background-repeat: no-repeat;
-  background-position: center; 
+  background-size: 100% 100%;
 }
 
 .no-gutters {
@@ -6837,7 +6837,7 @@ button.bg-dark:focus {
   
   border-radius:50%;
   border-style: solid;
-  border-width: 3px;
+  border-width: 4px;
   border-color: #fff;
   
   background-position-y: center;
