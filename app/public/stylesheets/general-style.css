@@ -22,3 +22,7 @@ html, body {
 .ql-editor{
     min-height: 100px;
 }
+
+.col-sm-2.d-none.d-lg-block.border-right.position-fixed {
+    height: 100%;
+}
