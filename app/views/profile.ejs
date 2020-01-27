@@ -27,7 +27,7 @@
                 <% if (infoFeed.instagram !== "") { %>
                     <a class="ainstagram" href="https://www.instagram.com/<%- infoFeed.instagram %>" target="_blank">
                         <i class="fab fa-instagram"></i>
-                    </a>                
+                    </a>
                 <% } %>
                 <% if (infoFeed.github !== "") { %>
                     <a class="agithub"  href="https://www.github.com/<%- infoFeed.github %>" target="_blank">
@@ -37,7 +37,7 @@
                 <% if (infoFeed.linkedIn !== "") { %>
                     <a href="https://www.linkedin.com/in/<%- infoFeed.linkedIn %>" target="_blank">
                         <i class="fab fa-linkedin-in"></i>
-                    </a>                
+                    </a>
                 <% } %>
             </h4>
             <hr>
@@ -65,7 +65,7 @@
 </div>
 
 <script type="text/javascript">
-    require(['./scripts/main'], (main) => {
+    require(['/scripts/main.js'], (main) => {
         require(['modules/profile/main-profile']);
     });
 </script>

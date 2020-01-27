@@ -1,5 +1,5 @@
 require.config({
-    "baseUrl": './scripts',
+    "baseUrl": '/scripts',
     "paths": {
 
         /**
@@ -70,7 +70,9 @@ require.config({
             'jquery'
             // 'popper'
         ]
-    }
+    },
+    scriptType: 'text/javascript'
+
 });
 
 // require([
