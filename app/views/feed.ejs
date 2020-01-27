@@ -42,6 +42,9 @@
             </div>
             <hr>
             <p><b>Groups</b></p>
+            <% groups.forEach(group => {%>
+                <a href=""><%= group.name %></a>
+            <% }) %>
         </div>
         <div class="col offset-2 col-sm-10">
             <h1><b>News Feed</b></h1>

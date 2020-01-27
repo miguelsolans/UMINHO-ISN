@@ -1,31 +1,17 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 const GroupPosts = require('../models/groupPost');
-
-// get all groups posts
-exports.getAllGroupPosts = () => {
-    return GroupPosts.find({});
-};
 
 // get post by id
 exports.getGroupPostId = (id) => {
-    return GroupPosts.findById(id)
-};
-
-// get group posts
-module.exports.userPosts = (groupId) => {
-    return GroupPosts.findById(groupId)
+    return GroupPosts.find({ groupId: id})
         .sort({
             createdAt: 'desc'
-        })
+        });
 };
 
 // add new post
-module.exports.addNewGroupPost = ({ groupId, createdBy, content }) => {
-    let newData = new GroupPosts({
-        groupId: groupId,
-        createdBy: createdBy,
-        content: content
-    });
+module.exports.addNewGroupPost = (post) => {
+    let newData = new GroupPosts(post);
 
     return newData.save();
 };

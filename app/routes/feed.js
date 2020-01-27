@@ -44,7 +44,7 @@ function timeYears(d1, d2) {
 router.get('/', checkAuth, function (req, res, next) {
     let one = `${process.env.APP_URL}/api/userpost/feed`;
     let two = `${process.env.APP_URL}/api/user/infofeed`;
-    let three = `${process.env.APP_URL}/api/user/groups`;
+    let three = `${process.env.APP_URL}/group/registered`;
 
     let loginUser= req.decodedUser;
 
