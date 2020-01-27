@@ -59,12 +59,10 @@ router.put('/update', checkAuth, (req, res) => {
         coursesJson.forEach(course => courses.push(course.value));
 
     }
-
     let info = {
         bio: req.body.bio,
         courses: courses,
-        email: req.body.email
-    }
+    };
     User.updateInfo(user, info)
         .then(result => res.jsonp(result))
         .catch(err => res.jsonp(err));
