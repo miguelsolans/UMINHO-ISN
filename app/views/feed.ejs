@@ -43,22 +43,30 @@
             <hr>
             <p><b>Groups</b></p>
             <% groups.forEach(group => {%>
-                <a href=""><%= group.name %></a>
+                <a href="/group/<%= group._id %>"><%= group.name %></a>
             <% }) %>
         </div>
         <div class="col offset-2 col-sm-10">
             <h1><b>News Feed</b></h1>
             <h4>What are you thinking?</h4>
             <br>
-            <%- include('partials/composer') %>
-            <% data.forEach(post => {%>
-            <div class="">
-                <%- include('partials/post', {post: post}) %>
-            </div>
+            <%- include('partials/composer', { action: '/userpost', id: 'feed-post-form' }) %>
+            <% data.forEach(post => { %>
+                <% console.log(post) %>
+                <div class="">
+                    <%- include('partials/post', {post: post}) %>
+                </div>
             <% }) %>
         </div>
     </div>
 
 </div>
+
+
+<script type="text/javascript">
+    require(['./scripts/main'], (main) => {
+        require(['modules/feed/main-feed']);
+    });
+</script>
 
 <%- include('partials/footer') %>

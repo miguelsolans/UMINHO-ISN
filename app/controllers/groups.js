@@ -11,6 +11,10 @@ module.exports.listAvailableGroups = (query, projection) => {
     return Group.find(query, projection)
 };
 
+module.exports.listTopGroups = (member, limit) => {
+    return Group.find(member).limit(limit);
+
+};
 module.exports.groupMembers = (id) => {
 
     return Group.findById(id, { _id: 0, members: 1 });
@@ -25,10 +29,7 @@ module.exports.registerMembers = (groupId, members) => {
 };
 
 module.exports.searchGroupById = groupId => {
-    return User.findOne({
-            _id: groupId
-        })
-        .exec();
+    return Group.findById(groupId);
 };
 
 module.exports.deleteGroup = groupId => {

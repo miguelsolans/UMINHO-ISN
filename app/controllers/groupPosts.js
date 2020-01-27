@@ -55,19 +55,47 @@ module.exports.addComment = (postId, comment) => {
     });
 };
 
-// add comment
-module.exports.addComment = (postId, comment) => {
-    return UserPost.findByIdAndUpdate(postId, {
-        $push: {
-            comments: comment
+// Get Comments
+module.exports.getComments = (id) => {
+    return GroupPosts.aggregate([{
+        '$match': {
+            '_id': mongoose.Types.ObjectId(id)
         }
     }, {
-        new: true,
-        runValidators: true
-    });
+        '$unwind': {
+            'path': '$comments',
+            'preserveNullAndEmptyArrays': false
+        }
+    }, {
+        '$lookup': {
+            'from': 'users',
+            'localField': 'comments.createdBy',
+            'foreignField': 'username',
+            'as': 'comments.InfoComment'
+        }
+    }, {
+        '$group': {
+            '_id': '$_id',
+            'Comments': {
+                '$push': '$comments'
+            }
+        }
+    }, {
+        '$project': {
+            'Comments._id': 1,
+            'Comments.createdBy': 1,
+            'Comments.text': 1,
+            'Comments.createdAt': 1,
+            'Comments.InfoComment.fullName': 1,
+            'Comments.InfoComment.photo': 1
+        }
+    }, {
+        '$sort': { 'Comments.createdAt': -1 }
+    }
+    ])
 };
 
-// remove comment 
+// remove comment
 module.exports.removeComment = (postId, commentId) => {
     return GroupPosts.findByIdAndUpdate( postId, {
         "$pull": {
@@ -108,4 +136,31 @@ module.exports.postByCommentId = (commentId) => {
                 comments: 1
             }
         }])
+};
+
+module.exports.infoGroupPost = (groupId) => {
+    return GroupPosts.aggregate([{
+        "$match": {
+            "groupId": groupId
+        }
+    },{
+        '$lookup': {
+            'from': 'users',
+            'localField': 'createdBy',
+            'foreignField': 'username',
+            'as': 'InfoUser'
+        }
+    }, {
+        '$project': {
+            'createdBy': 1,
+            'content': 1,
+            'createdAt': 1,
+            'InfoUser.photo': 1,
+            'InfoUser.fullName': 1
+        }
+    }, {
+        '$sort': {
+            'createdAt': -1
+        }
+    }])
 };
