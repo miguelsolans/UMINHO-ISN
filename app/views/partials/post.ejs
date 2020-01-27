@@ -99,15 +99,15 @@
                 </div>
         <div class="col-2 justify-content-center align-self-center">
             <% if (post.createdBy === loginUser) { %>
-            <i class="btn btn-danger btn-sm rounded-circle delete-post float-md-right" data-value="<%= post._id %>">
+            <i class="btn btn-danger btn-sm rounded-circle delete-post float-md-right mr-1" data-value="<%= post._id %>">
                 <span class="fas fa-trash-alt" style="color:#fff" aria-hidden="true"></span>
             </i>
-            <i class="btn btn-dark btn-sm rounded-circle edit-post float-md-right" data-value="<%= post._id %>">
+            <i class="btn btn-dark btn-sm rounded-circle edit-post float-md-right mr-1" data-value="<%= post._id %>">
                 <span class="fas fa-pencil-alt" style="color:#fff" aria-hidden="true"></span>
             </i>
             <% } %>
 
-            <i class="btn btn-dark btn-sm rounded-circle view-comments float-md-right" data-value="<%= post._id %>" data-toggle="modal"
+            <i class="btn btn-dark btn-sm rounded-circle view-comments float-md-right mr-1" data-value="<%= post._id %>" data-toggle="modal"
                 data-target="#exampleModalLong">
                 <span class="fas fa-comment" style="color:#fff" aria-hidden="true"></span>
             </i>
