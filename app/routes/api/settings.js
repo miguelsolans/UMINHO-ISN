@@ -28,7 +28,9 @@ router.post('/picture-update', checkAuth, upload.single("file"), (req, res) => {
 
     let userPorfilePath = path.join(__dirname, `../public/uploads/${user}/${req.file.originalname}`);
 
-    fs.rename(uploadedFile, userPorfilePath, err => { if(err) throw err; });
+    fs.rename(uploadedFile, userPorfilePath, err => {
+        if (err) throw err;
+    });
 
     let pictureUpdate = {
         username: user,
@@ -52,7 +54,7 @@ router.put('/update', checkAuth, (req, res) => {
 
     let courses = [];
 
-    if(req.body.courses.length > 0) {
+    if (req.body.courses.length > 0) {
         let coursesJson = JSON.parse(req.body.courses);
         coursesJson.forEach(course => courses.push(course.value));
 
@@ -62,10 +64,17 @@ router.put('/update', checkAuth, (req, res) => {
         bio: req.body.bio,
         courses: courses,
         email: req.body.email
-    };
-
+    }
     User.updateInfo(user, info)
         .then(result => res.jsonp(result))
+        .catch(err => res.jsonp(err));
+});
+
+router.put('/updatesocial', checkAuth, (req, res) => {
+    let user = req.decodedUser;
+    console.log(req.body);
+
+    User.updateInfoSocial(user, req.body).then(result => res.jsonp(result))
         .catch(err => res.jsonp(err));
 });
 

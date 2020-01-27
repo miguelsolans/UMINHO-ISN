@@ -14,12 +14,13 @@ const upload = multer({
 const User = require('../controllers/users');
 
 router.get('/', checkAuth, (req, res) => {
-
     axios.get(`${process.env.API_URL}/settings`, {
-        headers:  {
-            Cookie: `userToken=${req.cookies.userToken}`
-        }
-    }).then(response => res.render('settings', { data: response.data}))
+            headers: {
+                Cookie: `userToken=${req.cookies.userToken}`
+            }
+        }).then(response => res.render('settings', {
+            data: response.data
+        }))
         .catch(err => res.render('error', err));
 
 });
@@ -31,7 +32,9 @@ router.post('/picture-update', checkAuth, upload.single("file"), (req, res) => {
 
     let userPorfilePath = path.join(__dirname, `../public/uploads/users/${user}/${req.file.originalname}`);
 
-    fs.rename(uploadedFile, userPorfilePath, err => { if(err) console.log(err); });
+    fs.rename(uploadedFile, userPorfilePath, err => {
+        if (err) console.log(err);
+    });
 
     let pictureUpdate = {
         username: user,
@@ -46,15 +49,17 @@ router.post('/picture-update', checkAuth, upload.single("file"), (req, res) => {
 
 });
 
+
+
 router.post('/update', checkAuth, (req, res) => {
 
     axios(`${process.env.API_URL}/settings/update`, {
-        method: "put",
-        data: req.body,
-        headers: {
-            Cookie: `userToken=${req.cookies.userToken}`
-        },
-    }).then(response => res.redirect('/settings'))
+            method: "put",
+            data: req.body,
+            headers: {
+                Cookie: `userToken=${req.cookies.userToken}`
+            },
+        }).then(response => res.redirect('/settings'))
         .catch(err => console.log(err));
 });
 

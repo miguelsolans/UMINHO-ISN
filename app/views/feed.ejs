@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-sm-2 d-none d-lg-block border-right position-fixed">
             <div class="circle-avatar" style="background-image:url(<%- infoFeed.photo %>)"></div>
-            <p>
+            <p></p>
                 <h4>
                     <img alt="User Picture" class="img-fluid" src="/images/Welcome.png">
                     <p class="text-center font-weight-bold"><%- firstName %></p>
@@ -13,11 +13,40 @@
             <h6 class="text-center text-muted">
                 @<%- loginUser %>
             </h6>
+            <div class="text-center">
+                <% if (infoFeed.facebook !== "") { %>
+                    <a class="afacebook" href="https://www.facebook.com/<%- infoFeed.facebook %>" target="_blank">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                <% } %>
+                <% if (infoFeed.twitter !== "") { %>
+                    <a class="atwitter" href="https://www.twitter.com/<%- infoFeed.twittwe %>" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                <% } %>
+                <% if (infoFeed.instagram !== "") { %>
+                    <a class="ainstagram" href="https://www.instagram.com/<%- infoFeed.instagram %>" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>                
+                <% } %>
+                <% if (infoFeed.github !== "") { %>
+                    <a class="agithub"  href="https://www.github.com/<%- infoFeed.github %>" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                <% } %>
+                <% if (infoFeed.linkedIn !== "") { %>
+                    <a href="https://www.linkedin.com/in/<%- infoFeed.linkedIn %>" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>                
+                <% } %>
+            </div>
             <hr>
             <p><b>Groups</b></p>
         </div>
         <div class="col offset-2 col-sm-10">
             <h1><b>News Feed</b></h1>
+            <h4>What are you thinking?</h4>
+            <br>
             <%- include('partials/composer') %>
             <% data.forEach(post => {%>
             <div class="">

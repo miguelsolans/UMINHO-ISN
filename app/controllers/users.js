@@ -7,10 +7,10 @@ module.exports.list = query => {
 
 module.exports.searchUser = user => {
   return User.findOne({
-    username: user
-  })
-      .select('+password')
-      .exec();
+      username: user
+    })
+    .select('+password')
+    .exec();
 };
 
 module.exports.searchUserEmail = email => {
@@ -31,16 +31,27 @@ module.exports.addNew = data => {
 };
 
 module.exports.updateInfo = (user, info) => {
-  return User.findOneAndUpdate(user, info, {
-    new: true,
-    runValidators: true
-  });
+  return User.findOneAndUpdate(
+    {username: user}, info
+  )
+}
+
+module.exports.updateInfoSocial = (user, info) => {
+  return User.updateOne(
+    {username: user},
+    {$set: {
+      'instagram': info.instagram, 
+      'twitter': info.twitter,
+      'linkedIn': info.linkedIn,
+      'github': info.github,
+      'facebook': info.facebook
+    }})
 };
 
 module.exports.updateAvatar = ({
-                                 username,
-                                 avatar
-                               }) => {
+  username,
+  avatar
+}) => {
   return User.findOneAndUpdate({
     username: username
   }, {
@@ -61,26 +72,31 @@ module.exports.updatePassword = (user, password) => {
 
 module.exports.getGroups = username => {
   return User.findOne({
-    username: username
-  })
-      .select({
-        _id: 0,
-        groups: 1
-      })
-      .exec();
+      username: username
+    })
+    .select({
+      _id: 0,
+      groups: 1
+    })
+    .exec();
 };
 
 module.exports.getInfoFeed = username => {
   return User.findOne({
-    username: username
-  })
-      .select({
-        _id: 0,
-        username: 1,
-        fullName: 1,
-        photo: 1
-      })
-      .exec();
+      username: username
+    })
+    .select({
+      _id: 0,
+      username: 1,
+      fullName: 1,
+      photo: 1,
+      facebook: 1,
+      twitter: 1,
+      instagram: 1,
+      linkedIn: 1,
+      github: 1
+    })
+    .exec();
 };
 
 module.exports.addGroup = (userId, groupInfo) => {
@@ -112,16 +128,14 @@ module.exports.removeGroup = (userId, groupId) => {
 };
 
 module.exports.usernameMatch = (match) => {
-  return User.aggregate([
-    {
-      '$match': {
-        'username': new RegExp(`.*${match}*`)
-      }
-    }, {
-      '$project': {
-        '_id': 0,
-        'username': 1
-      }
+  return User.aggregate([{
+    '$match': {
+      'username': new RegExp(`.*${match}*`)
     }
-  ])
+  }, {
+    '$project': {
+      '_id': 0,
+      'username': 1
+    }
+  }])
 };

@@ -31,6 +31,7 @@ define([
             }
         },
         placeholder: 'Write something cool 😎'
+
     });
 
     return {
