@@ -9,13 +9,13 @@ define([
     'use strict';
 
     function formatComment(content) {
-        let info = `<div class="post-info border-bottom">
+        let info = `<div class="post-info border-bottom px-3">
         <div class="row">
-            <div class="col-2 p-3">
+            <div class="col-2 p-2">
                 <div class="circle-avatar"
                     style="background-image:url(${content.InfoComment[0].photo})"></div>
             </div>
-            <div class="col-8">
+            <div class="col-8 p-3">
                 <t class="font-weight-bold">
                     ${content.InfoComment[0].fullName}
                 </t>

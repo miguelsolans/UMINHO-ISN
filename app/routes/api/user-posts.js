@@ -34,7 +34,7 @@ router.delete('/:id', checkAuth, checkPostOwner, (req, res) => {
 });
 
 router.put('/:id', checkAuth, checkPostOwner, (req, res) => {
-
+    console.log(req.body)
     UserPosts.updatePost(req.params.id, req.body)
         .then(result => res.jsonp(result))
         .catch(err => res.jsonp(err))
