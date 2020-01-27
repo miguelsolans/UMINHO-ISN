@@ -196,18 +196,18 @@ sup {
 }
 
 .agithub {
-  color:  #000;
+  color:  #9A619F;
   text-decoration: none;
   background-color: transparent;
 }
 
 .agithub:hover {
-  color: #383838;
+  color: #6B2887;
   text-decoration: none;
 }
 
 .alinkedin {
-  color:  #2867B2;
+  color:  #0073b1;
   text-decoration: none;
   background-color: transparent;
 }
@@ -6836,6 +6836,8 @@ button.bg-dark:focus {
   height:auto;
   padding-top:100%;
   
+  box-shadow: 0 4px 8px 0 #000, 0 2px 10px 0 #fff;
+
   border-radius:50%;
   border-style: solid;
   border-width: 4px;
