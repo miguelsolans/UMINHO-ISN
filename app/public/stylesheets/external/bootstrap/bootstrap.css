@@ -5224,6 +5224,7 @@ a.badge-dark:focus, a.badge-dark.focus {
 
 .alert-dismissible {
   padding-right: 4rem;
+  margin-top: 50px;
 }
 
 .alert-dismissible .close {
