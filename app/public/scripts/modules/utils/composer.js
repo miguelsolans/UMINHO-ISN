@@ -30,7 +30,8 @@ define([
                 matchVisual: false // https://quilljs.com/docs/modules/clipboard/#matchvisual
             }
         },
-        placeholder: 'Write something...'
+        placeholder: 'Write something cool 😎'
+
     });
 
     return {
