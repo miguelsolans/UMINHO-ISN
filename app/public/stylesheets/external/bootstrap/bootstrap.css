@@ -2679,6 +2679,18 @@ fieldset:disabled a.btn {
   box-shadow: 0 0 0 0.2rem rgba(225, 83, 97, 0.5);
 }
 
+.btn-muted2 {
+  color: #fff;
+  background-color: #e9ecef ;
+  border-color: #343a40;
+}
+
+.btn-muted2:hover {
+  color: #fff;
+  background-color: #e8ecec;
+  border-color: #343a40;
+}
+
 .btn-light {
   color: #212529;
   background-color: #f8f9fa;
@@ -9996,6 +10008,10 @@ a.text-dark:hover, a.text-dark:focus {
 
 .text-muted {
   color: #6c757d !important;
+}
+
+.text-muted2 {
+  color: #495057 !important;
 }
 
 .text-black-50 {
