@@ -2,7 +2,8 @@ define([
     'jquery',
     'tagify',
     'composer',
-    'dropzone'
+    'dropzone',
+    'bootstrap'
 ], ($, Tagify, composer, dropzone) => {
     "use strict";
 
