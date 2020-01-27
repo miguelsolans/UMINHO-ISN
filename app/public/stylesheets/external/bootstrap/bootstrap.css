@@ -152,6 +152,61 @@ sup {
   top: -.5em;
 }
 
+.afacebook {
+  color: #3b5998;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.afacebook:hover {
+  color: #18336d;
+  text-decoration: none;
+}
+
+.atwitter {
+  color:  #1dcaff;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.atwitter:hover {
+  color: #0084b4;
+  text-decoration: none;
+}
+
+.ainstagram {
+  color:  #E1306C;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.ainstagram:hover {
+  color: #C13584;
+  text-decoration: none;
+}
+
+.agithub {
+  color:  #000;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.agithub:hover {
+  color: #383838;
+  text-decoration: none;
+}
+
+.alinkedin {
+  color:  #2867B2;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.alinkedin:hover {
+  color: #153964;
+  text-decoration: none;
+}
+
 a {
   color: #007bff;
   text-decoration: none;

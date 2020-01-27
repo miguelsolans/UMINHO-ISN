@@ -31,10 +31,21 @@ module.exports.addNew = data => {
 };
 
 module.exports.updateInfo = (user, info) => {
-  return User.findOneAndUpdate(user, info, {
-    new: true,
-    runValidators: true
-  });
+  return User.findOneAndUpdate(
+    {username: user}, info
+  )
+}
+
+module.exports.updateInfoSocial = (user, info) => {
+  return User.updateOne(
+    {username: user},
+    {$set: {
+      'instagram': info.instagram, 
+      'twitter': info.twitter,
+      'linkedIn': info.linkedIn,
+      'github': info.github,
+      'facebook': info.facebook
+    }})
 };
 
 module.exports.updateAvatar = ({

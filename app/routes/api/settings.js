@@ -72,10 +72,9 @@ router.put('/update', checkAuth, (req, res) => {
 
 router.put('/updatesocial', checkAuth, (req, res) => {
     let user = req.decodedUser;
-    console.log(user);
     console.log(req.body);
 
-    User.updateInfo(user, req.body).then(result => res.jsonp(result))
+    User.updateInfoSocial(user, req.body).then(result => res.jsonp(result))
         .catch(err => res.jsonp(err));
 });
 
