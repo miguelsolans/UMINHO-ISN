@@ -1,24 +1,63 @@
 <%- include('partials/header') %>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-3 d-none d-lg-block">
-            <div class="circle-avatar" alt="User Picture" style="background-image:url(<%- infoFeed.photo %>)"></div>
-            <hr>
+<div class="container">
 
+    <div class="row justify-content-md-center">
+        <div class="col-sm-2">
+            <div class="circle-avatar2" alt="User Picture" style="background-image:url(<%- infoFeed.photo %>)"></div>
         </div>
-        <div class="col-lg-9">
-            <h1 class="font-weight-bold">I'm <%= infoFeed.fullName %>
-            </h1>
-            <h4>About Me</h4>
-            <hr>
-            <p><%- infoFeed.bio %></p>
-
-            <% postsUser.forEach(post => {%>
-            <div class="">
-                <%- include('partials/post', {post: post}) %>
-            </div>
-            <% }) %>
+        <div class="w-100 d-none d-md-block"></div>
+        <br>
+        <h1 class="text-center">
+            Hi, i'm
+            <t class="font-weight-bold text-dark"><%= infoFeed.fullName %></t>
+        </h1>
+        <div class="w-100 d-none d-md-block"></div>
+        <div class="justify-content-center mt-2">
+            <h4>
+                <% if (infoFeed.facebook !== "") { %>
+                    <a class="afacebook" href="https://www.facebook.com/<%- infoFeed.facebook %>" target="_blank">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                <% } %>
+                <% if (infoFeed.twitter !== "") { %>
+                    <a class="atwitter" href="https://www.twitter.com/<%- infoFeed.twitter %>" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                <% } %>
+                <% if (infoFeed.instagram !== "") { %>
+                    <a class="ainstagram" href="https://www.instagram.com/<%- infoFeed.instagram %>" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>                
+                <% } %>
+                <% if (infoFeed.github !== "") { %>
+                    <a class="agithub"  href="https://www.github.com/<%- infoFeed.github %>" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                <% } %>
+                <% if (infoFeed.linkedIn !== "") { %>
+                    <a href="https://www.linkedin.com/in/<%- infoFeed.linkedIn %>" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>                
+                <% } %>
+            </h4>
         </div>
+        <br>
     </div>
+    <hr>
+    <br>
+    <h3 class="font-weight-bold text-center">About Me</h3>
+    <br>
+    <p class="text-center text-justify">
+        <%- infoFeed.bio %>
+    </p>
+    <br>
+    <hr>
+    <br>
+    <h3 class="font-weight-bold text-center">My Posts</h3>
+    <% postsUser.forEach(post => {%>
+        <div class="">
+            <%- include('partials/post', {post: post}) %>
+        </div>
+    <% }) %>
 </div>
 <%- include('partials/footer') %>
