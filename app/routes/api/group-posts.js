@@ -14,7 +14,7 @@ router.get('/:id', (req, res) => {
 
 
 router.post('/', (req, res) => {
-    // module.exports.addNewGroupPost = ({ groupId, createdBy, content }) => {
+
     let files = undefined;
 
     if(req.body.files !== undefined)
@@ -31,7 +31,7 @@ router.post('/', (req, res) => {
 
     Posts.addNewGroupPost(post)
         .then(result => res.jsonp(result))
-        .catch(err => res.jsponp(err));
+        .catch(err => res.jsonp(err));
 });
 
 router.delete('/:id', (req, res) => {
