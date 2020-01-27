@@ -152,6 +152,16 @@ sup {
   top: -.5em;
 }
 
+.avoltarTopo {
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.avoltarTopo:hover {
+  color: #dc3545;
+  text-decoration: underline;
+}
+
 .afacebook {
   color: #3b5998;
   text-decoration: none;
@@ -535,6 +545,15 @@ mark,
 
 .img-fluid {
   max-width: 100%;
+  height: auto;
+}
+
+.img-max {
+  padding: 0.25rem;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  max-width: 30%;
   height: auto;
 }
 
@@ -2052,6 +2071,7 @@ textarea.form-control {
 
 .form-group {
   margin-bottom: 1rem;
+  margin-top: -25px;
 }
 
 .form-text {
@@ -2677,6 +2697,18 @@ fieldset:disabled a.btn {
 .btn-danger:not(:disabled):not(.disabled):active:focus, .btn-danger:not(:disabled):not(.disabled).active:focus,
 .show > .btn-danger.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(225, 83, 97, 0.5);
+}
+
+.btn-muted2 {
+  color: #fff;
+  background-color: #e9ecef ;
+  border-color: #343a40;
+}
+
+.btn-muted2:hover {
+  color: #fff;
+  background-color: #e8ecec;
+  border-color: #343a40;
 }
 
 .btn-light {
@@ -4123,7 +4155,7 @@ input:focus::-webkit-input-placeholder {
 
 .nav-link {
   display: block;
-  padding: 0.5rem 1rem;
+  padding: 0.1rem 1rem;
 }
 
 .nav-link:hover, .nav-link:focus {
@@ -4180,7 +4212,9 @@ input:focus::-webkit-input-placeholder {
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #fff;
-  background-color: #007bff;
+  background-color: #e9ecef ;
+  border: 1px solid  #dee2e6;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
 }
 
 .nav-fill .nav-item {
@@ -5912,8 +5946,7 @@ a.close.disabled {
   align-items: flex-start;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  padding: 1rem 1rem;
-  border-bottom: 1px solid #dee2e6;
+  padding: 1rem 2rem 1rem;
   border-top-left-radius: 0.3rem;
   border-top-right-radius: 0.3rem;
 }
@@ -6771,6 +6804,29 @@ button.bg-dark:focus {
   padding-top:100%;
   
   border-radius:50%;
+  
+  background-position-y: center;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  
+  background-size: cover;
+  
+  margin: 0 auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.circle-avatar2{
+  max-width: 100%;
+  height:auto;
+  padding-top:100%;
+  
+  border-radius:50%;
+  border-style: solid;
+  border-width: 3px;
+  border-color: #000;
   
   background-position-y: center;
   background-position-x: center;
@@ -9996,6 +10052,10 @@ a.text-dark:hover, a.text-dark:focus {
 
 .text-muted {
   color: #6c757d !important;
+}
+
+.text-muted2 {
+  color: #495057 !important;
 }
 
 .text-black-50 {

@@ -41,10 +41,12 @@
                 <% } %>
             </div>
             <hr>
-            <p><b>Groups</b></p>
-            <% groups.forEach(group => {%>
-                <a href="/group/<%= group._id %>"><%= group.name %></a>
-            <% }) %>
+            <div class="text-center">
+                <p><b>Groups</b></p>
+                <% groups.forEach(group => {%>
+                    <a href="/group/<%= group._id %>"><%= group.name %></a>
+                <% }) %>
+            </div>
         </div>
         <div class="col offset-2 col-sm-10">
             <h1><b>News Feed</b></h1>
