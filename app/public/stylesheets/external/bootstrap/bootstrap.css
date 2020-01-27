@@ -670,6 +670,18 @@ pre code {
   margin-left: -15px;
 }
 
+.rowProfile {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  background: url('/images/CoverProfile.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
 .no-gutters {
   margin-right: 0;
   margin-left: 0;
@@ -5212,6 +5224,7 @@ a.badge-dark:focus, a.badge-dark.focus {
 
 .alert-dismissible {
   padding-right: 4rem;
+  margin-top: 50px;
 }
 
 .alert-dismissible .close {
@@ -6825,8 +6838,8 @@ button.bg-dark:focus {
   
   border-radius:50%;
   border-style: solid;
-  border-width: 3px;
-  border-color: #000;
+  border-width: 4px;
+  border-color: #fff;
   
   background-position-y: center;
   background-position-x: center;
