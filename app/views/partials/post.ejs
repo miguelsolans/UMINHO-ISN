@@ -65,7 +65,8 @@
 
 <!-- Post content -->
 <div class="post-info border-bottom">
-    <div class="row" id="<%= post._id %>">
+
+    <div class="row view overlay" id="<%= post._id %>">
         <div class="col-1 p-3">
             <div class="circle-avatar" style="background-image:url(<%= post.InfoUser[0].photo %>)"></div>
         </div>
@@ -82,18 +83,17 @@
                 <%- post.content.text %>
             </div>
         </div>
-        <div class="col-2 py-4 px-9">
-
+        <div class="col-2 justify-content-center align-self-center">
             <% if (post.createdBy == loginUser) { %>
-            <i class="btn btn-danger btn-sm rounded-circle delete-post" data-value="<%= post._id %>">
+            <i class="btn btn-danger btn-sm rounded-circle delete-post float-md-right" data-value="<%= post._id %>">
                 <span class="fas fa-trash-alt" style="color:#fff" aria-hidden="true"></span>
             </i>
-            <i class="btn btn-dark btn-sm rounded-circle edit-post" data-value="<%= post._id %>">
+            <i class="btn btn-dark btn-sm rounded-circle edit-post float-md-right" data-value="<%= post._id %>">
                 <span class="fas fa-pencil-alt" style="color:#fff" aria-hidden="true"></span>
             </i>
             <% } %>
 
-            <i class="btn btn-dark btn-sm rounded-circle view-comments" data-value="<%= post._id %>" data-toggle="modal"
+            <i class="btn btn-dark btn-sm rounded-circle view-comments float-md-right" data-value="<%= post._id %>" data-toggle="modal"
                 data-target="#exampleModalLong">
                 <span class="fas fa-comment" style="color:#fff" aria-hidden="true"></span>
             </i>

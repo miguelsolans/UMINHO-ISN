@@ -62,7 +62,10 @@ define([
                 url: `/api/settings/update`,
                 type: 'put',
                 data: dataJson,
-                success: response => console.log(response),
+                success: response => {
+                    console.log(response);
+                    $('#update-user-info').click();
+                },
                 error: response => console.log(response)
             });
         });
@@ -96,10 +99,6 @@ define([
     $('#save-profile-picture').on('click', () => {
         $(location).attr("href", "/settings")
     })
-
-
-
-
 
     $('#update-user-info-social').on('submit', () => {
         let instagram = $('#instagram').val();
