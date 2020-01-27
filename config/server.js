@@ -1,5 +1,6 @@
 // Loading Modules
 const createError = require('http-errors');
+const path = require('path');
 
 const flash = require('connect-flash');
 
@@ -41,7 +42,8 @@ mongoose.connect(`${process.env.MONGO_LOCAL}`, {
 // app.use(logger('dev'));
 
 // Tell node where Public Files are located
-app.use(express.static('./app/public'));
+// app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '../app/public')));
 
 // Setup EJS View Engine
 app.set('view engine', 'ejs');
