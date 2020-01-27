@@ -1,4 +1,5 @@
 require.config({
+    "baseUrl": './scripts',
     "paths": {
 
         /**
@@ -25,17 +26,6 @@ require.config({
 
         "highlight": "external/highlight/highlight",
 
-        /**
-         * Application Modules
-         */
-        // Settings
-        "settings": "modules/settings/settings",
-        // Messages
-        "messages": "modules/messages/messages",
-
-        // Feed
-        "feed": "modules/feed/feed",
-
 
         /**
          * Application Utils
@@ -43,7 +33,22 @@ require.config({
         // Notification Alerts
         "alert": "modules/utils/alerts",
         // Composer
-        "composer": "modules/utils/composer"
+        "composer": "modules/utils/composer",
+
+
+        /**
+         * Application Modules
+         */
+        // Settings
+        "settings": "modules/settings/main-settings",
+        // Messages
+        "messages": "modules/messages/main-messages",
+
+        // Feed
+        "feed": "modules/feed/main-feed"
+
+
+
 
     },
 
@@ -68,10 +73,10 @@ require.config({
     }
 });
 
-require([
-    'settings',
-    'messages',
-    'alert',
-    'feed',
-    'composer',
-], () => console.log("RequireJS Modules Loaded"));
+// require([
+//     'settings',
+//     'messages',
+//     'alert',
+//     'feed',
+//     'composer',
+// ], () => console.log("RequireJS Modules Loaded"));

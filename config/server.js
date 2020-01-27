@@ -73,7 +73,6 @@ const ProfileRoutes = require('../app/routes/profile');
 const SettingsRoutes = require('../app/routes/settings');
 const MessengerRoutes = require('../app/routes/messenger');
 const GroupRoutes = require('../app/routes/group');
-const TestRoutes = require('../app/routes/test');
 const UserPostRoutes = require('../app/routes/user-posts');
 
 // Webapp Root Routes
@@ -83,7 +82,6 @@ app.use('/profile', ProfileRoutes);
 app.use('/settings', SettingsRoutes);
 app.use('/messenger', MessengerRoutes);
 app.use('/group', GroupRoutes);
-app.use('/test', TestRoutes);
 app.use('/userpost', UserPostRoutes);
 
 // API Routes

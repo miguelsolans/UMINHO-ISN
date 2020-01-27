@@ -15,9 +15,17 @@ const groupSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    sigla: {
+    description: {
+        type: String,
+        default: "No description provided upon creation..."
+    },
+    creator: {
         type: String,
         required: true
+    },
+    audience: {
+        type: Boolean,
+        default: false
     },
     members: { // gardar aqui ou no user ou em ambos?
         type: [String]

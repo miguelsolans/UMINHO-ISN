@@ -63,4 +63,10 @@
         </div>
     <% }) %>
 </div>
+
+<script type="text/javascript">
+    require(['./scripts/main'], (main) => {
+        require(['modules/profile/main-profile']);
+    });
+</script>
 <%- include('partials/footer') %>
