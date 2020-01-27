@@ -44,18 +44,13 @@ define([
         const $infoForm = $('#update-user-info');
         $infoForm.on('submit', handler => {
             handler.preventDefault();
-            // quill-settings-about
-
-            // let content = $("#quill-settings-about .ql-editor").html();
-
-            // $("#bio").attr("value", content);
 
             let dataArray = $infoForm.serializeArray();
-            // (data, id, attr)
+
+            let content = $(".quill-composer .ql-editor").html();
+
             let dataJson = composer.parseData(dataArray, '#bio', 'value');
-            // dataArray.forEach(entry => {
-            //     dataJson[entry.name] = entry.value;
-            // });/settings/update
+            dataJson.bio = content;
 
             console.log(dataJson);
             $.ajax({
@@ -98,7 +93,7 @@ define([
 
     $('#save-profile-picture').on('click', () => {
         $(location).attr("href", "/settings")
-    })
+    });
 
     $('#update-user-info-social').on('submit', () => {
         let instagram = $('#instagram').val();
