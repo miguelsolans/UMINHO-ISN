@@ -1,5 +1,6 @@
 <%- include('partials/header') %>
-
+<!-- Modals -->
+<!-- New Profile Picture -->
 <div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="title" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -27,7 +28,7 @@
     </div>
 </div>
 
-
+<!-- Update Password -->
 <div class="modal fade" id="changePasswordForm" tabindex="-1" role="dialog" aria-labelledby="title" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -54,6 +55,10 @@
     </div>
 </div>
 
+<!-- End Modals -->
+
+
+<!-- Main -->
 <div class="container-fluid">
     <div class="row h-100">
         <div class="col-sm-3 d-none d-lg-block border-right">
@@ -87,13 +92,7 @@
                             <div class="quill-composer" id="quill-settings-about">
                                 <%- data.bio %>
                             </div>
-                            <input name="bio" id="bio" value="" hidden>
-                        </div>
-
-                        <div class="form-label-group">
-                            <label for="email">Email</label>
-                            <input type="email" name="email" id="email" class="form-control" placeholder="E-mail"
-                                value="<%= data.email %>" autofocus required>
+                            <input name="bio" id="bio" value="<%= data.bio %>" hidden>
                         </div>
 
                         <div>
