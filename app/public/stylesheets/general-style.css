@@ -18,3 +18,7 @@ html, body {
 .full-height {
     min-height: 100%;
 }
+
+.ql-editor{
+    min-height: 100px;
+}

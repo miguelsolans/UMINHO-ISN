@@ -1,18 +1,13 @@
 <!--<textarea class="content" name="example"></textarea>-->
 <form action="/userpost" method="POST" enctype="multipart/form-data" id="feed-post-form" multiple="multiple">
-    <input type="file" name="files" multiple>
-    <input type="submit">
-<!--     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="add-post-files">
-        <label class="form-check-label" for="add-post-files">
-            Attach Files
-        </label>
-    </div>
 
-    <div class="quill-composer" id="quill-feed-newpost">
+    <div class="custom-file">
+        <input type="file" name="files" class="custom-file-input" id="customFile" multiple>
+        <label class="custom-file-label" for="customFile">Choose file</label>
     </div>
+    <br/>
+    <br/>
 
-    </div> -->
     <div class="quill-composer" id="quill-feed-newpost"></div>
     <input type="text" name="text" id="user-post-text" value="" hidden>
     <button id="post-button" class="btn btn-light btn-sm btn-block shadow p-1 mt-2 bg-muted " type="submit">

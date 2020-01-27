@@ -33,7 +33,7 @@ router.post('/', checkAuth, upload.array('files', 12), (req, res) => {
 
         fs.rename(file.path, fileUpload, err => console.log(err));
 
-        fileNames.push(`/public/uploads/files/${file.originalname}`);
+        fileNames.push(`/uploads/files/${file.originalname}`);
     });
 
     let newPost = {
