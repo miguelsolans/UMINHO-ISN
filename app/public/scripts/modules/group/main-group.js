@@ -136,6 +136,24 @@ define([
         });
 
         /**
+         * Leave a Group
+         */
+        $('#leave-group').click(function () {
+            let id = $(this).attr('data-value');
+
+            $.ajax({
+                type: 'delete',
+                url: `/api/group/${id}/leave`,
+                success: response => {
+                    window.location.href = '/feed'
+                },
+                error: response => {
+                    alert.warningAlert({title: "Error", body: "Couldn't leave selected group"});
+                }
+            })
+        });
+
+        /**
          * Create a new Post
          */
         const $postForm = $('#feed-post-form');
@@ -149,7 +167,14 @@ define([
 
         });
 
+        let options = {
+            selector: "input[name=members]",
+            api: "/api/user/match",
+            field: "username",
+            enforce: true,
+            autocomplete: true
+        };
 
-        let tagifyConfig = tagify.config( "input[name=members]" ,"/api/user/match", "username");
+        let tagifyConfig = tagify.config( options );
     });
 });

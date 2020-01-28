@@ -65,19 +65,17 @@
             </h4>
             </p>
             <h6 class="text-center text-muted">
-                Description
+                Description: <span style="color:#000000"><%= group.description %></span>
             </h6>
-            <% console.log(group) %>
-            <p class="text-justify"><%= group.description %></p>
-
             <% if(loginUser === group.creator) { %>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#groupAdministration">
                     Administration
                 </button>
             <% } %>
+            <button id="leave-group" type="button" data-value="<%= group._id %>" class="btn btn-outline-danger">Leave Group</button>
         </div>
         <div class="col offset-2 col-sm-10">
-            <h1><b>News <%= group.name %> Feed</b></h1>
+            <h1><b><%= group.name %> Feed</b></h1>
             <h4>What are you thinking?</h4>
             <br>
             <%- include('partials/composer', { action: `/group/${group._id}/post`, id: 'feed-post-form' }) %>

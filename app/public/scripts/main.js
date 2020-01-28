@@ -80,7 +80,7 @@ require.config({
 
 require([
     'composer',
-    'alerts',
+    'alert',
     'common',
     'tagifyWrapper'
 ], () => console.log("Common modules loaded"));

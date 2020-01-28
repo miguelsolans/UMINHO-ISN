@@ -55,8 +55,28 @@ module.exports.groupMatch = (match) => {
         }
     }, {
         '$project': {
-            '_id': 0,
+            '_id': 1,
             'name': 1
         }
     }])
+};
+
+module.exports.findByName = (name) => {
+    return Group.findOne({ name: name});
+};
+
+module.exports.leaveGroup = (groupId, user) => {
+    return Group.findByIdAndUpdate(groupId, {
+        $pull: {
+            members: user
+        }
+    })
+};
+
+module.exports.joinMany = (groups, user) => {
+    return Group.updateMany({ _id: { $in: groups }}, {
+            $push: {
+                members: user
+            }
+    })
 };
