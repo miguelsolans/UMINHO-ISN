@@ -7,6 +7,7 @@ const groupPost = require('../../controllers/groupPosts');
 /*********************************************************************
  * Group Basic Operations
  *********************************************************************/
+
 /**
  * List public routes
  */

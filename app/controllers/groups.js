@@ -42,3 +42,7 @@ module.exports.deleteGroup = groupId => {
 module.exports.creator = (groupId) => {
     return Group.findById(groupId, { creator: 1});
 };
+
+module.exports.updateGroup = (groupId, fields) => {
+    return Group.findByIdAndUpdate(groupId, fields);
+};
