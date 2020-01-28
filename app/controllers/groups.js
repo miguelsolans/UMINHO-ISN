@@ -60,3 +60,11 @@ module.exports.groupMatch = (match) => {
         }
     }])
 };
+
+module.exports.leaveGroup = (groupId, user) => {
+    return Group.findByIdAndUpdate(groupId, {
+        $pull: {
+            members: user
+        }
+    })
+};

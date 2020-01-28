@@ -183,6 +183,18 @@ router.get('/post/:id/comments', checkAuth, (req, res) => {
 
 });
 
+/**
+ * Leave a given group
+ */
+router.delete('/:id/leave', checkAuth, (req, res) => {
+    let id = req.params.id,
+        user = req.decodedUser;
+
+    group.leaveGroup(id, user)
+        .then(result => res.jsonp(result))
+        .catch(err => res.jsonp(err));
+});
+
 router.get('/post/single/:id', checkAuth, (req, res ) => {
 
     let post = req.params.id;
