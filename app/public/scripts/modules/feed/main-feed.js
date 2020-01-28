@@ -2,9 +2,10 @@ define([
     'jquery',
     'alert',
     'composer',
+    'tagifyWrapper',
     'jquery-confirm',
     'bootstrap'
-], function ($, alert, composer) {
+], function ($, alert, composer, tagify) {
     'use strict';
 
     function formatComment(content) {
@@ -162,6 +163,10 @@ define([
             $postForm.unbind('submit').submit();
 
         });
+        /**
+         * Tagify Initialization
+         */
+        let tagifyConfig = tagify.config( "input[name=groupnames]" ,"/api/user/match");
 
     });
 });

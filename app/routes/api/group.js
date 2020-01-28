@@ -47,11 +47,10 @@ router.get('/registered', checkAuth, (req, res) => {
 /**
  * Join a Group
  */
-router.put('/join/:id', checkAuth, (req, res) => {
-    let user = [req.decodedUser];
-    group.registerMembers(req.params.id, user)
-        .then(result => res.jsonp(result))
-        .catch(err => res.jsonp(err));
+router.post('/join', checkAuth, (req, res) => {
+    let user = req.decodedUser;
+
+    console.log(req.body);
 });
 
 /**
