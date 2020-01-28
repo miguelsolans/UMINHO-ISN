@@ -33,12 +33,12 @@
 
 <div class="container-fluid d-flex h-100 flex-column mt-5 pt-5">
     <div class="row full-height">
-        <div class="col-3 border-right">
+        <div class="col-sm-3 d-none d-sm-block position-fixed">
             <div class="row">
                 <div class="col">
                     <h1 class="font-weight-bold">Chats</h1> 
                 </div>
-                <div class="col py-3">
+                <div class="col py-3 border-right">
                     <i class="btn btn-danger btn-sm rounded-circle delete-post float-md-right mr-1" id="new-chat">
                         <span class="fas fa-plus-circle" style="color:#fff" aria-hidden="true"></span>
                     </i>
@@ -55,7 +55,7 @@
             </div>
 
         </div>
-        <div class="col-9">
+        <div class="offset-3 col-sm-9">
             <div id="chat-box-container">
                 <div id="no-chat-selected">
                     <h2 class="text-center font-weight-bold">Messages</h2>
@@ -64,15 +64,28 @@
                 </div>
 
                 <div id="chat-selected">
-                    <h2 class="text-center" id="chatName"></h2>
-                    <ul class="list-group" id="messages-wrapper"></ul>
-
-                    <form>
-                        <input type="text" name="text" id="message-body-form">
-                        <input type="hidden" name="chatId" value="">
-                        <input type="button" id="send-message-button" value="Send">
+                    <!-- Nome do Chat -->
+                    <div id="loginUser" data-value="<%= loginUser %>"></div>
+                    <div class="col-sm bg-light" style="background-color: #fff;">
+                        <h2 style="z-index: 10; padding-top: 50px; margin-top: -50px; margin-left: -10px; width: 100%; background-color: #fff;" class="font-weight-bold position-fixed border-bottom" id="chatName">Chats<hr></h2> 
+                    </div>
+                    <ul class="list-group pt-5 pb-5 mb-3" id="messages-wrapper"></ul>
+                    <form class="footerChat pb-3 col offset-3 col-sm-9 position-fixed">
+                        <div class="row">
+                            <div class="col-sm-10 pt-3">
+                                <input class="form-control borderChat" type="text" placeholder="Write your Message..." name="text" id="message-body-form">
+                                <input type="hidden" name="chatId" value="">
+                            </div>
+                            <div class="col-sm-2 pr-4 mt-3">
+                                <button class="btn btn-danger btn-sm rounded-circle edit-post float-sm-right mr-1" id="leave-conversation" value="">
+                                    <span class="fas fa-trash-alt" style="color:#fff" aria-hidden="true"></span>
+                                </button>
+                                <button class="btn btn-dark btn-sm rounded-circle edit-post float-sm-right mr-1" type="submit" id="send-message-button" value="Send">
+                                    <span class="fas fa-share" style="color:#fff" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </div>
                     </form>
-                    <button class="btn btn-danger" id="leave-conversation" value="">Leave</button>
                 </div>
             </div>
 
