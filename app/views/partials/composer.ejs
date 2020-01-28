@@ -1,4 +1,3 @@
-<!--<textarea class="content" name="example"></textarea>-->
 <form action="<%= action %>" method="POST" enctype="multipart/form-data" id="<%= id %>" multiple="multiple">
 
     <div class="custom-file">
@@ -8,23 +7,10 @@
     <br/>
     <br/>
 
-    <div class="quill-composer p-1" id="quill-feed-newpost"></div>
+    <div class="quill-composer p-1" id="quill-newpost"></div>
     <input type="text" name="text" id="user-post-text" value="" hidden>
     <button id="post-button" class="btn btn-muted2 btn-sm btn-block shadow-sm p-1 mt-2 text-muted2 border" type="submit">
         Submit Post
     </button>        
     <br>
 </form>
-
-<!--    <div class="row">-->
-<!--        <div class="col-sm-6">-->
-<!--            <label for="text">Create New Post</label>-->
-<!--            <textarea class="form-control" id="text" rows="3" name="text" hidden></textarea>-->
-<!--            <div class="quill-composer" id="quill-settings-about">-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="col-sm-4 py-4">-->
-<!--            <input type="file" id="files" name="files">-->
-<!--            <button type="submit" class="btn btn-primary">Submit Post</button>-->
-<!--        </div>-->
-<!--    </div>-->

@@ -62,6 +62,7 @@ router.put('/update', checkAuth, (req, res) => {
     let info = {
         bio: req.body.bio,
         courses: courses,
+
     };
     User.updateInfo(user, info)
         .then(result => res.jsonp(result))
@@ -70,6 +71,7 @@ router.put('/update', checkAuth, (req, res) => {
 
 router.put('/updatesocial', checkAuth, (req, res) => {
     let user = req.decodedUser;
+
     console.log(req.body);
 
     User.updateInfoSocial(user, req.body).then(result => res.jsonp(result))
