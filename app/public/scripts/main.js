@@ -24,9 +24,6 @@ require.config({
         "dropzone": "external/dropzone/dropzone",
 
 
-        "highlight": "external/highlight/highlight",
-
-
         /**
          * Application Utils
          */
@@ -34,7 +31,13 @@ require.config({
         "alert": "modules/utils/alerts",
         // Composer
         "composer": "modules/utils/composer",
+        // Tagify Configuration
+        "tagifyWrapper": "modules/utils/tagify-configuration",
 
+        /**
+         * Common Logic Scripts
+         */
+        "common": "modules/utils/common",
 
         /**
          * Application Modules
@@ -75,10 +78,9 @@ require.config({
 
 });
 
-// require([
-//     'settings',
-//     'messages',
-//     'alert',
-//     'feed',
-//     'composer',
-// ], () => console.log("RequireJS Modules Loaded"));
+require([
+    'composer',
+    'alerts',
+    'common',
+    'tagifyWrapper'
+], () => console.log("Common modules loaded"));
