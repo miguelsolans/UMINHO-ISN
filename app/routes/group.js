@@ -6,6 +6,12 @@ const groupPost = require('../controllers/groupPosts');
 const axios     = require('axios');
 const parseTag  = require('../utils/parseTag');
 const parseTime = require('../utils/parseTime');
+const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
+const upload = multer({
+    dest: 'app/public/uploads'
+});
 
 /*********************************************************************
  * Group Basic Operations
@@ -19,15 +25,6 @@ const parseTime = require('../utils/parseTime');
 router.get('/public', checkAuth, (req, res) => {
     
     group.listAvailableGroups({audience: true}, {_id: 1, name: 1, description: 1})
-        .then(result => res.jsonp(result))
-        .catch(err => res.jsonp(err));
-});
-
-/**
- * List groups owned by me
- */
-router.get('/own', checkAuth, (req, res) => {
-    group.listAvailableGroups({ creator: req.decodedUser })
         .then(result => res.jsonp(result))
         .catch(err => res.jsonp(err));
 });
@@ -48,16 +45,6 @@ router.get('/registered', checkAuth, (req, res) => {
             .catch(err => res.jsonp(err));
     }
 });
-
-/**
- * Join a Group
- */
-// router.put('/join/:id', checkAuth, (req, res) => {
-//     let user = [req.decodedUser];
-//     group.registerMembers(req.params.id, user)
-//         .then(result => res.jsonp(result))
-//         .catch(err => res.jsonp(err));
-// });
 
 /**
  * Add user to a group
@@ -110,14 +97,29 @@ router.post('/new', checkAuth, (req, res) => {
 /**
  * Create a Group Post
  */
-router.post('/:id/post', checkAuth, (req, res) => {
+router.post('/:id/post', checkAuth, upload.array('files', 12), (req, res) => {
     let user = req.decodedUser;
+
+    console.log(req.body.text);
+
+    let uploadedFiles = req.files;
+    let fileNames = [];
+
+
+    uploadedFiles.forEach(file => {
+        let fileUpload = path.join(__dirname, `../public/uploads/files/${file.originalname}`);
+
+        fs.rename(file.path, fileUpload, err => console.log(err));
+
+        fileNames.push(`/uploads/files/${file.originalname}`);
+    });
 
     let newPost = {
         groupId: req.params.id,
         createdBy: user,
         content: {
-            text: req.body.text
+            text: req.body.text,
+            files: fileNames
         }
     };
 

@@ -75,6 +75,7 @@ define([
                     $('#comments-modal').modal();
                 },
                 error: response => {
+                    console.log(response);
                 }
             })
         });
@@ -154,8 +155,7 @@ define([
          */
         const $postForm = $('#feed-post-form');
 
-        $postForm.on('submit', () => {
-
+        $postForm.on('submit', (e) => {
 
             let content = $(".quill-composer .ql-editor").html();
             $('#user-post-text').attr('value', content);
