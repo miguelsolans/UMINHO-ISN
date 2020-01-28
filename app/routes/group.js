@@ -8,6 +8,9 @@ const axios     = require('axios');
 /*********************************************************************
  * Group Basic Operations
  *********************************************************************/
+
+
+
 /**
  * List public routes
  */
@@ -57,7 +60,7 @@ router.put('/join/:id', checkAuth, (req, res) => {
 /**
  * Add user to a group
  */
-router.put(':id/add', checkAuth, (req, res) => {
+router.put('/:id/add', checkAuth, (req, res) => {
     let users = req.body.users;
 
     group.creator(req.params.id)
@@ -122,6 +125,42 @@ router.post('/:id/post', checkAuth, (req, res) => {
 
 });
 
+
+/**
+ * Change Form Settings
+ */
+router.post('/:id/update', checkAuth, (req, res) => {
+
+
+    let info = req.body;
+    let id = req.params.id;
+
+    
+    let membersJson = JSON.parse(info.members);
+
+
+    console.log(membersJson);
+
+    let members = [];
+
+    membersJson.forEach(member => {
+        members.push(member.value)
+    });
+
+    let parsedUpdate = {
+        audience: info.audience,
+        members: members,
+        description: info.description,
+        name: info.name
+    };
+
+
+
+    group.updateGroup(id, parsedUpdate)
+        .then(result => res.redirect(`/group/${id}`))
+        .catch(err => res.redirect(`/group/${id}`));
+});
+
 /**
  * Get a Group posts
  */
@@ -135,7 +174,7 @@ router.get('/:id/posts', (req, res) => {
 /**
  * Delete a Group Post
  */
-router.delete('post/:id', checkAuth, (req, res) => {
+router.delete('/post/:id', checkAuth, (req, res) => {
     let id = req.params.id;
 
     console.log(`DELETING POST ${id}`);

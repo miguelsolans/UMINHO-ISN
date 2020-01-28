@@ -1,10 +1,10 @@
 define([
     'jquery',
     'alert',
-    'tagify',
+    'tagifyWrapper',
     'jquery-confirm',
     'bootstrap'
-], ($, alert, Tagify) => {
+], ($, alert, tagify) => {
     "use strict";
 
     const addMessage = (message) => {
@@ -138,7 +138,9 @@ define([
                 }
             });
         });
+        // /
 
+        let tagifyConfig = tagify.config( "input[name=participants]" ,"/api/user/match");
 
 
         /**
@@ -151,37 +153,6 @@ define([
         //     console.log("CONNECTING...");
         // })
     });
-
-    let participantsInput = document.querySelector("input[name=participants]");
-    let tagifyParticipants;
-    let onInput = e => {
-        let value = e.detail.value;
-        tagifyParticipants.settings.whitelist.length = 0; // Reset whitelist
-
-        // tagifyParticipants.loading(true).dropdown.hide.call(tagifyParticipants)
-        $.ajax({
-            method: "GET",
-            url: `/api/user/match/${value}`,
-            success: response => {
-                console.log(response);
-
-                response.forEach(user => tagifyParticipants.settings.whitelist.push(user.username));
-            },
-            error: response => {
-                console.log(response);
-            }
-        });
-        console.log(value);
-    };
-
-
-    if(participantsInput !== null) {
-        tagifyParticipants = new Tagify(participantsInput, {whitelist: []});
-        tagifyParticipants.on('input', onInput);
-
-    }
-
-
 
 
 });
