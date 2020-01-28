@@ -37,66 +37,66 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New Group</h5>
+                <h4 class="modal-title text-center font-weight-bold" id="exampleModalLabel">Groups</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
 
-                <ul class="nav nav-pills nav-fill mt-5">
-                    <li class="nav-item">
-                        <a href="#new-group-tab" class="nav-link active text-muted2" data-toggle="tab">New Group</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#join-group-tab" class="nav-link text-muted2" data-toggle="tab">Join Group</a>
-                    </li>
-                </ul>
+                <div class="form-group px-3">
+                    <h5>Create or Join a Group</h5>
 
+                    <ul class="nav nav-pills nav-fill mt-4">
+                        <li class="nav-item">
+                            <a href="#new-group-tab" class="nav-link active text-muted2" data-toggle="tab">New Group</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#join-group-tab" class="nav-link text-muted2" data-toggle="tab">Join Group</a>
+                        </li>
+                    </ul>
+                </div>
                 <div class="tab-content">
-                    <div class="tab-pane fade" id="new-group-tab">
+                    <div class="tab-pane fade show active" id="new-group-tab">
                         <form action="/group/new" method="post">
-                            <div class="form-row align-items-center">
-                                <div class="col-auto my-1">
-                                    <label for="group-visibility">Audience</label>
-                                    <select class="custom-select" id="group-audience" name="audience">
-                                        <option value="false" selected>Private</option>
-                                        <option value="true">Public</option>
-                                    </select>
-                                </div>
+                            <div class="col-auto px-3">
+                                <label class="font-weight-bold" for="group-visibility">Audience</label>
+                                <select class="custom-select" id="group-audience" name="audience">
+                                    <option value="false" selected>Private</option>
+                                    <option value="true">Public</option>
+                                </select>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group px-3 mt-2 font-weight-bold">
                                 <label for="group-name">Group Name</label>
                                 <input type="text" class="form-control" id="group-name" name="name" placeholder="Group Name..." required>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group px-3 mt-2 font-weight-bold">
                                 <label for="group-name">Description</label>
                                 <textarea class="form-control" id="group-description" name="description" placeholder="Group description"></textarea>
+                                <button type="submit" class="btn btn-muted2 btn-sm btn-block shadow-sm py-1 px-3 mt-2 text-muted2 border">
+                                    Create Group
+                                </button>
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Create</button>
                         </form>
                     </div>
                     <div class="tab-pane fade" id="join-group-tab">
                         <form action="/api/group/join" method="post">
 
-                            <div class="form-group">
+                            <div class="form-group px-3 mt-2 font-weight-bold">
                                 <label for="group-name">Group Names</label>
                                 <input type="text" class="form-control" id="group-names" name="groupnames" placeholder="Group Name..." required>
                                 <small id="chatRoomParticipantsHelp" class="form-text text-muted">Wait for suggestions...</small>
-
+                                
+                                <button type="submit" class="btn btn-muted2 btn-sm btn-block shadow-sm py-1 px-3 mt-2 text-muted2 border">
+                                    Join Group(s)
+                                </button>
                             </div>
-
-                            <button type="submit" class="btn btn-primary">Create</button>
                         </form>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
