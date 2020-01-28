@@ -38,12 +38,12 @@
                 </button>
             </div>
             <div class="modal-body">
-
                 <form>
                     <div class="form-group px-3">
                         <h5>Update your Post</h5>
-                        <textarea class="form-control" id="edit-post-text" rows="3" name="text">
-                        </textarea>
+                        <div class="quill-editor p-1"></div>
+
+                        <input class="form-control" id="edit-post-text" rows="3" name="text" hidden>
                         <input id="edit-post-id" value="" hidden>
                         <button id="update-post-button" type="button" class="btn btn-muted2 btn-sm btn-block shadow-sm py-1 px-3 mt-2 text-muted2 border">
                             Submit Changes

@@ -3,11 +3,7 @@ define([
     'quill'
 ], ($, Quill) => {
     "use strict";
-
-    /**
-     * QuillJS Configuration
-     */
-    const quill = new Quill('.quill-composer', {
+    const options = {
         theme: 'snow',
         formats: [
             'bold',
@@ -31,9 +27,13 @@ define([
             }
         },
         placeholder: 'Write something...'
+    };
+    /**
+     * QuillJS Configuration
+     */
+    const quill = new Quill('.quill-composer', options);
 
-    });
-
+    const editor = new Quill('.quill-editor', options);
     return {
         quill: this.quill,
         parseData: (data, id, attr) => {
