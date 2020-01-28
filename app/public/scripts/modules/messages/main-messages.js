@@ -138,20 +138,11 @@ define([
                 }
             });
         });
-        // /
-
-        let tagifyConfig = tagify.config( "input[name=participants]" ,"/api/user/match");
 
 
-        /**
-         * Socketio Bidirectional Communication
-         *
-         */
-        // let socket = io();
-        //
-        // socket.on('connection', () => {
-        //     console.log("CONNECTING...");
-        // })
+        let tagifyConfig = tagify.config( "input[name=participants]" ,"/api/user/match", "username");
+
+
     });
 
 

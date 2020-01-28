@@ -4,42 +4,7 @@ const dotenv = require('dotenv').config();
 const router = express.Router();
 const checkAuth = require('../middleware/check-auth');
 const feed = require('../controllers/feed');
-
-function timeMinutes(d1, d2) {
-    var diff = Math.abs(d1 - d2)
-    return Math.floor((diff / 1000) / 60);
-}
-
-function timeHours(d1, d2) {
-    return parseInt(Math.abs(d1 - d2) / (60 * 60 * 1000));
-}
-
-function timeDays(d1, d2) {
-    var t2 = d2.getTime();
-    var t1 = d1.getTime();
-
-    return parseInt((t2 - t1) / (24 * 3600 * 1000));
-}
-
-function timeWeeks(d1, d2) {
-    var t2 = d2.getTime();
-    var t1 = d1.getTime();
-
-    return parseInt((t2 - t1) / (24 * 3600 * 1000 * 7));
-}
-
-function timeMonth(d1, d2) {
-    var d1Y = d1.getFullYear();
-    var d2Y = d2.getFullYear();
-    var d1M = d1.getMonth();
-    var d2M = d2.getMonth();
-
-    return (d2M + 12 * d2Y) - (d1M + 12 * d1Y);
-}
-
-function timeYears(d1, d2) {
-    return d2.getFullYear() - d1.getFullYear();
-}
+const parseTime = require('../utils/parseTime');
 
 router.get('/', checkAuth, function (req, res, next) {
     let one = `${process.env.APP_URL}/api/userpost/feed`;
@@ -71,17 +36,17 @@ router.get('/', checkAuth, function (req, res, next) {
             const groups = responses[2].data;
             const firstName = responses[1].data.fullName.split(" ")[0];
 
-            let now = new Date()
+            let now = new Date();
 
-            for (var i in posts) {
-                let date = new Date(posts[i].createdAt)
+            for (let i in posts) {
+                let date = new Date(posts[i].createdAt);
 
-                const timeyears = timeYears(date, now)
-                const timemonth = timeMonth(date, now);
-                const timeweeks = timeWeeks(date, now);
-                const timedays = timeDays(date, now);
-                const timehours = timeHours(date, now);
-                const timeminutes = timeMinutes(date, now);
+                const timeyears = parseTime.timeYears(date, now);
+                const timemonth = parseTime.timeMonth(date, now);
+                const timeweeks = parseTime.timeWeeks(date, now);
+                const timedays = parseTime.timeDays(date, now);
+                const timehours = parseTime.timeHours(date, now);
+                const timeminutes = parseTime.timeMinutes(date, now);
                 if (timeyears > 0) {
                     posts[i].createdAt = '' + timeyears + ' year' + (timeyears === 1 ? "" : "s")
                 } else if (timemonth > 0) {
