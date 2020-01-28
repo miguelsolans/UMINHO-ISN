@@ -58,7 +58,7 @@ router.post('/join', checkAuth, (req, res) => {
 /**
  * Add user to a group
  */
-router.put(':id/add', checkAuth, (req, res) => {
+router.put('/:id/add', checkAuth, (req, res) => {
     let users = req.body.users;
 
     group.creator(req.params.id)
@@ -83,7 +83,7 @@ router.put(':id/add', checkAuth, (req, res) => {
  * New Group
  */
 router.post('/new', checkAuth, (req, res) => {
-
+    console.log("/API new Requested");
     let newGroup = {
         name: req.body.name,
         description: req.body.description,
@@ -92,7 +92,6 @@ router.post('/new', checkAuth, (req, res) => {
         audience: req.body.audience === 'true'
     };
 
-    console.log(newGroup);
     group.createGroup(newGroup)
         .then(result => res.jsonp(result))
         .catch(err => res.jsonp(err));
@@ -107,16 +106,15 @@ router.post('/new', checkAuth, (req, res) => {
  * Create a Group Post
  */
 router.post('/:id/post', checkAuth, (req, res) => {
-    let user = req.decodedUser;
-
+    console.log("/api New Group Post");
     let newPost = {
         groupId: req.params.id,
-        createdBy: user,
+        createdBy: req.decodedUser,
         content: {
-            text: req.body.text
+            text: req.body.content.text,
+            files: req.body.content.files
         }
     };
-
     groupPost.addNewGroupPost(newPost)
         .then(result => res.jsonp(result))
         .catch(err => res.jsonp(err));
@@ -133,9 +131,19 @@ router.get('/:id/posts', (req, res) => {
 });
 
 /**
+ * Change Form Settings
+ */
+router.put('/:id/update', checkAuth, (req, res) => {
+
+    group.updateGroup(req.params.id, req.body)
+        .then(result => res.jsonp(result))
+        .catch(err => res.jsonp(err));
+});
+
+/**
  * Delete a Group Post
  */
-router.delete('post/:id', checkAuth, (req, res) => {
+router.delete('/post/:id', checkAuth, (req, res) => {
     let id = req.params.id;
 
     console.log(`DELETING POST ${id}`);
@@ -152,13 +160,7 @@ router.put('/post/:id', checkAuth, (req, res) => {
     let id = req.params.id;
     console.log(`UPDATING POST ${id}`);
 
-    let updatedData = {
-        content: {
-            text: req.body.text
-        }
-    };
-
-    groupPost.updatePost(id, updatedData)
+    groupPost.updatePost(id, req.body)
         .then(result => res.jsonp(result))
         .catch(err => res.jsonp(err));
 
@@ -181,7 +183,19 @@ router.get('/post/:id/comments', checkAuth, (req, res) => {
 
 });
 
-// Post
+router.get('/post/single/:id', checkAuth, (req, res ) => {
+
+    let post = req.params.id;
+
+    groupPost.getSinglePost(post)
+        .then(result => res.jsonp(result))
+        .catch(err => res.jsonp(err));
+
+});
+
+/**
+ * Add a new comment to a post
+ */
 router.post('/post/:id/comment', checkAuth, (req, res) => {
     let postId = req.params.id;
 

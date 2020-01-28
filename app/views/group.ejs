@@ -77,7 +77,7 @@
             <% } %>
         </div>
         <div class="col offset-2 col-sm-10">
-            <h1><b>News Feed</b></h1>
+            <h1><b>News <%= group.name %> Feed</b></h1>
             <h4>What are you thinking?</h4>
             <br>
             <%- include('partials/composer', { action: `/group/${group._id}/post`, id: 'feed-post-form' }) %>
