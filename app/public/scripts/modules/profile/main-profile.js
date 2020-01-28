@@ -1,7 +1,9 @@
 define([
     'jquery',
+    'alert',
+    'jquery-confirm',
     'bootstrap'
-], ($) => {
+], ($, alert) => {
     function formatComment(content) {
         let info = `<div class="post-info border-bottom px-3">
         <div class="row">
@@ -28,27 +30,6 @@ define([
 
     }
 
-    // update-post-button
-    $('#update-post-button').on('click', () => {
-        let text = $('#edit-post-text').val();
-        let id = $('#edit-post-id').attr('value');
-
-        $.ajax({
-            method: "PUT",
-            url: `/api/userpost/${id}`,
-            data: {
-                content: {
-                    text: text
-                }
-            },
-            success: response => {
-                console.log(response);
-                $(location).attr('href', '/feed');
-            },
-            error: response => console.log(response)
-        });
-    });
-
     $(document).ready( () => {
         /**
          * View Comments Modal
@@ -61,7 +42,7 @@ define([
                 success: response => {
                     $('#comments-container').html("");
 
-                    $('#submit-post-comment').attr('action', `api/userpost/comment/${id}`);
+                    $('#submit-post-comment').attr('action', `/api/userpost/comment/${id}`);
 
                     if (response.length > 0) {
                         response[0].Comments.forEach(content => formatComment(content));

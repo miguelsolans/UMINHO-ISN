@@ -8,7 +8,7 @@ define(['jquery', 'tagify', 'composer', 'dropzone', 'bootstrap'], (
 
     $(document).ready(() => {
         let input = document.querySelector('input[name=courses]');
-        if (input !== null) new Tagify(input);
+        new Tagify(input);
 
         // Triggers
         // Edit Profile Picture Sidebar

@@ -9,6 +9,20 @@ const parseTag  = require('../../utils/parseTag');
  * Group Basic Operations
  *********************************************************************/
 
+
+/**
+ * Join a Group
+ */
+router.post('/join', checkAuth, (req, res) => {
+    let user = req.decodedUser;
+
+    group.joinMany(req.body, user)
+        .then(result => res.jsonp(result))
+        .catch(err => res.jsonp(err));
+
+});
+
+
 /**
  * List public routes
  */
@@ -45,15 +59,6 @@ router.get('/registered', checkAuth, (req, res) => {
     }
 });
 
-/**
- * Join a Group
- */
-router.post('/join', checkAuth, (req, res) => {
-    let user = req.decodedUser;
-
-
-    console.log(req.body);
-});
 
 /**
  * Add user to a group
@@ -84,13 +89,21 @@ router.put('/:id/add', checkAuth, (req, res) => {
  */
 router.post('/new', checkAuth, (req, res) => {
     console.log("/API new Requested");
+
+    let audience = req.body.audience;
+
+
+    let t = audience === 'true';
+
     let newGroup = {
         name: req.body.name,
         description: req.body.description,
         members: [req.decodedUser],
         creator: req.decodedUser,
-        audience: req.body.audience === 'true'
+        audience: t
     };
+
+    console.log(newGroup);
 
     group.createGroup(newGroup)
         .then(result => res.jsonp(result))

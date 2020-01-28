@@ -165,10 +165,5 @@ define([
             $postForm.unbind('submit').submit();
 
         });
-        /**
-         * Tagify Initialization
-         */
-        tagify.config( "input[name=groupnames]" ,"/api/group/match", "name");
-
     });
 });

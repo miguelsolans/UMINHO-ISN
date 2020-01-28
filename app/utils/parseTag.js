@@ -6,7 +6,7 @@ module.exports.parse = (data, field) => {
     let dataArr = [];
 
     dataJson.forEach(member => {
-        dataArr.push(member.value)
+        dataArr.push(member[field])
     });
 
     return dataArr;

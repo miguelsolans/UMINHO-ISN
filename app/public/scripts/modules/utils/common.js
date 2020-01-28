@@ -1,6 +1,7 @@
 define([
-    'jquery'
-], ($) => {
+    'jquery',
+    'tagifyWrapper'
+], ($, tagify) => {
     /**
      * User Logout
      */
@@ -9,4 +10,17 @@ define([
 
         window.location.href = '/';
     });
+
+    /**
+     * Tagify Initialization
+     */
+    let options = {
+        selector: "input[name=groupnames]",
+        api: "/api/group/match",
+        field: "name",
+        id: "_id",
+        enforce: true,
+        autocomplete: true
+    };
+    tagify.config( options );
 });

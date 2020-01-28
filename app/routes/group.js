@@ -58,12 +58,13 @@ router.put('/:id/add', checkAuth, (req, res) => {
  */
 router.post('/new', checkAuth, (req, res) => {
 
+
     let newGroup = {
         name: req.body.name,
         description: req.body.description,
         members: [req.decodedUser],
         creator: req.decodedUser,
-        audience: req.body.audience === 'true'
+        audience: req.body.audience
     };
 
     axios.post(`${process.env.API_URL}/group/new`, newGroup, {
@@ -120,6 +121,17 @@ router.post('/:id/post', checkAuth, upload.array('files', 12), (req, res) => {
 
 });
 
+router.post('/join', checkAuth, (req, res) => {
+    let group = parseTag.parse(req.body.groupnames, "id");
+
+    axios.post(`${process.env.API_URL}/group/join`, group, {
+        headers: {
+            Cookie: `userToken=${req.cookies.userToken}`
+        }
+    }).then(result => {
+        res.redirect('/feed');
+    }).catch(err => res.redirect(`/feed`));
+});
 
 /**
  * Change Form Settings
@@ -130,7 +142,7 @@ router.post('/:id/update', checkAuth, (req, res) => {
     let info = req.body;
     let id = req.params.id;
 
-    let members = parseTag.parse(info.members);
+    let members = parseTag.parse(info.members, "value");
 
     let parsedUpdate = {
         audience: info.audience,
