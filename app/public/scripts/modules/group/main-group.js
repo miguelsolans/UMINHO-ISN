@@ -13,7 +13,8 @@ define([
          */
         const $postForm = $('#feed-post-form');
 
-        $postForm.on('submit', () => {
+        $postForm.on('submit', (e) => {
+//            e.preventDefault();
 
             let content = $(".quill-composer .ql-editor").html();
             $('#user-post-text').attr('value', content);
