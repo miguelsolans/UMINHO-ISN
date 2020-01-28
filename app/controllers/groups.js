@@ -15,6 +15,7 @@ module.exports.listTopGroups = (member, limit) => {
     return Group.find(member).limit(limit);
 
 };
+
 module.exports.groupMembers = (id) => {
 
     return Group.findById(id, { _id: 0, members: 1 });
