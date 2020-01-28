@@ -140,7 +140,7 @@ define([
         });
 
 
-        let tagifyConfig = tagify.config( "input[name=participants]" ,"/api/user/match");
+        let tagifyConfig = tagify.config( "input[name=participants]" ,"/api/user/match", "username");
 
 
     });

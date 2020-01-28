@@ -80,11 +80,13 @@
                         </form>
                     </div>
                     <div class="tab-pane fade" id="join-group-tab">
-                        <form action="/group/join" method="post">
+                        <form action="/api/group/join" method="post">
 
                             <div class="form-group">
                                 <label for="group-name">Group Names</label>
                                 <input type="text" class="form-control" id="group-names" name="groupnames" placeholder="Group Name..." required>
+                                <small id="chatRoomParticipantsHelp" class="form-text text-muted">Wait for suggestions...</small>
+
                             </div>
 
                             <button type="submit" class="btn btn-primary">Create</button>

@@ -166,7 +166,7 @@ define([
         /**
          * Tagify Initialization
          */
-        let tagifyConfig = tagify.config( "input[name=groupnames]" ,"/api/user/match");
+        tagify.config( "input[name=groupnames]" ,"/api/group/match", "name");
 
     });
 });
