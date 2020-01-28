@@ -11,7 +11,6 @@ const pagination = require('../../middleware/pagination');
 
 router.post('/', checkAuth, (req, res) => {
     console.log(`From Middleware: ${req.decodedUser}`);
-    // criar objeto json do post, incluindo user
 
     const newPost = {
         createdBy: req.decodedUser,
@@ -21,8 +20,6 @@ router.post('/', checkAuth, (req, res) => {
     UserPosts.addNew(newPost)
         .then(result => console.log(result))
         .catch(err => console.log(err))
-
-    //reencaminhar...
 });
 
 router.delete('/:id', checkAuth, checkPostOwner, (req, res) => {
@@ -80,7 +77,7 @@ router.post('/comment/:postId', checkAuth, (req, res) => {
         text: req.body.text
     };
     UserPosts.addComment(req.params.postId, newComment)
-        .then(result => res.jsonp(result))
+        .then(result => res.redirect(req.headers.referer))
         .catch(err => res.jsonp(err))
 });
 

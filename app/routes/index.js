@@ -218,6 +218,10 @@ router.put('/resetpassword/:resettoken', (req, res) => {
         .then(user => {
             if (!user) {
                 console.log('Token inválido');
+                res.jsonp({
+                    title: 'Invalid Token, make request again',
+                    body: ''
+                })
             } else {
                 // dar update da password
                 user.password = req.body.password;
@@ -226,23 +230,6 @@ router.put('/resetpassword/:resettoken', (req, res) => {
 
                 user.save().then(() => {
                     console.log('password atualizada com sucesso');
-                    /*const token = jwt.sign({
-                            username: user.username
-                        },
-                        process.env.JWT_KEY, {
-                            expiresIn: process.env.JWT_EXPIRE
-                        }, {
-                            algorithm: 'RS256'
-                        }
-                    );
-
-                    const cookieOptions = {
-                        expires: new Date(
-                            Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000
-                        ),
-                        httpOnly: true
-                    };
-                    res.cookie('userToken', token, cookieOptions);*/
                     res.jsonp({
                         title: 'Password updated with success',
                         body: ''
