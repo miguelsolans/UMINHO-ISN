@@ -91,8 +91,8 @@ define([
                 url: `/api/userpost/${id}`,
                 success: response => {
 
-                    $('#edit-post-text').val(response.content.text);
                     $('#edit-post-id').attr('value', response._id);
+                    $(".quill-editor .ql-editor").append(response.content.text);
                     $('#edit-post-modal').modal()
                 },
                 error: response => console.log(response)
@@ -101,15 +101,17 @@ define([
 
         // update-post-button
         $('#update-post-button').on('click', () => {
-            let text = $('#edit-post-text').val();
-            let id = $('#edit-post-id').attr('value');
+            let content = $(".quill-editor .ql-editor").html();
+            // $('#edit-post-text').val(content);
 
+            let id = $('#edit-post-id').attr('value');
+            // quill-editor
             $.ajax({
                 method: "PUT",
                 url: `/api/userpost/${id}`,
                 data: {
                     content: {
-                        text: text
+                        text: content
                     }
                 },
                 success: response => {
