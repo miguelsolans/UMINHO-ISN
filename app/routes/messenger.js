@@ -5,12 +5,15 @@ const dotenv = require('dotenv');
 const axios = require('axios');
 
 router.get('/', checkAuth, (req, res ) => {
+   
+    let loginUser = req.decodedUser;
+
     axios.get(`${process.env.API_URL}/messenger`, {
         headers:  {
             Cookie: `userToken=${req.cookies.userToken}`
         }
     })
-        .then(response => res.render('messenger', { data: response.data}))
+        .then(response => res.render('messenger', { data: response.data, loginUser: loginUser }))
         .catch(err => console.log(err));
 });
 

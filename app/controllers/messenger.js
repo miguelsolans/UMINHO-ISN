@@ -1,4 +1,5 @@
 const Messenger = require('../models/chatroom');
+const mongoose = require('mongoose');
 
 module.exports.getChatBox = (username) => {
 
@@ -31,6 +32,35 @@ module.exports.newRoom = (chatroom) => {
 
 module.exports.getMessages = (chatId) => {
     return Messenger.findById(chatId);
+};
+
+module.exports.getMessages1 = (idChat) => {
+    return Messenger.aggregate([
+        { $match: { '_id': mongoose.Types.ObjectId(idChat) }}, 
+        { $unwind: { path: '$messages', preserveNullAndEmptyArrays: false }}, 
+        {
+          $lookup: {
+            from: 'users', 
+            localField: 'messages.by', 
+            foreignField: 'username', 
+            as: 'messages.InfoUser'
+          }
+        }, {
+          $group: {
+            _id: '$_id', 
+            'Messages': {
+              $push: '$messages'
+            }
+          }
+        }, {
+          $project: {
+            'Messages.by': 1, 
+            'Messages.text': 1, 
+            'Messages.InfoUser.fullName': 1, 
+            'Messages.InfoUser.photo': 1
+          }
+        }
+    ]);
 };
 
 module.exports.sendMessage = ({chatId, text, date, by}) => {

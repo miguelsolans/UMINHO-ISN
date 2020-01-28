@@ -5,7 +5,7 @@ define([
     "use strict";
 
     return {
-        config: (selector, api, field) => {
+        config: ({selector, api, field, id, enforce, autocomplete}) => {
             let tagifyInput = document.querySelector(selector);
             let tagifyObj;
             let onInput = e => {
@@ -16,7 +16,14 @@ define([
                     method: "GET",
                     url: `${api}/${value}`,
                     success: response => {
-                        response.forEach(data => tagifyObj.settings.whitelist.push(data[field]));
+                        response.forEach(data => {
+                            let entry = {
+                                value: data[field],
+                                id: data[id]
+                            };
+                            tagifyObj.settings.whitelist.push(entry);
+                            // tagifyObj.settings.whitelist.push(data[field])
+                        });
                     },
                     error: response => {
                         console.log(response);
@@ -26,7 +33,11 @@ define([
             };
 
 
-            tagifyObj = new Tagify(tagifyInput, {whitelist: []});
+            tagifyObj = new Tagify(tagifyInput, {
+                enforceWhitelist: enforce,
+                autocomplete: autocomplete,
+                whitelist: []
+            });
             tagifyObj.on('input', onInput);
 
             return tagifyObj;

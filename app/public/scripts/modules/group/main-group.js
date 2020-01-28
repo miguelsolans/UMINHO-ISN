@@ -1,8 +1,11 @@
 define([
     'jquery',
+    'alert',
+    'composer',
     'tagifyWrapper',
+    'jquery-confirm',
     'bootstrap'
-], ($, tagify) => {
+], function ($, alert, composer, tagify) {
     "use strict";
 
     function formatComment(content) {
@@ -31,26 +34,6 @@ define([
 
     }
 
-    // update-post-button
-    $('#update-post-button').on('click', () => {
-        let text = $('#edit-post-text').val();
-        let id = $('#edit-post-id').attr('value');
-
-        $.ajax({
-            method: "PUT",
-            url: `/api/userpost/${id}`,
-            data: {
-                content: {
-                    text: text
-                }
-            },
-            success: response => {
-                console.log(response);
-                $(location).attr('href', '/feed');
-            },
-            error: response => console.log(response)
-        });
-    });
 
     $(document).ready(() => {
         /**
@@ -60,11 +43,11 @@ define([
             let id = $(event.currentTarget).attr('data-value');
             $.ajax({
                 type: "get",
-                url: `/api/userpost/comments/${id}`,
+                url: `/api/group/post/${id}/comments/`,
                 success: response => {
                     $('#comments-container').html("");
-
-                    $('#submit-post-comment').attr('action', `api/userpost/comment/${id}`);
+                    console.log(id);
+                    $('#submit-post-comment').attr('action', `/api/group/post/${id}/comment`);
 
                     if (response.length > 0) {
                         response[0].Comments.forEach(content => formatComment(content));
@@ -76,6 +59,7 @@ define([
                 }
             })
         });
+
         /**
          * Edit a post
          */
@@ -85,7 +69,7 @@ define([
 
             $.ajax({
                 method: "GET",
-                url: `/api/userpost/${id}`,
+                url: `/api/group/post/single/${id}`,
                 success: response => {
 
                     $('#edit-post-id').attr('value', response._id);
@@ -96,16 +80,18 @@ define([
             });
         });
 
-        // update-post-button
+        /**
+         * Update a post content
+         */
         $('#update-post-button').on('click', () => {
             let content = $(".quill-editor .ql-editor").html();
             // $('#edit-post-text').val(content);
-
+            console.log(content);
             let id = $('#edit-post-id').attr('value');
             // quill-editor
             $.ajax({
                 method: "PUT",
-                url: `/api/userpost/${id}`,
+                url: `/api/group/post/${id}`,
                 data: {
                     content: {
                         text: content
@@ -113,7 +99,7 @@ define([
                 },
                 success: response => {
                     console.log(response);
-                    $(location).attr('href', '/feed');
+                    $(location).attr('href', `/group/${response.groupId}`);
                 },
                 error: response => console.log(response)
             });
@@ -132,7 +118,7 @@ define([
 
                         $.ajax({
                             type: "delete",
-                            url: `/api/userpost/${id}`,
+                            url: `/api/group/post/${id}`,
                             success: response => {
                                 alert.warningAlert({title: "Post Deleted", body: ""});
                                 console.log(response);
@@ -150,6 +136,24 @@ define([
         });
 
         /**
+         * Leave a Group
+         */
+        $('#leave-group').click(function () {
+            let id = $(this).attr('data-value');
+
+            $.ajax({
+                type: 'delete',
+                url: `/api/group/${id}/leave`,
+                success: response => {
+                    window.location.href = '/feed'
+                },
+                error: response => {
+                    alert.warningAlert({title: "Error", body: "Couldn't leave selected group"});
+                }
+            })
+        });
+
+        /**
          * Create a new Post
          */
         const $postForm = $('#feed-post-form');
@@ -163,7 +167,14 @@ define([
 
         });
 
+        let options = {
+            selector: "input[name=members]",
+            api: "/api/user/match",
+            field: "username",
+            enforce: true,
+            autocomplete: true
+        };
 
-        let tagifyConfig = tagify.config( "input[name=members]" ,"/api/user/match", "username");
+        let tagifyConfig = tagify.config( options );
     });
 });

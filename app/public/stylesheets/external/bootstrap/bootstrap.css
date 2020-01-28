@@ -533,6 +533,25 @@ mark,
   font-size: 1.25rem;
 }
 
+.headerChat {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background-color: red;
+  color: white;
+  text-align: center;
+}
+
+.footerChat {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff;
+  color: white;
+  text-align: center !important;
+}
+
 .blockquote-footer {
   display: block;
   font-size: 80%;
@@ -719,6 +738,12 @@ pre code {
   flex: 0 0 auto;
   width: auto;
   max-width: 100%;
+}
+
+.col-0 {
+  -ms-flex: 0 0 8.333333%;
+  flex: 0 0 8.333333%;
+  max-width: 6.333333%;
 }
 
 .col-1 {
@@ -6698,6 +6723,20 @@ button.bg-dark:focus {
 
 .bg-transparent {
   background-color: transparent !important;
+}
+
+.borderChat {
+  border: 1px solid #dee2e6 !important;
+  border-radius: 60px;
+  background-color: #dee2e6;
+  color: #495057;
+}
+
+.borderChatMe {
+  border: 1px solid #dee2e6 !important;
+  border-radius: 60px;
+  background-color: #343a40;
+  color: #fff;
 }
 
 .border {

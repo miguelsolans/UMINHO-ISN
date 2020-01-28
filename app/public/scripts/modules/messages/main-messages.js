@@ -8,7 +8,37 @@ define([
     "use strict";
 
     const addMessage = (message) => {
-        $("#messages-wrapper").append(`<li class="list-group-item">${message.by}: ${message.text}</li>`);
+        let loginUser = $("#loginUser").attr('data-value');
+        
+        if(loginUser == message.by) { 
+            $("#messages-wrapper").append(`
+            <li class="list-group-item border-0 float-right">
+                <div class="d-inline-flex p-2 borderChatMe float-right">
+                    ${message.text}
+                </div>
+            </li>
+            `);
+        }
+
+        else {
+            $("#messages-wrapper").append(`
+
+                <li class="list-group-item border-0">
+                    <div class="row">
+                        <div class="col-0 p-2">
+                            <a href="/profile/${message.by}" target="_blank">
+                                <div title="${message.InfoUser[0].fullName}" class="circle-avatar" style="background-image:url(${message.InfoUser[0].photo})"></div>
+                            </a>
+                        </div>
+                        <div class="d-inline-flex p-2 m-2 borderChat">
+                            ${message.text}
+                        </div>
+
+                    </div>
+                </li>
+            `);
+        }
+
         console.log("Adding message...");
         console.table(message);
     };
@@ -50,11 +80,11 @@ define([
                     $("#no-chat-selected").hide();
                     $("#chat-selected").show();
 
-                    $("#chatName").text(response.name);
-                    $('input[name=chatId]').val(response._id);
-                    $("#leave-conversation").attr('value', response._id);
+                    $("#chatName").text(response[0].name);
+                    $('input[name=chatId]').val(response[0]._id);
+                    $("#leave-conversation").attr('value', response[0]._id);
 
-                    response.messages.forEach(message => {
+                    response[0].Messages.forEach(message => {
                         addMessage(message);
                     });
                     // messages-wrapper
@@ -140,8 +170,14 @@ define([
         });
 
 
-        let tagifyConfig = tagify.config( "input[name=participants]" ,"/api/user/match", "username");
-
+        let options = {
+            selector: "input[name=participants]",
+            api: "/api/user/match",
+            field: "username",
+            enforce: true,
+            autocomplete: true
+        };
+        tagify.config( options );
 
     });
 

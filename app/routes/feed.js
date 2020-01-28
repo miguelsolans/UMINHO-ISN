@@ -1,9 +1,7 @@
 const express = require('express');
 const axios = require('axios');
-const dotenv = require('dotenv').config();
 const router = express.Router();
 const checkAuth = require('../middleware/check-auth');
-const feed = require('../controllers/feed');
 const parseTime = require('../utils/parseTime');
 
 router.get('/', checkAuth, function (req, res, next) {
@@ -76,9 +74,5 @@ router.get('/', checkAuth, function (req, res, next) {
         .catch(error => console.log(error));
 });
 
-// Gostar de uma publicação
-// router.put('/:id', (req, res) => {
-//
-// });
 
 module.exports = router;
