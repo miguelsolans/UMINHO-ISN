@@ -1,0 +1,26 @@
+<%- include('partials/header') %>
+<br>
+<br>
+<br>
+<br>
+
+<div>
+    <form>
+        <div class="form-group px-3">
+            <h5>Insert your email</h5>
+            <label for="email"></label>
+            <input type="email" name="email" id="email" class="form-control" autofocus>
+            <button id="sendemail" class="btn btn-muted2 btn-sm btn-block shadow-sm py-1 px-3 mt-2 text-muted2 border">
+                Submit
+            </button>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    require(['./scripts/main'], (main) => {
+        require(['modules/resetPassword/main-resetPassword']);
+    });
+</script>
+
+<%- include('partials/footer') %>
