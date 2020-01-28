@@ -14,9 +14,12 @@ router.get('/', checkAuth, (req, res) => {
 
 router.get('/:id', checkAuth, (req, res) => {
     let id = req.params.id;
-
     messenger.getMessages(id)
-        .then(data => res.jsonp(data))
+        .then(data => {
+            console.log(data)
+            res.jsonp(data)
+        })
+
         .catch(err => res.jsonp(err));
 });
 
