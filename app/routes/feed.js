@@ -76,14 +76,6 @@ router.get('/', checkAuth, function (req, res, next) {
         .catch(error => console.log(error));
 });
 
-// Publicar no feed
-router.post('/', checkAuth, (req, res) => {
-    feed.addToFeed(req.decodedUser)
-        .then(result => console.log(result))
-        .catch(err => console.log(err));
-    res.redirect('/feed');
-});
-
 // Gostar de uma publicação
 // router.put('/:id', (req, res) => {
 //
