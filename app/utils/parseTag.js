@@ -1,16 +1,13 @@
 
 module.exports.parse = (data, field) => {
 
-    let dataJson = JSON.parse(data[field]);
+    let dataJson = JSON.parse(data);
 
-
-    console.log(dataJson);
-
-    let members = [];
+    let dataArr = [];
 
     dataJson.forEach(member => {
-        members.push(member.value)
+        dataArr.push(member.value)
     });
 
-    return members;
+    return dataArr;
 };
