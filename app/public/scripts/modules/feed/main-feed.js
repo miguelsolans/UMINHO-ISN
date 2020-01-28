@@ -151,6 +151,22 @@ define([
             });
         });
 
+        $('.manage-my-groups').on('click', () => {
+            $.ajax({
+                method: "GET",
+                url: '/api/group/registered',
+                success: response => {
+                    $('#group-feed').html("");
+                    // /group/
+                    response.forEach(group => {
+                        $('#group-list').append(`<p><a href="/group/${group._id}">${group.name}</a></p>`);
+                    });
+                    $('#manage-my-groups').modal();
+                    console.log(response);
+                }, error: response => console.log(response)
+            });
+        });
+
         /**
          * Create a new Post
          */
