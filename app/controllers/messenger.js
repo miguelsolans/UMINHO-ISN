@@ -35,8 +35,6 @@ module.exports.getMessages = (chatId) => {
 };
 
 module.exports.getMessages1 = (idChat) => {
-    console.log("FDSSSSSS");
-
     return Messenger.aggregate([
         { $match: { '_id': mongoose.Types.ObjectId(idChat) }}, 
         { $unwind: { path: '$messages', preserveNullAndEmptyArrays: false }}, 
