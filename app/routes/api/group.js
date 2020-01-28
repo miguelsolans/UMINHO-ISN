@@ -3,6 +3,7 @@ const router    = express.Router();
 const group     = require('../../controllers/groups');
 const checkAuth = require('../../middleware/check-auth');
 const groupPost = require('../../controllers/groupPosts');
+const parseTag  = require('../../utils/parseTag');
 
 /*********************************************************************
  * Group Basic Operations
@@ -47,11 +48,11 @@ router.get('/registered', checkAuth, (req, res) => {
 /**
  * Join a Group
  */
-router.put('/join/:id', checkAuth, (req, res) => {
-    let user = [req.decodedUser];
-    group.registerMembers(req.params.id, user)
-        .then(result => res.jsonp(result))
-        .catch(err => res.jsonp(err));
+router.post('/join', checkAuth, (req, res) => {
+    let user = req.decodedUser;
+
+
+    console.log(req.body);
 });
 
 /**
@@ -195,6 +196,13 @@ router.post('/post/:id/comment', checkAuth, (req, res) => {
 
 });
 
+router.get('/match/:str', checkAuth, (req, res) => {
+    let str = req.params.str;
+
+    group.groupMatch(str)
+        .then(result => res.jsonp(result))
+        .catch(err => res.jsonp(err));
+});
 /**
  * Get a Single Group
  */
