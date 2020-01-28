@@ -37,7 +37,7 @@ module.exports.getMessages = (chatId) => {
 module.exports.getMessages1 = (idChat) => {
     return Messenger.aggregate([
         { $match: { '_id': mongoose.Types.ObjectId(idChat) }}, 
-        { $unwind: { path: '$messages', preserveNullAndEmptyArrays: false }}, 
+        { $unwind: { path: '$messages', preserveNullAndEmptyArrays: true }}, 
         {
           $lookup: {
             from: 'users', 
