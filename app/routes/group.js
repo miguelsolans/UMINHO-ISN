@@ -149,36 +149,6 @@ router.post('/:id/update', checkAuth, (req, res) => {
 });
 
 /**
- * Group Comments Routes
- */
-
-/**
- * Get a Group Post Comments
- */
-router.get('/post/:id/comments', checkAuth, (req, res) => {
-    let post = req.params.id;
-
-    groupPost.getComments(post)
-        .then(result => res.jsonp(result))
-        .catch(err => res.jsonp(err));
-
-});
-// Post
-router.post('/post/:id/comment', checkAuth, (req, res) => {
-    let postId = req.params.id;
-
-    let comment = {
-        text: req.body.text,
-        createdBy: req.decodedUser
-    };
-
-    groupPost.addComment(postId, comment)
-        .then(result => res.jsonp(result))
-        .catch(err => res.jsonp(err));
-
-});
-
-/**
  * Get a Single Group
  * is used
  */
