@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 const GroupPosts = require('../models/groupPost');
 
+module.exports.getSinglePost = (id) => {
+    return GroupPosts.findById(id);
+};
+
 // get post by id
 exports.getGroupPostId = (id) => {
     return GroupPosts.find({ groupId: id})

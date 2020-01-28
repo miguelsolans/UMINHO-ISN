@@ -24,8 +24,7 @@ const groupSchema = new mongoose.Schema({
         required: true
     },
     audience: {
-        type: Boolean,
-        default: false
+        type: Boolean
     },
     members: { // gardar aqui ou no user ou em ambos?
         type: [String]

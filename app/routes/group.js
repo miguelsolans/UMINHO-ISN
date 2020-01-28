@@ -30,23 +30,6 @@ router.get('/public', checkAuth, (req, res) => {
 });
 
 /**
- * Groups I take part of
- */
-router.get('/registered', checkAuth, (req, res) => {
-
-    if(req.params.limit !== undefined) {
-        group.listTopGroups({members: req.decodedUser}, req.params.limit )
-            .then(data => res.jsonp(data))
-            .catch(err => res.jsonp(err));
-
-    } else {
-        group.listAvailableGroups({ members: req.decodedUser }, { _id: 1, name: 1, description: 1})
-            .then(data => res.jsonp(data))
-            .catch(err => res.jsonp(err));
-    }
-});
-
-/**
  * Add user to a group
  */
 router.put('/:id/add', checkAuth, (req, res) => {
@@ -75,19 +58,24 @@ router.put('/:id/add', checkAuth, (req, res) => {
  */
 router.post('/new', checkAuth, (req, res) => {
 
+
     let newGroup = {
         name: req.body.name,
         description: req.body.description,
         members: [req.decodedUser],
         creator: req.decodedUser,
-        audience: req.body.audience === 'true'
+        audience: req.body.audience
     };
 
-    console.log(newGroup);
-    group.createGroup(newGroup)
-        .then(result => res.jsonp(result))
-        .catch(err => res.jsonp(err));
-
+    axios.post(`${process.env.API_URL}/group/new`, newGroup, {
+        headers: {
+            Cookie: `userToken=${req.cookies.userToken}`
+        }
+    }).then(result => {
+        console.log(result.data);
+        res.redirect(`/group/${result.data._id}`);
+    })
+        .catch(err => res.redirect('/feed'));
 });
 
 
@@ -123,12 +111,27 @@ router.post('/:id/post', checkAuth, upload.array('files', 12), (req, res) => {
         }
     };
 
-    groupPost.addNewGroupPost(newPost)
-        .then(result => res.jsonp(result))
-        .catch(err => res.jsonp(err));
+    axios.post(`${process.env.API_URL}/group/${req.params.id}/post`, newPost, {
+        headers: {
+            Cookie: `userToken=${req.cookies.userToken}`
+        }
+    }).then(result => {
+        res.redirect(`/group/${newPost.groupId}`);
+    }).catch(err => res.redirect(`/group/${newPost.groupId}`));
 
 });
 
+router.post('/join', checkAuth, (req, res) => {
+    let group = parseTag.parse(req.body.groupnames, "id");
+
+    axios.post(`${process.env.API_URL}/group/join`, group, {
+        headers: {
+            Cookie: `userToken=${req.cookies.userToken}`
+        }
+    }).then(result => {
+        res.redirect('/feed');
+    }).catch(err => res.redirect(`/feed`));
+});
 
 /**
  * Change Form Settings
@@ -139,7 +142,7 @@ router.post('/:id/update', checkAuth, (req, res) => {
     let info = req.body;
     let id = req.params.id;
 
-    let members = parseTag(JSON.parse(info.members));
+    let members = parseTag.parse(info.members, "value");
 
     let parsedUpdate = {
         audience: info.audience,
@@ -148,85 +151,18 @@ router.post('/:id/update', checkAuth, (req, res) => {
         name: info.name
     };
 
-    group.updateGroup(id, parsedUpdate)
-        .then(result => res.redirect(`/group/${id}`))
-        .catch(err => res.redirect(`/group/${id}`));
-});
-
-/**
- * Get a Group posts
- */
-router.get('/:id/posts', (req, res) => {
-
-    groupPost.getGroupPostId(req.params.id)
-        .then(result => res.jsonp(result))
-        .catch(err => res.jsonp(err));
-});
-
-/**
- * Delete a Group Post
- */
-router.delete('/post/:id', checkAuth, (req, res) => {
-    let id = req.params.id;
-
-    console.log(`DELETING POST ${id}`);
-
-    groupPost.deletePost(id)
-        .then(result => res.jsonp(result))
-        .catch(err => res.jsonp(err));
-});
-
-/**
- * Update a Group post
- */
-router.put('/post/:id', checkAuth, (req, res) => {
-    let id = req.params.id;
-    console.log(`UPDATING POST ${id}`);
-
-    let updatedData = {
-        content: {
-            text: req.body.text
+    axios.put(`${process.env.API_URL}/group/${id}/update`, parsedUpdate, {
+        headers: {
+            Cookie: `userToken=${req.cookies.userToken}`
         }
-    };
-
-    groupPost.updatePost(id, updatedData)
-        .then(result => res.jsonp(result))
-        .catch(err => res.jsonp(err));
-
-});
-
-/**
- * Group Comments Routes
- */
-/**
- * Get a Group Post Comments
- */
-router.get('/post/:id/comments', checkAuth, (req, res) => {
-    let post = req.params.id;
-
-    groupPost.getComments(post)
-        .then(result => res.jsonp(result))
-        .catch(err => res.jsonp(err));
-
-});
-
-// Post
-router.post('/post/:id/comment', checkAuth, (req, res) => {
-    let postId = req.params.id;
-
-    let comment = {
-        text: req.body.text,
-        createdBy: req.decodedUser
-    };
-
-    groupPost.addComment(postId, comment)
-        .then(result => res.jsonp(result))
-        .catch(err => res.jsonp(err));
+    }).then(result => res.redirect(`/group/${id}`))
+        .catch(err => res.redirect(`/group/${id}`));
 
 });
 
 /**
  * Get a Single Group
+ * is used
  */
 router.get('/:id', checkAuth, (req, res) => {
     // {"description":"DAW Workgroup","audience":false,"members":["mateussilva","miguelsolans"],"_id":"5e2f05f54140892ba0bfbf8a","name":"DAW","creator":"mateussilva","__v":0}

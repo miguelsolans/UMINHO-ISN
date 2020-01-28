@@ -170,8 +170,14 @@ define([
         });
 
 
-        let tagifyConfig = tagify.config( "input[name=participants]" ,"/api/user/match", "username");
-
+        let options = {
+            selector: "input[name=participants]",
+            api: "/api/user/match",
+            field: "username",
+            enforce: true,
+            autocomplete: true
+        };
+        tagify.config( options );
 
     });
 
