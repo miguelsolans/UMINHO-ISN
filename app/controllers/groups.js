@@ -46,3 +46,17 @@ module.exports.creator = (groupId) => {
 module.exports.updateGroup = (groupId, fields) => {
     return Group.findByIdAndUpdate(groupId, fields);
 };
+
+module.exports.groupMatch = (match) => {
+    return Group.aggregate([{
+        '$match': {
+            'name': new RegExp(`.*${match}*`),
+            'audience': true
+        }
+    }, {
+        '$project': {
+            '_id': 0,
+            'name': 1
+        }
+    }])
+};

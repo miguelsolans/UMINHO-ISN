@@ -5,7 +5,7 @@ define([
     "use strict";
 
     return {
-        config: (selector, api) => {
+        config: (selector, api, field) => {
             let tagifyInput = document.querySelector(selector);
             let tagifyObj;
             let onInput = e => {
@@ -16,9 +16,7 @@ define([
                     method: "GET",
                     url: `${api}/${value}`,
                     success: response => {
-                        console.log(response);
-
-                        response.forEach(user => tagifyObj.settings.whitelist.push(user.username));
+                        response.forEach(data => tagifyObj.settings.whitelist.push(data[field]));
                     },
                     error: response => {
                         console.log(response);

@@ -18,8 +18,6 @@ define([
             let content = $(".quill-composer .ql-editor").html();
             $('#user-post-text').attr('value', content);
 
-            alert(content);
-
             $postForm.unbind('submit').submit();
         });
 
@@ -32,6 +30,6 @@ define([
         // });
 
 
-        let tagifyConfig = tagify.config( "input[name=members]" ,"/api/user/match");
+        let tagifyConfig = tagify.config( "input[name=members]" ,"/api/user/match", "username");
     });
 });
