@@ -47,8 +47,8 @@ router.get('/own', checkAuth, (req, res) => {
  */
 router.get('/registered', checkAuth, (req, res) => {
 
-    if(req.params.limit !== undefined) {
-        group.listTopGroups({members: req.decodedUser}, req.params.limit )
+    if(req.query.limit !== undefined) {
+        group.listTopGroups({members: req.decodedUser}, parseInt(req.query.limit) )
             .then(data => res.jsonp(data))
             .catch(err => res.jsonp(err));
 

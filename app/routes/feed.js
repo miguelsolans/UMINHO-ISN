@@ -7,8 +7,8 @@ const parseTime = require('../utils/parseTime');
 router.get('/', checkAuth, function (req, res, next) {
     let one = `${process.env.APP_URL}/api/userpost/feed`;
     let two = `${process.env.APP_URL}/api/user/infofeed`;
-    let three = `${process.env.APP_URL}/api/group/registered?limit=5`;
-
+    let three = `${process.env.APP_URL}/api/group/registered?limit=3`;
+    let four = `${process.env.APP_URL}/api/group/registered`;
     let loginUser= req.decodedUser;
 
     const requestOne = axios.get(one, {
@@ -26,13 +26,19 @@ router.get('/', checkAuth, function (req, res, next) {
             Cookie: `userToken=${req.cookies.userToken}`
         }
     });
+    const requestFour = axios.get(four, {
+        headers: {
+            Cookie: `userToken=${req.cookies.userToken}`
+        }
+    });
 
-    axios.all([requestOne, requestTwo, requestThree])
+    axios.all([requestOne, requestTwo, requestThree, requestFour])
         .then(axios.spread((...responses) => {
             const posts = responses[0].data;
             const infoFeed = responses[1].data;
             const groups = responses[2].data;
             const firstName = responses[1].data.fullName.split(" ")[0];
+            const totalGroups = responses[3].data.length;
 
             let now = new Date();
 
@@ -68,7 +74,8 @@ router.get('/', checkAuth, function (req, res, next) {
                 groups: groups,
                 firstName: firstName,
                 infoFeed: infoFeed,
-                loginUser: loginUser
+                loginUser: loginUser,
+                totalGroups: totalGroups
             });
         }))
         .catch(error => console.log(error));

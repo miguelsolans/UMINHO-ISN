@@ -135,19 +135,17 @@ define([
             let id = $(event.currentTarget).attr('value');
 
             $.confirm({
-                title: 'Leave Conversation?',
-                content: 'Are you sure!?',
+                title: 'Leave Conversation',
+                content: 'Are you sure?',
                 buttons: {
                     confirm: () => {
-                        $.alert('Sad to see you go...! 😢');
                         $.ajax({
                             type: 'delete',
                             url: `/api/messenger/${id}`,
                             success: response => {
-                                console.log("Left room!");
+                                console.log("Left the Chat");
                                 let message = {
-                                    title: "Farewell my friend...",
-                                    body: `You've just left ${response.name} conversation`
+                                    title: "You've just left the conversation",
                                 };
 
                                 alert.warningAlert(message);
@@ -164,7 +162,6 @@ define([
                         });
                     },
                     cancel: () => {
-                        $.alert('Glad you are staying! 🤘🏽');
                     },
                 }
             });

@@ -10,11 +10,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <!--action="/api/userpost/comment/<%= post._id %>"-->
                 <form action="" method="POST" id="submit-post-comment">                    
-                    
                     <div class="form-group px-3">
                         <h5>What's your opinion?</h5>
+                        <br>
                         <textarea class="form-control" id="text" rows="3" name="text"></textarea>
                         <button id="button-Submit-Comment" type="submit" class="btn btn-muted2 btn-sm btn-block shadow-sm py-1 px-3 mt-2 text-muted2 border">
                             Submit Comment
@@ -41,6 +40,7 @@
                 <form>
                     <div class="form-group px-3">
                         <h5>Update your Post</h5>
+                        <br>
                         <div class="quill-editor"></div>
                         <input class="form-control" id="edit-post-text" rows="3" name="text" hidden>
                         <input id="edit-post-id" value="" hidden>

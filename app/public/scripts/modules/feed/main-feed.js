@@ -159,7 +159,7 @@ define([
                     $('#group-feed').html("");
                     // /group/
                     response.forEach(group => {
-                        $('#group-list').append(`<p><a href="/group/${group._id}">${group.name}</a></p>`);
+                        $('#group-list').append(`<p><a class="text-muted2" href="/group/${group._id}">${group.name}</a></p>`);
                     });
                     $('#manage-my-groups').modal();
                     console.log(response);

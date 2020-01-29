@@ -65,9 +65,10 @@
 
                 <div id="chat-selected">
                     <!-- Nome do Chat -->
+                    <h2 class="text-center" id="chatName"></h2>
                     <div id="loginUser" data-value="<%= loginUser %>"></div>
                     <div class="col-sm bg-light" style="background-color: #fff;">
-                        <h2 style="z-index: 10; padding-top: 50px; padding-bottom: 10px; margin-top: -50px; margin-left: -10px; width: 100%; background-color: #fff;" class="font-weight-bold position-fixed border-bottom" id="chatName">Chats</h2> 
+                        <h2 style="z-index: 10; padding-top: 50px; padding-bottom: 10px; margin-top: -50px; margin-left: -20px; width: 100%; background-color: #fff;" class="font-weight-bold position-fixed border-bottom" id="chatName">Chats</h2> 
                     </div>
                     <ul class="list-group pt-5 pb-5 mb-3" id="messages-wrapper"></ul>
                     <form class="footerChat pb-3 col offset-3 col-sm-9 position-fixed">
@@ -80,9 +81,9 @@
                                 <span class="btn btn-danger btn-sm rounded-circle edit-post float-sm-right mr-1" id="leave-conversation" value="">
                                     <span class="fas fa-trash-alt" style="color:#fff" aria-hidden="true"></span>
                                 </span>
-                                <span class="btn btn-dark btn-sm rounded-circle edit-post float-sm-right mr-1" type="submit" id="send-message-button" value="Send">
+                                <button class="btn btn-dark btn-sm rounded-circle edit-post float-sm-right mr-1" type="submit" id="send-message-button" value="Send">
                                     <span class="fas fa-share" style="color:#fff" aria-hidden="true"></span>
-                                </span>
+                                </button>
                             </div>
                         </div>
                     </form>

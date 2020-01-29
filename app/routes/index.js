@@ -119,7 +119,7 @@ router.post('/register', (req, res) => {
                 res.cookie('userToken', token, cookieOptions);
                 res.redirect('/feed');
             } else {
-                req.flash("message", `User ${req.body.username} already exists!`);
+                req.flash("message", `User ${req.body.username} already exists`);
                 res.redirect('/');
             }
         })
@@ -133,9 +133,9 @@ router.post('/forgotpassword', (req, res) => {
         .searchUserEmail(req.body.email)
         .then(data => {
             if (!data) {
-                console.log("inavlid email");
+                console.log("Invalid Email");
                 res.jsonp({
-                    title: 'Invalid email',
+                    title: 'Invalid Email',
                     body: ''
                 })
             } else {
@@ -153,17 +153,21 @@ router.post('/forgotpassword', (req, res) => {
                             'host'
                         )}/resetpassword/${resetToken}`;
 
-                        const message = `Este email foi enviado porque foi requirido um reset da password.\nO limite de tempo para poderes realizar é de 20 minutos.\nSe não realizar esta operação neste intervalo de tempo, terá de realizar novo pedido de reset.\nPara completar o processo de reset visite o seguinte link: ${resetUrl}`;
+                        const message = ``;
 
+                        const html = `<p>Este email foi enviado porque foi requirido um reset da password.\nO limite de tempo para poderes realizar é de 20 minutos.\nSe não realizar esta operação neste intervalo de tempo, terá de realizar novo pedido de reset.\nPara completar o processo de reset visite o seguinte link:</p>
+                        <a href="${resetUrl}">Click here</a>`
+                        
                         try {
                             sendEmail({
                                     email: data.email,
-                                    subject: 'Password reset token',
-                                    message
+                                    subject: 'Password reset Token',
+                                    message,
+                                    html
                                 })
                                 .then(() => {
                                     res.jsonp({
-                                        title: 'Check your email',
+                                        title: 'Check your Email',
                                         body: ''
                                     })
                                 })
@@ -181,7 +185,7 @@ router.post('/forgotpassword', (req, res) => {
                                 .then()
                                 .catch();
 
-                            console.log('O email não pode ser enviado');
+                            console.log('O Email não pode ser enviado');
                         }
                     });
             }
