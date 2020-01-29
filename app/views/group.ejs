@@ -5,16 +5,17 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Group Administration</h5>
+                <h4 class="modal-title font-weight-bold" id="exampleModalLongTitle">Group Administration</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <form action="/group/<%= group._id %>/update" method="post">
-                    <div class="form-row align-items-center">
-                        <div class="col-auto my-1">
-                            <label for="group-visibility">Audience</label>
+                    <div class="form-group px-3">
+                        <h5>Update Group Settings</h5>
+                        <br>
+                            <label for="group-visibility" class="font-weight-bold">Audience</label>
                             <select class="custom-select" id="group-audience" name="audience">
                                 <% if(group.audience) { %>
                                     <option value="false">Private</option>
@@ -25,31 +26,27 @@
                                 <% } %>
 
                             </select>
-                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="group-name">Group Name</label>
+                    <div class="form-group mt-2 px-3">
+                        <label for="group-name" class="font-weight-bold">Group Name</label>
                         <input type="text" class="form-control" id="group-name" name="name" placeholder="Group Name..." value="<%= group.name %>" required>
                     </div>
 
-                    <div class="form-group">
-                        <label for="group-name">Description</label>
+                    <div class="form-group mt-2 px-3">
+                        <label for="group-name" class="font-weight-bold">Description</label>
                         <textarea class="form-control" id="group-description" name="description" placeholder="Group description"><%= group.description %></textarea>
                     </div>
 
-                    <div class="form-group">
-                        <label for="chatRoomParticipants">Members</label>
+                    <div class="form-group mt-2 px-3">
+                        <label for="chatRoomParticipants" class="font-weight-bold">Members</label>
                         <input type="text" name="members" id="chatRoomParticipants" value="<%= group.members %>" placeholder="Participants" autofocus>
                         <small id="chatRoomParticipantsHelp" class="form-text text-muted">Wait for suggestions...</small>
+                        <button id="update-group" type="submit" class="btn btn-muted2 btn-sm btn-block shadow-sm py-1 px-3 mt-2 text-muted2 border">
+                            Save Changes
+                        </button>
                     </div>
-
-                    <button type="submit" class="btn btn-primary" id="update-group">Update</button>
-
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
