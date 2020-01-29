@@ -1,7 +1,7 @@
 <%- include('partials/header') %>
 
 <!-- New Chatroom Modal -->
-<div class="modal" id="new-chatroom-modal" tabindex="-1" role="dialog">
+<div class="modal fade" id="new-chatroom-modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -77,12 +77,12 @@
                                 <input type="hidden" name="chatId" value="">
                             </div>
                             <div class="col-sm-2 pr-4 mt-3">
-                                <button class="btn btn-danger btn-sm rounded-circle edit-post float-sm-right mr-1" id="leave-conversation" value="">
+                                <span class="btn btn-danger btn-sm rounded-circle edit-post float-sm-right mr-1" id="leave-conversation" value="">
                                     <span class="fas fa-trash-alt" style="color:#fff" aria-hidden="true"></span>
-                                </button>
-                                <button class="btn btn-dark btn-sm rounded-circle edit-post float-sm-right mr-1" type="submit" id="send-message-button" value="Send">
+                                </span>
+                                <span class="btn btn-dark btn-sm rounded-circle edit-post float-sm-right mr-1" type="submit" id="send-message-button" value="Send">
                                     <span class="fas fa-share" style="color:#fff" aria-hidden="true"></span>
-                                </button>
+                                </span>
                             </div>
                         </div>
                     </form>
