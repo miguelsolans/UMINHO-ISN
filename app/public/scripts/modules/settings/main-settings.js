@@ -26,7 +26,7 @@ define(['jquery', 'tagify', 'composer', 'dropzone', 'bootstrap'], (
 
             $.ajax({
                 type: 'PUT',
-                url: 'http://localhost:3030/settings/change-password',
+                url: '/settings/change-password',
                 data: `password=${newPassword}`,
                 success: result => {
                     console.log(result);
