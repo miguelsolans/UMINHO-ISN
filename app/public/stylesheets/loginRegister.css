@@ -241,7 +241,6 @@ body {
 
 .signup-form, .signup-image, .signin-form, .signin-image {
   width: 50%;
-  overflow: auto; 
 }
 
 .form-title { margin-bottom: 33px; }
@@ -275,7 +274,7 @@ figure { text-align: center; }
 .signup-image-link {
   font-size: 14px;
   color: #222;
-  padding: 50px; 
+  padding: 10px; 
 }
 
 .term-service {
@@ -423,7 +422,7 @@ label.valid:after {
   padding-bottom: 50px; 
 }
 
-.signin-form { margin-top: 10px; }
+.signin-form { margin-top: 0px; }
 
 .signin-image {
   margin-right: 10px;
