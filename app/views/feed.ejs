@@ -62,18 +62,22 @@
                 <% } %>
             </div>
             <hr>
-                <p class="text-center"><b>Groups</b></p>
+                <div class="text-center pt-0 font-weight-bold">Groups</div>
                 <% if(groups.length > 0) { %>
-                    <ol>
+                    <div class="text-center mt-1">
                     <% groups.forEach(group => { %>
-                            <li><a href="/group/<%= group._id %>"><%= group.name %></a></li>
+                        <a class="text-muted" href="/group/<%= group._id %>"><%= group.name %></a>
                     <% }); %>
-                    </ol>
-                    <% if(groups.length > 5) { %>
-                        <button class="btn btn-danger manage-my-groups">More Groups</button>
-                    <% } %>
+                    </div>
                 <%} else { %>
                     <p class="text-center">You are not associated with any Group</p>
+                <% } %>
+                <% if(totalGroups > 3) { %>
+                    <p class="text-center mt-2">
+                        <button class="btn btn-dark btn-sm rounded-circle manage-my-groups">
+                            <span class="fas fa-plus" style="color:#fff" aria-hidden="true"></span>
+                        </button>
+                    </p>
                 <% } %>
         </div>
         <div class="col offset-2 col-sm-10">

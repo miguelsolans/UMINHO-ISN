@@ -59,21 +59,31 @@
 <div class="container-fluid mt-5 pt-5">
     <div class="row">
         <div class="col-sm-2 d-none d-lg-block border-right position-fixed">
+            <div class="circle-avatar" style="background-image:url('/images/GroupDefault.png')"></div>
+            <p></p>
             <h4>
                 <img alt="User Picture" class="img-fluid" src="/images/Welcome.png">
                 <p class="text-center font-weight-bold">to <%- group.name %></p>
             </h4>
+            <hr>
             </p>
             <h6 class="text-center text-muted">
-                Description: <span style="color:#000000"><%= group.description %></span>
+                Description <p style="color:#000000"><%= group.description %></p>
             </h6>
-            <% if(loginUser === group.creator) { %>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#groupAdministration">
-                    Administration
-                </button>
-            <% } %>
-            <button id="leave-group" type="button" data-value="<%= group._id %>" class="btn btn-outline-danger">Leave Group</button>
+            <br>
+
+            <form class="text-center my-2 my-lg-0">
+                <% if(loginUser === group.creator) { %>
+                    <i class="btn btn-dark btn-sm rounded-circle" data-toggle="modal" data-target="#groupAdministration">
+                        <span class="fas fa-tools" style="color:#fff" aria-hidden="true"></span>
+                    </i>
+                <% } %>
+                    <i id="leave-group" data-value="<%= group._id %>" class="btn btn-danger btn-sm rounded-circle">
+                        <span class="fas fa-sign-out-alt" style="color:#fff" aria-hidden="true"></span>
+                    </i>
+            </form>
         </div>
+    </div>
         <div class="col offset-2 col-sm-10">
             <h1><b><%= group.name %> Feed</b></h1>
             <h4>What are you thinking?</h4>
