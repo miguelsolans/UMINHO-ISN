@@ -85,7 +85,8 @@ define([
                     $("#leave-conversation").attr('value', response[0]._id);
 
                     response[0].Messages.forEach(message => {
-                        addMessage(message);
+                        if(message.InfoUser.length > 0)
+                            addMessage(message);
                     });
                     // messages-wrapper
 

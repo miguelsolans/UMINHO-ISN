@@ -65,7 +65,7 @@ define([
                 url: `/api/userpost/${id}`,
                 success: response => {
 
-                    $('#edit-post-text').val(response.content.text);
+                    $(".quill-editor .ql-editor").append(response.content.text);
                     $('#edit-post-id').attr('value', response._id);
                     $('#edit-post-modal').modal()
                 },
@@ -73,9 +73,12 @@ define([
             });
         });
 
-        // update-post-button
+        /**
+         * Update a post content
+         */ 
         $('#update-post-button').on('click', () => {
-            let text = $('#edit-post-text').val();
+            let content = $(".quill-editor .ql-editor").html();
+            // $('#edit-post-text').val(content);
             let id = $('#edit-post-id').attr('value');
 
             $.ajax({
@@ -83,7 +86,7 @@ define([
                 url: `/api/userpost/${id}`,
                 data: {
                     content: {
-                        text: text
+                        text: content
                     }
                 },
                 success: response => {

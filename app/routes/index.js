@@ -15,10 +15,12 @@ const user = require('../controllers/users');
  * Login Root Route
  */
 router.get('/', (req, res) => {
-    if(req.cookies.userToken !== undefined)
+    if (req.cookies.userToken !== undefined)
         res.redirect('/feed');
     else
-        res.render('login', {message: req.flash("message")});
+        res.render('login', {
+            message: req.flash("message")
+        });
 });
 
 /**
@@ -39,18 +41,14 @@ router.post('/login', (req, res) => {
                         if (!result) {
                             req.flash("message", "Wrong Password or Username!");
                             res.redirect('/')
-                        }
-                        else {
+                        } else {
                             console.log('Valid Password');
-                            const token = jwt.sign(
-                                {
+                            const token = jwt.sign({
                                     username: data.username
                                 },
-                                process.env.JWT_KEY,
-                                {
+                                process.env.JWT_KEY, {
                                     expiresIn: process.env.JWT_EXPIRE
-                                },
-                                {
+                                }, {
                                     algorithm: 'RS256'
                                 }
                             );
@@ -98,18 +96,15 @@ router.post('/register', (req, res) => {
 
                 let userDir = path.join(__dirname, `../public/uploads/users/${newUser.username}`);
                 fs.mkdir(userDir, err => {
-                    if(err) console.log(err);
+                    if (err) console.log(err);
                 });
 
-                const token = jwt.sign(
-                    {
+                const token = jwt.sign({
                         username: newUser.username
                     },
-                    process.env.JWT_KEY,
-                    {
+                    process.env.JWT_KEY, {
                         expiresIn: process.env.JWT_EXPIRE
-                    },
-                    {
+                    }, {
                         algorithm: 'RS256'
                     }
                 );
@@ -138,7 +133,11 @@ router.post('/forgotpassword', (req, res) => {
         .searchUserEmail(req.body.email)
         .then(data => {
             if (!data) {
-                console.log('User com email inserido não existe');
+                console.log("inavlid email");
+                res.jsonp({
+                    title: 'Invalid email',
+                    body: ''
+                })
             } else {
                 // criar o token de reset
                 const resetToken = data.getResetPasswordToken();
@@ -158,15 +157,15 @@ router.post('/forgotpassword', (req, res) => {
 
                         try {
                             sendEmail({
-                                email: data.email,
-                                subject: 'Password reset token',
-                                message
-                            })
+                                    email: data.email,
+                                    subject: 'Password reset token',
+                                    message
+                                })
                                 .then(() => {
-                                    res.status(200).json({
-                                        success: true,
-                                        data: 'Email sent'
-                                    });
+                                    res.jsonp({
+                                        title: 'Check your email',
+                                        body: ''
+                                    })
                                 })
                                 .catch();
                         } catch (err) {
@@ -192,7 +191,17 @@ router.post('/forgotpassword', (req, res) => {
         });
 });
 
+
+router.get('/resetpassword/:resettoken', (req, res) => {
+    res.render('resetpassword', {
+        token: req.params.resettoken
+    });
+});
+
+
 router.put('/resetpassword/:resettoken', (req, res) => {
+
+    console.log(req.body);
     // get hashed token
     const resetPasswordToken = crypto
         .createHash('sha256')
@@ -209,6 +218,10 @@ router.put('/resetpassword/:resettoken', (req, res) => {
         .then(user => {
             if (!user) {
                 console.log('Token inválido');
+                res.jsonp({
+                    title: 'Invalid Token, make request again',
+                    body: ''
+                })
             } else {
                 // dar update da password
                 user.password = req.body.password;
@@ -217,27 +230,10 @@ router.put('/resetpassword/:resettoken', (req, res) => {
 
                 user.save().then(() => {
                     console.log('password atualizada com sucesso');
-                    const token = jwt.sign(
-                        {
-                            username: user.username
-                        },
-                        process.env.JWT_KEY,
-                        {
-                            expiresIn: process.env.JWT_EXPIRE
-                        },
-                        {
-                            algorithm: 'RS256'
-                        }
-                    );
-
-                    const cookieOptions = {
-                        expires: new Date(
-                            Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000
-                        ),
-                        httpOnly: true
-                    };
-                    res.cookie('userToken', token, cookieOptions);
-                    res.redirect('/feed');
+                    res.jsonp({
+                        title: 'Password updated with success',
+                        body: ''
+                    })
                 });
             }
         })
@@ -245,6 +241,13 @@ router.put('/resetpassword/:resettoken', (req, res) => {
             console.log(err);
         });
 });
+
+
+router.get('/forgotpasswordpage', (req, res) => {
+    res.render('insertemail');
+});
+
+
 
 // Export Routes for Index
 module.exports = router;
