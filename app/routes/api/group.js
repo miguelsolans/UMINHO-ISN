@@ -129,7 +129,7 @@ router.post('/:id/post', checkAuth, (req, res) => {
         }
     };
     groupPost.addNewGroupPost(newPost)
-        .then(result => res.jsonp(result))
+        .then(result => res.redirect(req.headers.referer))
         .catch(err => res.jsonp(err));
 
 });
